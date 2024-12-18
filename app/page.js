@@ -48,7 +48,7 @@ export default function Home() {
             {
               skills.map((skill) => {
                 return (
-                  <div className="grid grid-cols-1 items-center justify-center bg-slate-900 border-2 border-slate-500 p-5 rounded-md">
+                  <div key={skill.title} className="grid grid-cols-1 items-center justify-center bg-slate-900 border-2 border-slate-500 p-5 rounded-md">
                     <h2 className="text-amber-400 font-semibold md:text-xl xl:text-2xl mb-4 m-auto">{skill.title}</h2>
                     <p className="m-auto">{skill.desc}</p>
                   </div>)
@@ -60,7 +60,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 items-center justify-between gap-6 py-5 my-4 ">
             {projects.map((project) => {
-              return (<div className=" bg-slate-900 border-2 border-slate-500 p-5 rounded-md">
+              return (<div key={project.title} className=" bg-slate-900 border-2 border-slate-500 p-5 rounded-md">
                 <h4 className="text-amber-400 font-semibold text-2xl mb-4 m-auto">{project.title} </h4>
                 <p className="regulartext">{project.desc}</p>
               </div>)
