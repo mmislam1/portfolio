@@ -44,12 +44,12 @@ export default function Home() {
           </div>
           <h2 className="text-amber-400 font-bold text-3xl mt-10 m-auto">SKILLS</h2>
 
-          <div className=" grid grid-cols-1 items-center justify-between gap-6 p-5 my-6 border-2 border-slate-500 bg-slate-700 rounded-xl md:grid-cols-2 lg:grid-cols-3">
+          <div className=" grid grid-cols-1 items-center justify-between gap-6 p-5 my-6 border-2 border-slate-500 bg-slate-700 rounded-xl md:grid-cols-2 xl:grid-cols-3">
             {
               skills.map((skill) => {
                 return (
                   <div className="grid grid-cols-1 items-center justify-center bg-slate-900 border-2 border-slate-500 p-5 rounded-md">
-                    <h2 className="text-amber-400 font-semibold text-2xl mb-4 m-auto">{skill.title}</h2>
+                    <h2 className="text-amber-400 font-semibold md:text-xl xl:text-2xl mb-4 m-auto">{skill.title}</h2>
                     <p className="m-auto">{skill.desc}</p>
                   </div>)
               })
