@@ -1,28 +1,30 @@
 import Image from "next/image";
+import jsdom from 'jsdom'
 
 export default function Home() {
   const skills = [{
     title: "React",
-    desc: "React for dynamic front end application.",
+    star: 4,
+
   },
   {
     title: "Express.js",
-    desc: "React for dynamic front end application.",
+    star: 4.5,
   }, {
     title: "MySQL",
-    desc: "React for dynamic front end application.",
+    star: 4.5,
   }, {
     title: "MongoDB",
-    desc: "React for dynamic front end application.",
+    star: 3.5,
   }]
 
   const projects = [{
     title: "Lose to gain",
-    desc: "React for dynamic front end application.",
+    star: "React for dynamic front end application.",
   },
   {
     title: "Metrorail",
-    desc: "React for dynamic front end application.",
+    star: "React for dynamic front end application.",
   },
   ]
 
@@ -47,10 +49,30 @@ export default function Home() {
           <div className=" grid grid-cols-1 items-center justify-between gap-6 p-5 my-6 border-2 border-slate-500 bg-slate-700 rounded-xl md:grid-cols-2 xl:grid-cols-3">
             {
               skills.map((skill) => {
+
+                let stars = []
+                for (let i = 0; i < 5; i++) {
+                  if (i+1 <= skill.star) { stars.push(<img src="full.png" width="30px" padding="10px"></img>); }
+                  else {
+                    if (skill.star ===i+.5) {
+                      stars.push(<img src="half.png" width="30px" padding="10px"></img>);
+                    }
+                    else {
+                      stars.push(<img src="empty.png" width="30px" padding="10px"></img>);
+                    }
+                  }
+
+                }
+
                 return (
                   <div key={skill.title} className="grid grid-cols-1 items-center justify-center bg-slate-900 border-2 border-slate-500 p-5 rounded-md">
                     <h2 className="text-amber-400 font-semibold md:text-xl xl:text-2xl mb-4 m-auto">{skill.title}</h2>
-                    <p className="m-auto">{skill.desc}</p>
+
+                    <div className="grid grid-cols-5 items-center justify-center  border-1 border-slate-500 p-5 rounded-md">
+
+                      {stars}
+
+                    </div>
                   </div>)
               })
             }
@@ -62,7 +84,7 @@ export default function Home() {
             {projects.map((project) => {
               return (<div key={project.title} className=" bg-slate-900 border-2 border-slate-500 p-5 rounded-md">
                 <h4 className="text-amber-400 font-semibold text-2xl mb-4 m-auto">{project.title} </h4>
-                <p className="regulartext">{project.desc}</p>
+                <p className="regulartext">{project.star}</p>
               </div>)
             })
             }
