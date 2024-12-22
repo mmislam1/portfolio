@@ -52,13 +52,13 @@ export default function Home() {
 
                 let stars = []
                 for (let i = 0; i < 5; i++) {
-                  if (i+1 <= skill.star) { stars.push(<img src="full.png" width="30px" padding="10px"></img>); }
+                  if (i+1 <= skill.star) { stars.push(<img key='' src="full.png" width="30px" padding="10px"></img>); }
                   else {
                     if (skill.star ===i+.5) {
-                      stars.push(<img src="half.png" width="30px" padding="10px"></img>);
+                      stars.push(<img key='' src="half.png" width="30px" padding="10px"></img>);
                     }
                     else {
-                      stars.push(<img src="empty.png" width="30px" padding="10px"></img>);
+                      stars.push(<img key='' src="empty.png" width="30px" padding="10px"></img>);
                     }
                   }
 
