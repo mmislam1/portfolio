@@ -38,7 +38,14 @@ export default function Home() {
           <div className="flex flex-col-reverse items-center justify-around gap-9 md:flex-row">
             <div className="flex flex-col items-center justify-around gap-9">
               <p className="regulartext ">I am Mohaiminul Islam. A MERN stack developer. Specialize in both relational and non-relational database. </p>
-              <button className="bg-amber-400 border-2 border-amber-400 text-slate-900 text-2xl px-8 p-2 font-semibold rounded hover:bg-slate-900 hover:text-amber-400"><a href="https://docs.google.com/document/d/113CD8gvhpQfsvuRv_UqBiPzImPDSmV4AfMt64hFMTDg/edit?usp=sharing">Link To My Resume</a></button>
+              <div className="flex flex-row items-center justify-between gap-9">
+                <button className="bg-amber-400 border-2 border-amber-400 text-slate-900 text-2xl px-8 p-2 font-semibold rounded hover:bg-slate-900 hover:text-amber-400"><a href="https://docs.google.com/document/d/113CD8gvhpQfsvuRv_UqBiPzImPDSmV4AfMt64hFMTDg/edit?usp=sharing">Resume</a></button>
+                <a href="google.com"><img src="full.png"></img></a>
+                <a href="google.com"><img src="full.png"></img></a>
+                <a href="google.com"><img src="full.png"></img></a>
+                <a href="google.com"><img src="full.png"></img></a>
+                
+              </div>
             </div>
             <div className="min-h-60 min-w-60 max-h-60 max-w-60 border-2 border-amber-400 bg-white rounded-full overflow-hidden">
               <img src="../mm.jpg" alt="mm" />
@@ -52,10 +59,10 @@ export default function Home() {
 
                 let stars = []
                 for (let i = 0; i < 5; i++) {
-                  
+
                   if (i + 1 <= skill.star) { stars.push(<img key={i} src="full.png" width="30px" padding="10px"></img>); }
                   else {
-                    if (skill.star ===i+.5) {
+                    if (skill.star === i + .5) {
                       stars.push(<img key={i} src="half.png" width="30px" padding="10px"></img>);
                     }
                     else {
