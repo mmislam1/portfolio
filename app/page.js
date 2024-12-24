@@ -1,7 +1,7 @@
 import Image from "next/image";
 import jsdom from 'jsdom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faGithub} from '@fortawesome/free-brands-svg-icons'
+import {faGithub, faLinkedin} from '@fortawesome/free-brands-svg-icons'
 
 export default function Home() {
   const skills = [{
@@ -44,9 +44,8 @@ export default function Home() {
                 <button className="bg-amber-400 border-2 border-amber-400 text-slate-900 text-2xl px-8 p-2 font-semibold rounded hover:bg-slate-900 hover:text-amber-400"><a href="https://docs.google.com/document/d/113CD8gvhpQfsvuRv_UqBiPzImPDSmV4AfMt64hFMTDg/edit?usp=sharing">Resume</a></button>
                 
                 <a href="https//google.com"><FontAwesomeIcon icon={faGithub} className="text-amber-400 text-5xl"></FontAwesomeIcon></a>
-                <a href="https//google.com"><FontAwesomeIcon icon={faGithub} className="text-amber-400 text-5xl"></FontAwesomeIcon></a>
-                <a href="https//google.com"><FontAwesomeIcon icon={faGithub} className="text-amber-400 text-5xl"></FontAwesomeIcon></a>
-                <a href="https//google.com"><FontAwesomeIcon icon={faGithub} className="text-amber-400 text-5xl"></FontAwesomeIcon></a>
+                <a href="https//google.com"><FontAwesomeIcon icon={faLinkedin} className="text-amber-400 text-5xl"></FontAwesomeIcon></a>
+                
                 
                 
 
