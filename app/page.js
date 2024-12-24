@@ -1,5 +1,7 @@
 import Image from "next/image";
 import jsdom from 'jsdom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faGithub} from '@fortawesome/free-brands-svg-icons'
 
 export default function Home() {
   const skills = [{
@@ -38,20 +40,23 @@ export default function Home() {
           <div className="flex flex-col-reverse items-center justify-around gap-9 md:flex-row">
             <div className="flex flex-col items-center justify-around gap-9">
               <p className="regulartext ">I am Mohaiminul Islam. A MERN stack developer. Specialize in both relational and non-relational database. </p>
-              <div className="flex flex-row items-center justify-between gap-9">
+              <div className="flex flex-row items-center justify-between gap-14">
                 <button className="bg-amber-400 border-2 border-amber-400 text-slate-900 text-2xl px-8 p-2 font-semibold rounded hover:bg-slate-900 hover:text-amber-400"><a href="https://docs.google.com/document/d/113CD8gvhpQfsvuRv_UqBiPzImPDSmV4AfMt64hFMTDg/edit?usp=sharing">Resume</a></button>
-                <a href="google.com"><img src="full.png"></img></a>
-                <a href="google.com"><img src="full.png"></img></a>
-                <a href="google.com"><img src="full.png"></img></a>
-                <a href="google.com"><img src="full.png"></img></a>
                 
+                <a href="https//google.com"><FontAwesomeIcon icon={faGithub} className="text-amber-400 text-5xl"></FontAwesomeIcon></a>
+                <a href="https//google.com"><FontAwesomeIcon icon={faGithub} className="text-amber-400 text-5xl"></FontAwesomeIcon></a>
+                <a href="https//google.com"><FontAwesomeIcon icon={faGithub} className="text-amber-400 text-5xl"></FontAwesomeIcon></a>
+                <a href="https//google.com"><FontAwesomeIcon icon={faGithub} className="text-amber-400 text-5xl"></FontAwesomeIcon></a>
+                
+                
+
               </div>
             </div>
             <div className="min-h-60 min-w-60 max-h-60 max-w-60 border-2 border-amber-400 bg-white rounded-full overflow-hidden">
               <img src="../mm.jpg" alt="mm" />
             </div>
           </div>
-          <h2 className="text-amber-400 font-bold text-3xl mt-10 m-auto">SKILLS</h2>
+          <h2 className="text-amber-400 font-semibold text-4xl mt-10 m-auto">SKILLS</h2>
 
           <div className=" grid grid-cols-1 items-center justify-between gap-6 p-5 my-6 border-2 border-slate-500 bg-slate-700 rounded-xl md:grid-cols-2 xl:grid-cols-3">
             {
@@ -86,11 +91,11 @@ export default function Home() {
             }
 
           </div>
-          <h3 className="text-amber-400 font-bold text-3xl mt-10 m-auto">PROJECTS</h3>
+          <h3 className="text-amber-400 font-semibold text-4xl mt-10 m-auto">PROJECTS</h3>
 
           <div className="grid grid-cols-1 items-center justify-between gap-6 py-5 my-4 ">
             {projects.map((project) => {
-              return (<div key={project.title} className=" bg-slate-900 border-2 border-slate-500 p-5 rounded-md">
+              return (<div key={project.title} className=" bg-slate-900 border-2 border-amber-400 p-5 rounded-md">
                 <h4 className="text-amber-400 font-semibold text-2xl mb-4 m-auto">{project.title} </h4>
                 <p className="regulartext">{project.star}</p>
               </div>)
@@ -99,7 +104,7 @@ export default function Home() {
           </div>
 
           <div className="contact section grid grid-cols-1  ">
-            <h3 className="text-amber-400 font-bold text-3xl mt-10 m-auto">CONTACT</h3>
+            <h3 className="text-amber-400 font-semibold text-4xl mt-10 m-auto">CONTACT</h3>
             <form className="mt-10 grid grid grid-cols-1 gap-4 items-center justify-center lg:grid-cols-2  " action="https://formspree.io/f/xzzppron" method="POST">
 
 
