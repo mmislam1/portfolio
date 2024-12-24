@@ -42,23 +42,27 @@ export default function Home() {
           <div className="flex flex-col-reverse items-center justify-around gap-9 md:flex-row">
             <div className="flex flex-col items-center justify-around gap-9">
               <p className="regulartext ">I am Mohaiminul Islam. A MERN stack developer. Specialize in both relational and non-relational database. </p>
-              <div className="flex flex-row items-center justify-evenly gap-10">
-                <button className="bg-amber-400 border-2 border-amber-400 text-slate-900 text-2xl px-8 p-2 font-semibold rounded hover:bg-slate-900 hover:text-amber-400"><a href="https://drive.google.com/file/d/1PN9v4fXd6DuopgR9tGupJshRp0AhurtF/view?usp=sharing">Resume</a></button>
-
-                <a href="https://github.com/mmislam1">
-                  <FontAwesomeIcon icon={faGithub} className="text-amber-400 text-5xl hover:text-orange-600"></FontAwesomeIcon>
-                </a>
-                <a href="https://www.linkedin.com/in/mohaiminul-islam-29a454139/">
-                  <FontAwesomeIcon icon={faLinkedin} className="text-amber-400 hover:text-orange-600 text-5xl"></FontAwesomeIcon>
-                </a>
-
-              </div>
+              
 
             </div>
             <div className="min-h-60 min-w-60 max-h-60 max-w-60 border-2 border-amber-400 bg-white rounded-full overflow-hidden">
               <img src="../mm.jpg" alt="mm" />
             </div>
           </div>
+
+          <div className="flex flex-row m-8 items-center justify-evenly gap-10">
+            <button className="bg-amber-400 border-2 border-amber-400 text-slate-900 text-2xl px-8 p-2 font-semibold rounded hover:bg-slate-900 hover:text-amber-400"><a href="https://drive.google.com/file/d/1PN9v4fXd6DuopgR9tGupJshRp0AhurtF/view?usp=sharing">Resume</a></button>
+
+            <a href="https://github.com/mmislam1">
+              <FontAwesomeIcon icon={faGithub} className="text-amber-400 text-5xl hover:text-orange-600"></FontAwesomeIcon>
+            </a>
+            <a href="https://www.linkedin.com/in/mohaiminul-islam-29a454139/">
+              <FontAwesomeIcon icon={faLinkedin} className="text-amber-400 hover:text-orange-600 text-5xl"></FontAwesomeIcon>
+            </a>
+
+          </div>
+
+
           <h2 className="text-amber-400 font-semibold text-4xl mt-10 m-auto">SKILLS</h2>
 
           <div className=" grid grid-cols-1 items-center justify-between gap-6 p-5 my-6 border-2 border-slate-500 bg-slate-700 rounded-xl md:grid-cols-2 xl:grid-cols-3">
