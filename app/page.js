@@ -22,11 +22,13 @@ export default function Home() {
 
   const projects = [{
     title: "Lose to gain",
-    star: "React for dynamic front end application.",
+    desc: "React for dynamic front end application.",
+    tools: ['React','ExpressJS','MongoDB','NodeJS'],
   },
   {
     title: "Metrorail",
-    star: "React for dynamic front end application.",
+    desc: "React for dynamic front end application.",
+    tools: ["PHP",'MySQL'],
   },
   ]
 
@@ -40,7 +42,7 @@ export default function Home() {
           <div className="flex flex-col-reverse items-center justify-around gap-9 md:flex-row">
             <div className="flex flex-col items-center justify-around gap-9">
               <p className="regulartext ">I am Mohaiminul Islam. A MERN stack developer. Specialize in both relational and non-relational database. </p>
-              <div className="flex flex-row items-center justify-between gap-14">
+              <div className="flex flex-row items-center justify-evenly gap-10">
                 <button className="bg-amber-400 border-2 border-amber-400 text-slate-900 text-2xl px-8 p-2 font-semibold rounded hover:bg-slate-900 hover:text-amber-400"><a href="https://drive.google.com/file/d/1PN9v4fXd6DuopgR9tGupJshRp0AhurtF/view?usp=sharing">Resume</a></button>
 
                 <a href="https://github.com/mmislam1">
@@ -50,10 +52,8 @@ export default function Home() {
                   <FontAwesomeIcon icon={faLinkedin} className="text-amber-400 hover:text-orange-600 text-5xl"></FontAwesomeIcon>
                 </a>
 
-
-
-
               </div>
+
             </div>
             <div className="min-h-60 min-w-60 max-h-60 max-w-60 border-2 border-amber-400 bg-white rounded-full overflow-hidden">
               <img src="../mm.jpg" alt="mm" />
@@ -98,9 +98,17 @@ export default function Home() {
 
           <div className="grid grid-cols-1 items-center justify-between gap-6 py-5 my-4 ">
             {projects.map((project) => {
+              const tools = []
+              project.tools.map((tool) => {
+                tools.push(<h4 key={project+tool} className="text-amber-400 text-xl m-2">{tool} </h4>)
+              })
+
               return (<div key={project.title} className=" bg-slate-900 border-2 border-amber-400 p-5 rounded-md">
                 <h4 className="text-amber-400 font-semibold text-2xl mb-4 m-auto">{project.title} </h4>
-                <p className="regulartext">{project.star}</p>
+                <p className="regulartext mb-4 bg-slate-700 p-2 rounded-md">{project.desc}</p>
+                <div className="flex flex-row flex-wrap">
+                  {tools}
+                 </div>
               </div>)
             })
             }
