@@ -41,7 +41,7 @@ export default function Home() {
         <div className=" grid items-center justify-around grid-cols-1">
           <div className="flex flex-col-reverse items-center justify-around gap-9 md:flex-row">
             <div className="flex flex-col items-center justify-around gap-9">
-              <p className="regulartext ">I am Mohaiminul Islam. A MERN stack developer. Specialize in both relational and non-relational database. </p>
+              <p className="regulartext " id="about">I am Mohaiminul Islam. A MERN stack developer. Specialize in both relational and non-relational database. </p>
               
 
             </div>
@@ -50,20 +50,20 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex flex-row m-8 items-center justify-evenly gap-10">
-            <button className="bg-amber-400 border-2 border-amber-400 text-slate-900 text-2xl px-8 p-2 font-semibold rounded hover:bg-slate-900 hover:text-amber-400"><a href="https://drive.google.com/file/d/1PN9v4fXd6DuopgR9tGupJshRp0AhurtF/view?usp=sharing">Resume</a></button>
+          <div className="flex flex-row m-10 items-center justify-center">
+            <button className="bg-amber-400 border-2 border-amber-400 text-slate-900 text-2xl px-8 p-2 font-semibold rounded hover:bg-slate-900 hover:text-amber-400 m-10"><a href="https://drive.google.com/file/d/1PN9v4fXd6DuopgR9tGupJshRp0AhurtF/view?usp=sharing">Resume</a></button>
 
-            <a href="https://github.com/mmislam1">
+            <a href="https://github.com/mmislam1" className="m-10">
               <FontAwesomeIcon icon={faGithub} className="text-amber-400 text-5xl hover:text-orange-600"></FontAwesomeIcon>
             </a>
-            <a href="https://www.linkedin.com/in/mohaiminul-islam-29a454139/">
+            <a href="https://www.linkedin.com/in/mohaiminul-islam-29a454139/" className="m-10">
               <FontAwesomeIcon icon={faLinkedin} className="text-amber-400 hover:text-orange-600 text-5xl"></FontAwesomeIcon>
             </a>
 
           </div>
 
 
-          <h2 className="text-amber-400 font-semibold text-4xl mt-10 m-auto">SKILLS</h2>
+          <h2 className="text-amber-400 font-semibold text-4xl mt-10 m-auto" id="skills">SKILLS</h2>
 
           <div className=" grid grid-cols-1 items-center justify-between gap-6 p-5 my-6 border-2 border-slate-500 bg-slate-700 rounded-xl md:grid-cols-2 xl:grid-cols-3">
             {
@@ -98,7 +98,7 @@ export default function Home() {
             }
 
           </div>
-          <h3 className="text-amber-400 font-semibold text-4xl mt-10 m-auto">PROJECTS</h3>
+          <h3 className="text-amber-400 font-semibold text-4xl mt-10 m-auto" id="projects">PROJECTS</h3>
 
           <div className="grid grid-cols-1 items-center justify-between gap-6 py-5 my-4 ">
             {projects.map((project) => {
@@ -119,7 +119,7 @@ export default function Home() {
           </div>
 
           <div className="contact section grid grid-cols-1  ">
-            <h3 className="text-amber-400 font-semibold text-4xl mt-10 m-auto">CONTACT</h3>
+            <h3 className="text-amber-400 font-semibold text-4xl mt-10 m-auto" id="contact">CONTACT</h3>
             <form className="mt-10 grid grid grid-cols-1 gap-4 items-center justify-center lg:grid-cols-2  " action="https://formspree.io/f/xzzppron" method="POST">
 
 
