@@ -45,8 +45,9 @@ export default function Home() {
           <div className="flex flex-col-reverse items-center justify-around gap-9 md:flex-row">
             <div className="flex flex-col items-center justify-around gap-9">
               <p className="regulartext " id="about">
-                I am Mohaiminul Islam. A MERN stack developer. Specialize in
-                both relational and non-relational database.{" "}
+                Hello,<br/>
+                I am Mohaiminul Islam, a CS graduate and software developer. Specialize in MERN stack, Django and
+                both relational and non-relational database. Passionate and have good understanding of Artificial Intelligence world. Have experience participating at different online and onsite programming contests. Pleaese have a look at my Resume for details.
               </p>
             </div>
             <div className="min-h-60 min-w-60 max-h-60 max-w-60 border-2 border-amber-400 bg-white rounded-full overflow-hidden">
