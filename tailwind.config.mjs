@@ -10,14 +10,14 @@ export default {
       keyframes: {
         colorChange: {
           '0%': { color: '#fcd34d'}, 
-          '25%': { color: '#facc15' }, 
-          '50%': { color: '#eab308' }, 
-          '75%': { color: '#facc15' },
+          //'25%': { color: '#facc15' }, 
+          '50%': { color: '#ca8a04' }, 
+          //'75%': { color: '#facc15' },
           '100%': { color: '#fcd34d' }, 
         },
       },
       animation: {
-        colorChange: 'colorChange .5s infinite',
+        colorChange: 'colorChange .75s infinite',
       },
       colors: {
         background: "var(--background)",
