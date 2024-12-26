@@ -17,7 +17,7 @@ export default {
         },
       },
       animation: {
-        colorChange: 'colorChange .75s infinite',
+        colorChange: 'colorChange .1s infinite',
       },
       colors: {
         background: "var(--background)",
