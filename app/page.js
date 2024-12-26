@@ -94,7 +94,7 @@ export default function Home() {
                   stars.push(
                     <img
                       key={i}
-                      src="full.png"
+                      alt="logo" src="full.png"
                       width="30px"
                       padding="10px"
                     ></img>
@@ -104,7 +104,7 @@ export default function Home() {
                     stars.push(
                       <img
                         key={i}
-                        src="half.png"
+                        alt="logo" src="half.png"
                         width="30px"
                         padding="10px"
                       ></img>
@@ -113,7 +113,7 @@ export default function Home() {
                     stars.push(
                       <img
                         key={i}
-                        src="empty.png"
+                        alt="logo" src="empty.png"
                         width="30px"
                         padding="10px"
                       ></img>
