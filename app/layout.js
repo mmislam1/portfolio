@@ -1,34 +1,37 @@
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./globals.css";
-import FontAwesomeConfig from "./fontawesome";
+import "./fontawesome";
+
+export const metadata = {
+  title: "Mohaiminul Islam | Portfolio",
+  description:
+    "Portfolio of Mohaiminul Islam, a CS graduate and software developer focused on MERN stack, Django, and databases.",
+};
+
+const navItems = ["About", "Skills", "Projects", "Experience", "Contact"];
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <FontAwesomeConfig/>
-      </head>
-      <title>MM</title>
-      <body className="grid grid-cols-1 bg-slate-500 font-sans text-white bg-slate-900">
-        <nav className="grid grid-cols-1 grid-rows-2 items-center justify-center px-15 border-solid border-2 border-amber-400 text-amber-400 lg:grid-cols-2 lg:grid-rows-1 lg:justify-between lg:p-6 lg:px-16">
-          <h3 className=" text-4xl mx-auto lg:text-5xl lg:m-0">MOHAIMINUL ISLAM</h3>
-          <div className="grid grid-cols-1 grid-rows-1 items-center justify-center">
-            <ul className="grid grid-cols-4 items-center justify-center">
-              <li className="grid grid-cols-1 items-center justify-center mx-auto">
-                <a href="#about" className="text-xl hover:text-orange-600 font-semibold">About</a>
+      <body className="grid min-h-screen grid-cols-1 bg-slate-900 font-sans text-white">
+        <nav className="sticky top-0 z-50 grid grid-cols-1 items-center justify-center gap-4 border-2 border-amber-400 bg-slate-900 px-4 py-5 text-amber-400 lg:grid-cols-[auto_1fr] lg:justify-between lg:px-16">
+          <a
+            className="mx-auto text-center text-3xl font-semibold hover:text-orange-600 lg:m-0 lg:text-left lg:text-5xl"
+            href="#about"
+          >
+            MOHAIMINUL ISLAM
+          </a>
+          <ul className="grid grid-cols-5 items-center justify-center gap-2">
+            {navItems.map((item) => (
+              <li className="grid items-center justify-center" key={item}>
+                <a
+                  className="max-w-16 break-words text-center text-xs font-semibold leading-tight hover:text-orange-600 sm:max-w-none sm:text-xl"
+                  href={`#${item.toLowerCase()}`}
+                >
+                  {item}
+                </a>
               </li>
-              <li className="grid grid-cols-1 items-center justify-center mx-auto">
-                <a href="#skills" className="text-xl hover:text-orange-600 font-semibold">Skills</a>
-              </li>
-              <li className="grid grid-cols-1 items-center justify-center mx-auto">
-                <a href="#projects" className="text-xl hover:text-orange-600 font-semibold">Projects</a>
-              </li>
-              <li className="grid grid-cols-1 items-center justify-center mx-auto">
-                <a href="#contact" className="text-xl hover:text-orange-600 font-semibold">Contact</a>
-              </li>
-            </ul>
-          </div>
+            ))}
+          </ul>
         </nav>
         {children}
       </body>
