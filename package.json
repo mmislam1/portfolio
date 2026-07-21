@@ -2,29 +2,38 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "node:check": "node scripts/npm-node.mjs scripts/check-node.mjs",
+    "predev": "npm run node:check",
+    "dev": "node scripts/npm-node.mjs scripts/next-command.mjs dev",
+    "prebuild": "npm run node:check",
+    "build": "node scripts/npm-node.mjs scripts/next-command.mjs build",
+    "prestart": "npm run node:check",
+    "start": "node scripts/npm-node.mjs scripts/next-command.mjs start",
+    "prelint": "npm run node:check",
+    "lint": "node scripts/npm-node.mjs node_modules/eslint/bin/eslint.js .",
+    "check": "npm run lint && npm run build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "jsdom": "^25.0.1",
-    "next": "15.1.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-stars": "^2.2.5",
-    "stars": "^1.0.0"
+    "next": "^16.2.11",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "overrides": {
+    "postcss": "^8.5.10"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "eslint": "^9",
-    "eslint-config-next": "15.1.0",
-    "postcss": "^8",
+    "eslint-config-next": "^16.2.11",
+    "postcss": "^8.5.10",
     "tailwindcss": "^3.4.1"
   }
 }

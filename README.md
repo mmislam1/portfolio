@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Portfolio
 
-## Getting Started
+Editable portfolio built with Next.js, React, and Tailwind CSS.
 
-First, run the development server:
+## Requirements
+
+- Node.js 22 recommended, 20.9.0 minimum
+- npm
+
+The project includes `.nvmrc`, `.node-version`, `engines`, and `engine-strict=true` so older Node versions fail early. Netlify is pinned to Node 22 in `netlify.toml`.
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Portfolio: http://localhost:3000
+- Editor: http://localhost:3000/admin
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Next.js writes generated files to `.next`, which is ignored by Git.
 
-## Learn More
+## Editing Portfolio Data
 
-To learn more about Next.js, take a look at the following resources:
+Portfolio content lives in:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+data/portfolio.json
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Use `/admin` to edit it through forms. The editor saves through:
 
-## Deploy on Vercel
+```text
+app/api/portfolio/route.js
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Writes are saved atomically through `lib/portfolioDb.js`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Scripts
+
+```bash
+npm run node:check
+npm run lint
+npm run build
+npm run start
+npm run check
+```
+
+Build and dev output go to `.next`, which should stay out of Git.
+
+## Netlify
+
+`netlify.toml` sets the build command, publish directory, and Node version:
+
+```bash
+npm run build
+```
+
+Publish directory:
+
+```text
+.next
+```
