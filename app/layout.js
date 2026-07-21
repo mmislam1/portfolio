@@ -1,3 +1,4 @@
+import Link from "next/link";
 import "./globals.css";
 import "./fontawesome";
 
@@ -7,28 +8,35 @@ export const metadata = {
     "Portfolio of Mohaiminul Islam, a CS graduate and software developer focused on MERN stack, Django, and databases.",
 };
 
-const navItems = ["About", "Skills", "Projects", "Experience", "Contact"];
+const navItems = [
+  { label: "About", href: "/#about" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Contact", href: "/#contact" },
+  { label: "Edit", href: "/admin" },
+];
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="grid min-h-screen grid-cols-1 bg-slate-900 font-sans text-white">
         <nav className="sticky top-0 z-50 grid grid-cols-1 items-center justify-center gap-4 border-2 border-amber-400 bg-slate-900 px-4 py-5 text-amber-400 lg:grid-cols-[auto_1fr] lg:justify-between lg:px-16">
-          <a
+          <Link
             className="mx-auto text-center text-3xl font-semibold hover:text-orange-600 lg:m-0 lg:text-left lg:text-5xl"
-            href="#about"
+            href="/#about"
           >
             MOHAIMINUL ISLAM
-          </a>
-          <ul className="grid grid-cols-5 items-center justify-center gap-2">
+          </Link>
+          <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 lg:justify-end">
             {navItems.map((item) => (
-              <li className="grid items-center justify-center" key={item}>
-                <a
-                  className="max-w-16 break-words text-center text-xs font-semibold leading-tight hover:text-orange-600 sm:max-w-none sm:text-xl"
-                  href={`#${item.toLowerCase()}`}
+              <li className="grid items-center justify-center" key={item.label}>
+                <Link
+                  className="text-center text-sm font-semibold leading-tight hover:text-orange-600 sm:text-xl"
+                  href={item.href}
                 >
-                  {item}
-                </a>
+                  {item.label}
+                </Link>
               </li>
             ))}
           </ul>

@@ -1,0 +1,647 @@
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+
+const tabs = [
+  "Profile",
+  "Stats",
+  "Focus",
+  "Skills",
+  "Projects",
+  "Experience",
+  "Contact",
+];
+
+const iconOptions = [
+  "briefcase",
+  "code",
+  "envelope",
+  "github",
+  "graduation",
+  "layers",
+  "linkedin",
+];
+
+function csvToArray(value) {
+  return value
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function linesToArray(value) {
+  return value
+    .split("\n")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function Field({ label, value, onChange, type = "text" }) {
+  return (
+    <label className="grid gap-2 text-sm font-semibold text-slate-200">
+      <span>{label}</span>
+      <input
+        className="rounded-md border-2 border-amber-400 bg-slate-900 p-3 text-base font-semibold text-amber-400 placeholder:text-slate-400"
+        onChange={(event) => onChange(event.target.value)}
+        type={type}
+        value={value || ""}
+      />
+    </label>
+  );
+}
+
+function TextField({ label, value, onChange, rows = 4 }) {
+  return (
+    <label className="grid gap-2 text-sm font-semibold text-slate-200">
+      <span>{label}</span>
+      <textarea
+        className="min-h-28 rounded-md border-2 border-amber-400 bg-slate-900 p-3 text-base font-semibold text-amber-400 placeholder:text-slate-400"
+        onChange={(event) => onChange(event.target.value)}
+        rows={rows}
+        value={value || ""}
+      />
+    </label>
+  );
+}
+
+function SelectField({ label, value, onChange }) {
+  return (
+    <label className="grid gap-2 text-sm font-semibold text-slate-200">
+      <span>{label}</span>
+      <select
+        className="rounded-md border-2 border-amber-400 bg-slate-900 p-3 text-base font-semibold text-amber-400"
+        onChange={(event) => onChange(event.target.value)}
+        value={value || "code"}
+      >
+        {iconOptions.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
+function Card({ children }) {
+  return (
+    <div className="grid gap-4 rounded-md border-2 border-slate-500 bg-slate-700 p-5">
+      {children}
+    </div>
+  );
+}
+
+function Button({ children, onClick, type = "button", variant = "outline" }) {
+  const classes =
+    variant === "fill"
+      ? "border-amber-400 bg-amber-400 text-slate-900 hover:bg-slate-900 hover:text-amber-400"
+      : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400";
+
+  return (
+    <button
+      className={`rounded border-2 px-4 py-2 font-semibold ${classes}`}
+      onClick={onClick}
+      type={type}
+    >
+      {children}
+    </button>
+  );
+}
+
+function SectionHeader({ title, onAdd }) {
+  return (
+    <div className="flex flex-wrap items-center justify-between gap-3">
+      <h2 className="text-3xl font-semibold text-amber-400">{title}</h2>
+      {onAdd && (
+        <Button onClick={onAdd} variant="fill">
+          Add
+        </Button>
+      )}
+    </div>
+  );
+}
+
+export default function AdminEditor({ initialData }) {
+  const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [data, setData] = useState(initialData);
+  const [status, setStatus] = useState("");
+
+  const updateRoot = (key, value) => {
+    setData((current) => ({ ...current, [key]: value }));
+  };
+
+  const updateProfile = (key, value) => {
+    setData((current) => ({
+      ...current,
+      profile: { ...current.profile, [key]: value },
+    }));
+  };
+
+  const updateContact = (key, value) => {
+    setData((current) => ({
+      ...current,
+      contact: { ...current.contact, [key]: value },
+    }));
+  };
+
+  const updateArrayItem = (key, index, value) => {
+    setData((current) => ({
+      ...current,
+      [key]: current[key].map((item, itemIndex) =>
+        itemIndex === index ? value : item
+      ),
+    }));
+  };
+
+  const addArrayItem = (key, value) => {
+    updateRoot(key, [...data[key], value]);
+  };
+
+  const removeArrayItem = (key, index) => {
+    updateRoot(
+      key,
+      data[key].filter((_, itemIndex) => itemIndex !== index)
+    );
+  };
+
+  const updateProfileLink = (index, value) => {
+    updateProfile(
+      "links",
+      data.profile.links.map((item, itemIndex) =>
+        itemIndex === index ? value : item
+      )
+    );
+  };
+
+  const addProfileLink = () => {
+    updateProfile("links", [
+      ...data.profile.links,
+      { label: "Link", href: "", icon: "github" },
+    ]);
+  };
+
+  const removeProfileLink = (index) => {
+    updateProfile(
+      "links",
+      data.profile.links.filter((_, itemIndex) => itemIndex !== index)
+    );
+  };
+
+  const saveData = async () => {
+    setStatus("Saving");
+
+    const response = await fetch("/api/portfolio", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      setStatus("Save failed");
+      return;
+    }
+
+    const saved = await response.json();
+    setData(saved);
+    setStatus("Saved");
+  };
+
+  return (
+    <main className="grid min-h-screen gap-8 bg-slate-900 px-6 py-10 text-white lg:px-24 xl:px-72">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <h1 className="text-4xl font-semibold text-amber-400">
+          EDIT PORTFOLIO
+        </h1>
+        <div className="flex flex-wrap items-center gap-3">
+          {status && <p className="font-semibold text-slate-200">{status}</p>}
+          <Link
+            className="rounded border-2 border-slate-500 bg-slate-900 px-4 py-2 font-semibold text-amber-400 hover:border-amber-400"
+            href="/"
+          >
+            Portfolio
+          </Link>
+          <Button onClick={saveData} variant="fill">
+            Save
+          </Button>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap gap-3">
+        {tabs.map((tab) => (
+          <button
+            aria-pressed={activeTab === tab}
+            className={`rounded border-2 px-4 py-2 font-semibold ${
+              activeTab === tab
+                ? "border-amber-400 bg-amber-400 text-slate-900"
+                : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400"
+            }`}
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            type="button"
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
+
+      {activeTab === "Profile" && (
+        <section className="grid gap-5">
+          <SectionHeader title="PROFILE" />
+          <Card>
+            <Field
+              label="Greeting"
+              onChange={(value) => updateProfile("greeting", value)}
+              value={data.profile.greeting}
+            />
+            <Field
+              label="Name"
+              onChange={(value) => updateProfile("name", value)}
+              value={data.profile.name}
+            />
+            <Field
+              label="Headline"
+              onChange={(value) => updateProfile("headline", value)}
+              value={data.profile.headline}
+            />
+            <TextField
+              label="Summary"
+              onChange={(value) => updateProfile("summary", value)}
+              value={data.profile.summary}
+            />
+            <Field
+              label="Photo path"
+              onChange={(value) => updateProfile("photo", value)}
+              value={data.profile.photo}
+            />
+            <Field
+              label="Resume link"
+              onChange={(value) => updateProfile("resumeLink", value)}
+              value={data.profile.resumeLink}
+            />
+          </Card>
+
+          <SectionHeader title="PROFILE LINKS" onAdd={addProfileLink} />
+          {data.profile.links.map((link, index) => (
+            <Card key={`${link.label}-${index}`}>
+              <div className="flex justify-end">
+                <Button onClick={() => removeProfileLink(index)}>Remove</Button>
+              </div>
+              <Field
+                label="Label"
+                onChange={(value) =>
+                  updateProfileLink(index, { ...link, label: value })
+                }
+                value={link.label}
+              />
+              <Field
+                label="URL"
+                onChange={(value) =>
+                  updateProfileLink(index, { ...link, href: value })
+                }
+                value={link.href}
+              />
+              <SelectField
+                label="Icon"
+                onChange={(value) =>
+                  updateProfileLink(index, { ...link, icon: value })
+                }
+                value={link.icon}
+              />
+            </Card>
+          ))}
+        </section>
+      )}
+
+      {activeTab === "Stats" && (
+        <section className="grid gap-5">
+          <SectionHeader
+            title="STATS"
+            onAdd={() => addArrayItem("stats", { value: "", label: "" })}
+          />
+          {data.stats.map((item, index) => (
+            <Card key={`${item.value}-${index}`}>
+              <div className="flex justify-end">
+                <Button onClick={() => removeArrayItem("stats", index)}>
+                  Remove
+                </Button>
+              </div>
+              <Field
+                label="Value"
+                onChange={(value) =>
+                  updateArrayItem("stats", index, { ...item, value })
+                }
+                value={item.value}
+              />
+              <Field
+                label="Label"
+                onChange={(value) =>
+                  updateArrayItem("stats", index, { ...item, label: value })
+                }
+                value={item.label}
+              />
+            </Card>
+          ))}
+        </section>
+      )}
+
+      {activeTab === "Focus" && (
+        <section className="grid gap-5">
+          <SectionHeader
+            title="FOCUS AREAS"
+            onAdd={() =>
+              addArrayItem("focusAreas", {
+                icon: "code",
+                title: "",
+                text: "",
+              })
+            }
+          />
+          {data.focusAreas.map((item, index) => (
+            <Card key={`${item.title}-${index}`}>
+              <div className="flex justify-end">
+                <Button onClick={() => removeArrayItem("focusAreas", index)}>
+                  Remove
+                </Button>
+              </div>
+              <SelectField
+                label="Icon"
+                onChange={(value) =>
+                  updateArrayItem("focusAreas", index, { ...item, icon: value })
+                }
+                value={item.icon}
+              />
+              <Field
+                label="Title"
+                onChange={(value) =>
+                  updateArrayItem("focusAreas", index, { ...item, title: value })
+                }
+                value={item.title}
+              />
+              <TextField
+                label="Text"
+                onChange={(value) =>
+                  updateArrayItem("focusAreas", index, { ...item, text: value })
+                }
+                value={item.text}
+              />
+            </Card>
+          ))}
+        </section>
+      )}
+
+      {activeTab === "Skills" && (
+        <section className="grid gap-5">
+          <SectionHeader
+            title="SKILLS"
+            onAdd={() => addArrayItem("skillGroups", { title: "", skills: [] })}
+          />
+          {data.skillGroups.map((group, groupIndex) => (
+            <Card key={`${group.title}-${groupIndex}`}>
+              <div className="flex flex-wrap justify-between gap-3">
+                <h3 className="text-2xl font-semibold text-amber-400">
+                  {group.title || "Skill group"}
+                </h3>
+                <Button
+                  onClick={() => removeArrayItem("skillGroups", groupIndex)}
+                >
+                  Remove Group
+                </Button>
+              </div>
+              <Field
+                label="Group title"
+                onChange={(value) =>
+                  updateArrayItem("skillGroups", groupIndex, {
+                    ...group,
+                    title: value,
+                  })
+                }
+                value={group.title}
+              />
+              <div className="grid gap-4">
+                {group.skills.map((skill, skillIndex) => (
+                  <div
+                    className="grid gap-3 rounded-md border border-slate-500 bg-slate-900 p-4 md:grid-cols-[1fr_120px_auto]"
+                    key={`${skill.title}-${skillIndex}`}
+                  >
+                    <Field
+                      label="Skill"
+                      onChange={(value) => {
+                        const skills = group.skills.map((item, itemIndex) =>
+                          itemIndex === skillIndex
+                            ? { ...item, title: value }
+                            : item
+                        );
+                        updateArrayItem("skillGroups", groupIndex, {
+                          ...group,
+                          skills,
+                        });
+                      }}
+                      value={skill.title}
+                    />
+                    <Field
+                      label="Rating"
+                      onChange={(value) => {
+                        const skills = group.skills.map((item, itemIndex) =>
+                          itemIndex === skillIndex
+                            ? { ...item, star: value }
+                            : item
+                        );
+                        updateArrayItem("skillGroups", groupIndex, {
+                          ...group,
+                          skills,
+                        });
+                      }}
+                      type="number"
+                      value={skill.star}
+                    />
+                    <div className="grid content-end">
+                      <Button
+                        onClick={() => {
+                          const skills = group.skills.filter(
+                            (_, itemIndex) => itemIndex !== skillIndex
+                          );
+                          updateArrayItem("skillGroups", groupIndex, {
+                            ...group,
+                            skills,
+                          });
+                        }}
+                      >
+                        Remove
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <Button
+                onClick={() =>
+                  updateArrayItem("skillGroups", groupIndex, {
+                    ...group,
+                    skills: [...group.skills, { title: "", star: 0 }],
+                  })
+                }
+                variant="fill"
+              >
+                Add Skill
+              </Button>
+            </Card>
+          ))}
+        </section>
+      )}
+
+      {activeTab === "Projects" && (
+        <section className="grid gap-5">
+          <SectionHeader
+            title="PROJECTS"
+            onAdd={() =>
+              addArrayItem("projects", {
+                title: "",
+                type: "",
+                role: "",
+                desc: "",
+                tools: [],
+                highlights: [],
+                link: "",
+              })
+            }
+          />
+          {data.projects.map((project, index) => (
+            <Card key={`${project.title}-${index}`}>
+              <div className="flex justify-end">
+                <Button onClick={() => removeArrayItem("projects", index)}>
+                  Remove
+                </Button>
+              </div>
+              <Field
+                label="Title"
+                onChange={(value) =>
+                  updateArrayItem("projects", index, { ...project, title: value })
+                }
+                value={project.title}
+              />
+              <Field
+                label="Type"
+                onChange={(value) =>
+                  updateArrayItem("projects", index, { ...project, type: value })
+                }
+                value={project.type}
+              />
+              <Field
+                label="Role"
+                onChange={(value) =>
+                  updateArrayItem("projects", index, { ...project, role: value })
+                }
+                value={project.role}
+              />
+              <TextField
+                label="Description"
+                onChange={(value) =>
+                  updateArrayItem("projects", index, { ...project, desc: value })
+                }
+                value={project.desc}
+              />
+              <Field
+                label="Repository link"
+                onChange={(value) =>
+                  updateArrayItem("projects", index, { ...project, link: value })
+                }
+                value={project.link}
+              />
+              <Field
+                label="Tools"
+                onChange={(value) =>
+                  updateArrayItem("projects", index, {
+                    ...project,
+                    tools: csvToArray(value),
+                  })
+                }
+                value={(project.tools || []).join(", ")}
+              />
+              <TextField
+                label="Highlights"
+                onChange={(value) =>
+                  updateArrayItem("projects", index, {
+                    ...project,
+                    highlights: linesToArray(value),
+                  })
+                }
+                value={(project.highlights || []).join("\n")}
+              />
+            </Card>
+          ))}
+        </section>
+      )}
+
+      {activeTab === "Experience" && (
+        <section className="grid gap-5">
+          <SectionHeader
+            title="EXPERIENCE"
+            onAdd={() =>
+              addArrayItem("experience", {
+                title: "",
+                meta: "",
+                icon: "briefcase",
+                details: "",
+              })
+            }
+          />
+          {data.experience.map((item, index) => (
+            <Card key={`${item.title}-${index}`}>
+              <div className="flex justify-end">
+                <Button onClick={() => removeArrayItem("experience", index)}>
+                  Remove
+                </Button>
+              </div>
+              <SelectField
+                label="Icon"
+                onChange={(value) =>
+                  updateArrayItem("experience", index, { ...item, icon: value })
+                }
+                value={item.icon}
+              />
+              <Field
+                label="Title"
+                onChange={(value) =>
+                  updateArrayItem("experience", index, { ...item, title: value })
+                }
+                value={item.title}
+              />
+              <Field
+                label="Meta"
+                onChange={(value) =>
+                  updateArrayItem("experience", index, { ...item, meta: value })
+                }
+                value={item.meta}
+              />
+              <TextField
+                label="Details"
+                onChange={(value) =>
+                  updateArrayItem("experience", index, {
+                    ...item,
+                    details: value,
+                  })
+                }
+                value={item.details}
+              />
+            </Card>
+          ))}
+        </section>
+      )}
+
+      {activeTab === "Contact" && (
+        <section className="grid gap-5">
+          <SectionHeader title="CONTACT" />
+          <Card>
+            <Field
+              label="Form action"
+              onChange={(value) => updateContact("formAction", value)}
+              value={data.contact.formAction}
+            />
+          </Card>
+        </section>
+      )}
+    </main>
+  );
+}

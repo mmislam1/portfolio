@@ -1,0 +1,169 @@
+{
+  "profile": {
+    "greeting": "Hello,",
+    "name": "Mohaiminul Islam",
+    "headline": "I am Mohaiminul Islam.",
+    "summary": "CS graduate and software developer specializing in MERN stack, Django, relational databases, and non-relational databases. Interested in practical AI work and experienced in online and onsite programming contests.",
+    "photo": "/mm.jpg",
+    "resumeLink": "https://drive.google.com/file/d/1PN9v4fXd6DuopgR9tGupJshRp0AhurtF/view?usp=sharing",
+    "links": [
+      {
+        "label": "GitHub",
+        "href": "https://github.com/mmislam1",
+        "icon": "github"
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/mohaiminul-islam-29a454139/",
+        "icon": "linkedin"
+      }
+    ]
+  },
+  "stats": [
+    {
+      "value": "MERN",
+      "label": "Stack focus"
+    },
+    {
+      "value": "Django",
+      "label": "Backend option"
+    },
+    {
+      "value": "SQL",
+      "label": "Relational data"
+    },
+    {
+      "value": "NoSQL",
+      "label": "Document data"
+    }
+  ],
+  "focusAreas": [
+    {
+      "icon": "code",
+      "title": "Full-stack development",
+      "text": "React interfaces, API layers, authentication-ready flows, and database-backed features."
+    },
+    {
+      "icon": "layers",
+      "title": "Database design",
+      "text": "Relational and non-relational data models for practical web application requirements."
+    },
+    {
+      "icon": "briefcase",
+      "title": "Problem solving",
+      "text": "Programming contest practice, algorithmic thinking, and implementation discipline."
+    }
+  ],
+  "skillGroups": [
+    {
+      "title": "Frontend",
+      "skills": [
+        {
+          "title": "React",
+          "star": 4
+        },
+        {
+          "title": "JavaScript",
+          "star": 4
+        },
+        {
+          "title": "Tailwind CSS",
+          "star": 3.5
+        }
+      ]
+    },
+    {
+      "title": "Backend",
+      "skills": [
+        {
+          "title": "Express.js",
+          "star": 4.5
+        },
+        {
+          "title": "Node.js",
+          "star": 4
+        },
+        {
+          "title": "Django",
+          "star": 3.5
+        },
+        {
+          "title": "PHP",
+          "star": 3.5
+        }
+      ]
+    },
+    {
+      "title": "Database",
+      "skills": [
+        {
+          "title": "MySQL",
+          "star": 4.5
+        },
+        {
+          "title": "MongoDB",
+          "star": 3.5
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Lose to gain",
+      "type": "Health planning app",
+      "role": "Full-stack development",
+      "desc": "Lets users create diet plans and send generated diet charts to user email addresses.",
+      "tools": [
+        "React",
+        "Express.js",
+        "MongoDB",
+        "Node.js"
+      ],
+      "highlights": [
+        "Diet plan creation flow",
+        "Generated diet chart delivery",
+        "Backend API and database integration"
+      ],
+      "link": "https://github.com/mmislam1/Alt-Lose_to_gain"
+    },
+    {
+      "title": "Metrorail",
+      "type": "Transport system backend",
+      "role": "Backend development",
+      "desc": "Designed and built the backend with PHP and MySQL.",
+      "tools": [
+        "PHP",
+        "MySQL"
+      ],
+      "highlights": [
+        "Backend structure for transport data",
+        "Relational data handling",
+        "Server-side implementation"
+      ],
+      "link": "https://github.com/mmislam1/MetroRail"
+    }
+  ],
+  "experience": [
+    {
+      "title": "CS Graduate",
+      "meta": "Computer science foundation",
+      "icon": "graduation",
+      "details": "Academic background in software engineering, algorithms, databases, and AI fundamentals."
+    },
+    {
+      "title": "Software Developer",
+      "meta": "MERN stack, Django, databases",
+      "icon": "briefcase",
+      "details": "Builds web application features across frontend, backend, and data layers."
+    },
+    {
+      "title": "Programming Contests",
+      "meta": "Online and onsite participation",
+      "icon": "code",
+      "details": "Practiced structured problem solving through competitive programming environments."
+    }
+  ],
+  "contact": {
+    "formAction": "https://formspree.io/f/xzzppron"
+  }
+}
