@@ -62,7 +62,6 @@ function StarRating({ value }) {
 export default function PortfolioView({ data }) {
   const profile = data.profile || {};
   const contact = data.contact || {};
-  const stats = data.stats || [];
   const focusAreas = data.focusAreas || [];
   const skillGroups = data.skillGroups || [];
   const projects = data.projects || [];
@@ -119,29 +118,16 @@ export default function PortfolioView({ data }) {
           <div className="flex flex-col-reverse items-center justify-around gap-9 md:flex-row">
             <div className="grid w-full max-w-3xl gap-6 text-center md:text-left">
               <div>
-                <p className="text-xl text-amber-400">
+                <p className="text-xl text-slate-200">
                   {profile.greeting || "Hello,"}
                 </p>
                 <h1 className="mt-2 text-4xl font-semibold text-white md:text-5xl">
-                  {profile.headline || `I am ${profile.name}.`}
+                  {profile.name || "Mohaiminul Islam"}
                 </h1>
               </div>
               <p className="text-lg leading-8 text-slate-100">
                 {profile.summary}
               </p>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                {stats.map((item) => (
-                  <div
-                    className="rounded-md border-2 border-slate-500 bg-slate-700 p-4 text-center"
-                    key={`${item.value}-${item.label}`}
-                  >
-                    <p className="text-2xl font-semibold text-amber-400">
-                      {item.value}
-                    </p>
-                    <p className="mt-1 text-sm text-slate-200">{item.label}</p>
-                  </div>
-                ))}
-              </div>
             </div>
 
             <div className="min-h-60 min-w-60 max-h-60 max-w-60 overflow-hidden rounded-full border-2 border-amber-400 bg-white">

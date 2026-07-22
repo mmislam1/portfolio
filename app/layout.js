@@ -14,7 +14,6 @@ const navItems = [
   { label: "Projects", href: "/#projects" },
   { label: "Experience", href: "/#experience" },
   { label: "Contact", href: "/#contact" },
-  { label: "Edit", href: "/admin" },
 ];
 
 export default function RootLayout({ children }) {

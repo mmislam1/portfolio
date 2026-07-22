@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isPortfolioAdminEnabled } from "@/lib/adminAccess";
 import { getPortfolioData, writePortfolioData } from "@/lib/portfolioDb";
 
 export const dynamic = "force-dynamic";
@@ -10,6 +11,13 @@ export async function GET() {
 }
 
 export async function PUT(request) {
+  if (!isPortfolioAdminEnabled()) {
+    return NextResponse.json(
+      { error: "Portfolio editing is disabled." },
+      { status: 403 }
+    );
+  }
+
   try {
     const body = await request.json();
     const data = await writePortfolioData(body);
