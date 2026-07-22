@@ -6,7 +6,6 @@ import { useState } from "react";
 const tabs = [
   "Profile",
   "Stats",
-  "Focus",
   "Skills",
   "Projects",
   "Experience",
@@ -341,51 +340,6 @@ export default function AdminEditor({ initialData }) {
                   updateArrayItem("stats", index, { ...item, label: value })
                 }
                 value={item.label}
-              />
-            </Card>
-          ))}
-        </section>
-      )}
-
-      {activeTab === "Focus" && (
-        <section className="grid gap-5">
-          <SectionHeader
-            title="FOCUS AREAS"
-            onAdd={() =>
-              addArrayItem("focusAreas", {
-                icon: "code",
-                title: "",
-                text: "",
-              })
-            }
-          />
-          {data.focusAreas.map((item, index) => (
-            <Card key={`${item.title}-${index}`}>
-              <div className="flex justify-end">
-                <Button onClick={() => removeArrayItem("focusAreas", index)}>
-                  Remove
-                </Button>
-              </div>
-              <SelectField
-                label="Icon"
-                onChange={(value) =>
-                  updateArrayItem("focusAreas", index, { ...item, icon: value })
-                }
-                value={item.icon}
-              />
-              <Field
-                label="Title"
-                onChange={(value) =>
-                  updateArrayItem("focusAreas", index, { ...item, title: value })
-                }
-                value={item.title}
-              />
-              <TextField
-                label="Text"
-                onChange={(value) =>
-                  updateArrayItem("focusAreas", index, { ...item, text: value })
-                }
-                value={item.text}
               />
             </Card>
           ))}

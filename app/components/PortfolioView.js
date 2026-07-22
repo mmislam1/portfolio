@@ -62,7 +62,6 @@ function StarRating({ value }) {
 export default function PortfolioView({ data }) {
   const profile = data.profile || {};
   const contact = data.contact || {};
-  const focusAreas = data.focusAreas || [];
   const skillGroups = data.skillGroups || [];
   const projects = data.projects || [];
   const experience = data.experience || [];
@@ -176,25 +175,6 @@ export default function PortfolioView({ data }) {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            {focusAreas.map((area) => (
-              <article
-                className="rounded-md border-2 border-slate-500 bg-slate-700 p-5"
-                key={area.title}
-              >
-                <FontAwesomeIcon
-                  icon={getIcon(area.icon)}
-                  className="text-3xl text-amber-400"
-                />
-                <h2 className="mt-4 text-2xl font-semibold text-amber-400">
-                  {area.title}
-                </h2>
-                <p className="mt-3 text-base leading-7 text-slate-100">
-                  {area.text}
-                </p>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
 
