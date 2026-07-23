@@ -59,6 +59,29 @@ function StarRating({ value }) {
   );
 }
 
+function ProjectIconLink({ href, icon, label }) {
+  const cleanHref = typeof href === "string" ? href.trim() : "";
+
+  if (!cleanHref) {
+    return null;
+  }
+
+  return (
+    <a
+      aria-label={label}
+      href={cleanHref}
+      rel="noreferrer"
+      target="_blank"
+      title={label}
+    >
+      <FontAwesomeIcon
+        icon={icon}
+        className="animate-colorChange text-3xl hover:text-orange-600"
+      />
+    </a>
+  );
+}
+
 export default function PortfolioView({ data }) {
   const profile = data.profile || {};
   const contact = data.contact || {};
@@ -110,10 +133,10 @@ export default function PortfolioView({ data }) {
   return (
     <main className="grid grid-cols-1 bg-slate-900 text-white">
       <section
-        className="grid min-h-[calc(100vh-112px)] scroll-mt-32 items-center justify-center px-6 py-10 font-semibold text-lg lg:px-24 xl:px-72"
+        className="grid scroll-mt-32 items-center justify-center px-6 pb-4 pt-10 font-semibold text-lg lg:px-24 xl:px-72"
         id="about"
       >
-        <div className="grid w-full grid-cols-1 items-center justify-around gap-10">
+        <div className="grid w-full grid-cols-1 items-center justify-around gap-6">
           <div className="flex flex-col-reverse items-center justify-around gap-9 md:flex-row">
             <div className="grid w-full max-w-3xl gap-6 text-center md:text-left">
               <div>
@@ -139,7 +162,7 @@ export default function PortfolioView({ data }) {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-5">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <a
               className="rounded border-2 border-amber-400 bg-amber-400 px-8 py-2 text-2xl font-semibold text-slate-900 hover:bg-slate-900 hover:text-amber-400"
               href={profile.resumeLink || "#"}
@@ -174,12 +197,11 @@ export default function PortfolioView({ data }) {
               <span className="ml-2">{copied ? "Copied" : "Copy Link"}</span>
             </button>
           </div>
-
         </div>
       </section>
 
       <section
-        className="grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-10 lg:px-24 xl:px-72"
+        className="grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 pb-10 pt-4 lg:px-24 xl:px-72"
         id="skills"
       >
         <h2 className="m-auto text-4xl font-semibold text-amber-400">
@@ -266,17 +288,16 @@ export default function PortfolioView({ data }) {
                     <p className="mt-2 text-slate-200">{project.role}</p>
                   </div>
                   <div className="flex items-center gap-4">
-                    <a
-                      aria-label={`${project.title} GitHub repository`}
+                    <ProjectIconLink
                       href={project.link}
-                      rel="noreferrer"
-                      target="_blank"
-                    >
-                      <FontAwesomeIcon
-                        icon={faGithub}
-                        className="animate-colorChange text-3xl hover:text-orange-600"
-                      />
-                    </a>
+                      icon={faGithub}
+                      label={`${project.title} GitHub repository`}
+                    />
+                    <ProjectIconLink
+                      href={project.liveLink}
+                      icon={faArrowUpRightFromSquare}
+                      label={`${project.title} live link`}
+                    />
                     <button
                       aria-expanded={isExpanded}
                       className="rounded border-2 border-slate-500 px-4 py-2 font-semibold text-amber-400 hover:border-amber-400"

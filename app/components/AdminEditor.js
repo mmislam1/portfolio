@@ -458,6 +458,7 @@ export default function AdminEditor({ initialData }) {
                 tools: [],
                 highlights: [],
                 link: "",
+                liveLink: "",
               })
             }
           />
@@ -502,6 +503,16 @@ export default function AdminEditor({ initialData }) {
                   updateArrayItem("projects", index, { ...project, link: value })
                 }
                 value={project.link}
+              />
+              <Field
+                label="Live link"
+                onChange={(value) =>
+                  updateArrayItem("projects", index, {
+                    ...project,
+                    liveLink: value,
+                  })
+                }
+                value={project.liveLink}
               />
               <Field
                 label="Tools"
