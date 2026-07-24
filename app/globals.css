@@ -22,5 +22,104 @@
   input,
   textarea {
     outline-color: #f59e0b;
+    transition-duration: 220ms;
+    transition-property:
+      background-color, border-color, color, opacity, box-shadow, transform;
+    transition-timing-function: ease;
+  }
+}
+
+@layer components {
+  .motion-page {
+    animation: portfolio-fade-in 420ms ease both;
+  }
+
+  .motion-section {
+    animation: portfolio-rise-in 520ms ease both;
+  }
+
+  .motion-panel {
+    animation: portfolio-fade-in 360ms ease both;
+  }
+
+  .motion-card {
+    animation: portfolio-rise-in 420ms ease both;
+    transition:
+      border-color 220ms ease,
+      box-shadow 220ms ease,
+      opacity 220ms ease,
+      transform 220ms ease;
+  }
+
+  .motion-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .motion-action:hover {
+    transform: translateY(-1px);
+  }
+
+  .motion-details {
+    border-top: 1px solid transparent;
+    display: grid;
+    grid-template-rows: 0fr;
+    margin-top: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding-top: 0;
+    transition:
+      grid-template-rows 360ms ease,
+      opacity 260ms ease,
+      margin-top 360ms ease,
+      padding-top 360ms ease,
+      border-color 360ms ease;
+  }
+
+  .motion-details > div {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .motion-details-open {
+    border-color: #64748b;
+    grid-template-rows: 1fr;
+    margin-top: 1.25rem;
+    opacity: 1;
+    padding-top: 1.25rem;
+  }
+}
+
+@layer utilities {
+  @keyframes portfolio-fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes portfolio-rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 1ms !important;
+    }
   }
 }

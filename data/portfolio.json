@@ -147,6 +147,18 @@
   ],
   "experience": [
     {
+      "title": "Join Venture AI",
+      "meta": "Junior Web Developer (React) | October 2025 - February 2026",
+      "icon": "briefcase",
+      "details": "Developed and maintained React front-end features, built reusable component libraries, integrated third-party APIs, and collaborated with designers and backend engineers to deliver product increments on schedule."
+    },
+    {
+      "title": "Next Level Media",
+      "meta": "MERN Stack Developer | March 2025 - August 2025",
+      "icon": "briefcase",
+      "details": "Built client-facing full-stack features with MongoDB, Express.js, React, and Node.js; designed RESTful APIs; and strengthened code quality through reviews, validation, state management, and error handling."
+    },
+    {
       "title": "CS Graduate",
       "meta": "Computer science foundation",
       "icon": "graduation",
