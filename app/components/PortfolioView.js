@@ -137,8 +137,6 @@ const monthNames = [
   "December",
 ];
 
-const shortMonthNames = monthNames.map((month) => month.slice(0, 3));
-
 function parseMonthYear(value) {
   const match = value.trim().match(/^([A-Za-z]+)\s+(\d{4})$/);
 
@@ -156,13 +154,6 @@ function parseMonthYear(value) {
   }
 
   return year * 12 + month;
-}
-
-function formatMonthIndex(value) {
-  const year = Math.floor(value / 12);
-  const month = value % 12;
-
-  return `${shortMonthNames[month]} ${year}`;
 }
 
 function formatDuration(monthCount) {
@@ -192,39 +183,18 @@ function getJobTenure(item) {
   };
 }
 
-function getTimelineBounds(tenures) {
-  const rangedTenures = tenures.filter((tenure) => tenure.hasRange);
+function getJobHighlights(item) {
+  const details = item.details || "";
 
-  if (rangedTenures.length === 0) {
-    return null;
+  if (!hasText(details)) {
+    return [];
   }
 
-  const startIndex = Math.min(
-    ...rangedTenures.map((tenure) => tenure.startIndex)
-  );
-  const endIndex = Math.max(...rangedTenures.map((tenure) => tenure.endIndex));
-
-  return {
-    endIndex,
-    endLabel: formatMonthIndex(endIndex),
-    startIndex,
-    startLabel: formatMonthIndex(startIndex),
-    totalMonths: endIndex - startIndex + 1,
-  };
-}
-
-function getTimelineStyle(tenure, bounds) {
-  if (!tenure.hasRange || !bounds) {
-    return {};
-  }
-
-  const left = ((tenure.startIndex - bounds.startIndex) / bounds.totalMonths) * 100;
-  const width = (tenure.durationMonths / bounds.totalMonths) * 100;
-
-  return {
-    left: `${left}%`,
-    width: `${width}%`,
-  };
+  return details
+    .replace("; and ", "; ")
+    .split(";")
+    .map((part) => part.trim().replace(/\.$/, ""))
+    .filter(Boolean);
 }
 
 export default function PortfolioView({ data }) {
@@ -239,7 +209,6 @@ export default function PortfolioView({ data }) {
     (item) => getJobTenure(item).hasRange
   );
   const jobTenures = visibleExperience.map(getJobTenure);
-  const timelineBounds = getTimelineBounds(jobTenures);
   const hasResumeLink = hasText(profile.resumeLink);
   const showAbout = hasAboutContent(profile);
 
@@ -416,89 +385,79 @@ export default function PortfolioView({ data }) {
             EXPERIENCE
           </h2>
 
-          <div className="my-8 grid w-full grid-cols-1 gap-6">
-            {timelineBounds && (
-              <div className="motion-panel grid gap-3 border-b border-slate-600 pb-5">
-                <div className="flex flex-wrap items-end justify-between gap-3">
-                  <p className="text-lg font-semibold text-slate-200">
-                    Job tenure overview
-                  </p>
-                  <p className="text-sm font-semibold text-amber-400">
-                    {timelineBounds.startLabel} - {timelineBounds.endLabel}
-                  </p>
-                </div>
-                <div className="relative h-2 overflow-hidden rounded-full bg-slate-800">
-                  {jobTenures.map((tenure, index) => (
-                    <span
-                      aria-label={`${visibleExperience[index].title} from ${tenure.start} to ${tenure.end}`}
-                      className="absolute inset-y-0 rounded-full bg-amber-400"
-                      key={visibleExperience[index].title}
-                      style={getTimelineStyle(tenure, timelineBounds)}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
-
+          <div className="my-8 grid w-full grid-cols-1">
             <div className="grid grid-cols-1">
               {visibleExperience.map((item, index) => {
                 const tenure = jobTenures[index];
+                const highlights = getJobHighlights(item);
 
                 return (
                   <article
-                    className="motion-panel grid gap-4 border-b border-slate-700 py-6 first:pt-0 last:border-b-0 md:grid-cols-[13rem_2rem_1fr]"
+                    className="motion-panel grid gap-4 border-b border-slate-700 py-7 first:pt-0 last:border-b-0 md:grid-cols-[12rem_2rem_1fr]"
                     key={item.title}
                   >
-                    <div className="grid content-start gap-1 md:text-right">
-                      {hasText(tenure.period) && (
-                        <p className="text-sm font-semibold text-amber-400">
-                          {tenure.period}
-                        </p>
-                      )}
+                    <div className="grid content-start gap-2 md:text-right">
+                      <div className="grid gap-1">
+                        {hasText(tenure.start) && (
+                          <p className="text-sm font-semibold text-amber-400">
+                            {tenure.start}
+                          </p>
+                        )}
+                        {hasText(tenure.end) && (
+                          <p className="text-sm font-semibold text-slate-200">
+                            {tenure.end}
+                          </p>
+                        )}
+                      </div>
                       {hasText(tenure.duration) && (
-                        <p className="text-sm font-semibold text-slate-300">
+                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
                           {tenure.duration}
                         </p>
                       )}
                     </div>
 
                     <div className="hidden justify-items-center md:grid">
-                      <div className="relative grid min-h-32 justify-items-center">
-                        <span className="absolute inset-y-0 w-px bg-slate-600" />
-                        <span className="relative mt-2 h-3 w-3 rounded-full border-2 border-amber-400 bg-slate-900" />
+                      <div className="relative grid min-h-36 justify-items-center">
+                        <span className="absolute inset-y-0 w-px bg-slate-700" />
+                        <span className="relative mt-2 h-3 w-3 rounded-full border-2 border-amber-400 bg-slate-900 shadow-[0_0_14px_rgba(251,191,36,0.3)]" />
                       </div>
                     </div>
 
-                    <div className="grid content-start gap-3">
-                      {hasText(tenure.role) && (
-                        <p className="font-semibold text-slate-200">
-                          {tenure.role}
-                        </p>
-                      )}
-                      <h3 className="text-2xl font-semibold text-amber-400">
-                        {item.title}
-                      </h3>
+                    <div className="grid content-start gap-4">
+                      <div>
+                        <h3 className="text-2xl font-semibold text-amber-400">
+                          {item.title}
+                        </h3>
+                        {hasText(tenure.role) && (
+                          <p className="mt-1 font-semibold text-slate-200">
+                            {tenure.role}
+                          </p>
+                        )}
+                        {hasText(tenure.period) && (
+                          <p className="mt-1 text-sm font-semibold text-slate-400 md:hidden">
+                            {tenure.period} | {tenure.duration}
+                          </p>
+                        )}
+                      </div>
 
-                      {timelineBounds && tenure.hasRange && (
-                        <div>
-                          <div className="relative h-2 overflow-hidden rounded-full bg-slate-800">
-                            <span
-                              aria-label={`${item.title} tenure from ${tenure.start} to ${tenure.end}`}
-                              className="absolute inset-y-0 rounded-full bg-amber-400 shadow-[0_0_16px_rgba(251,191,36,0.35)]"
-                              style={getTimelineStyle(tenure, timelineBounds)}
-                            />
-                          </div>
-                          <div className="mt-2 flex justify-between text-xs font-semibold text-slate-400">
-                            <span>{timelineBounds.startLabel}</span>
-                            <span>{timelineBounds.endLabel}</span>
-                          </div>
-                        </div>
-                      )}
-
-                      {hasText(item.details) && (
-                        <p className="leading-7 text-slate-100">
-                          {item.details}
-                        </p>
+                      {highlights.length > 0 ? (
+                        <ul className="grid gap-2">
+                          {highlights.map((highlight) => (
+                            <li
+                              className="grid grid-cols-[auto_1fr] gap-3 leading-7 text-slate-100"
+                              key={highlight}
+                            >
+                              <span className="mt-3 h-1.5 w-1.5 rounded-full bg-amber-400" />
+                              <span>{highlight}.</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        hasText(item.details) && (
+                          <p className="leading-7 text-slate-100">
+                            {item.details}
+                          </p>
+                        )
                       )}
                     </div>
                   </article>
