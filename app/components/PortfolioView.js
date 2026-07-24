@@ -39,6 +39,25 @@ const customBrandIcons = {
   leetcode: LeetCodeIcon,
 };
 
+const projectAccentClasses = [
+  {
+    article: "border-amber-400 bg-slate-900/70",
+    check: "text-amber-400",
+    marker: "border-amber-400 bg-amber-400/10 text-amber-300",
+    role: "border-amber-400/40 bg-amber-400/10 text-amber-100",
+    title: "text-amber-400",
+    tool: "border-slate-600 bg-slate-800/60 text-amber-400",
+  },
+  {
+    article: "border-cyan-400 bg-slate-800/70",
+    check: "text-cyan-300",
+    marker: "border-cyan-400 bg-cyan-400/10 text-cyan-200",
+    role: "border-cyan-400/40 bg-cyan-400/10 text-cyan-100",
+    title: "text-cyan-300",
+    tool: "border-slate-600 bg-slate-900/60 text-cyan-200",
+  },
+];
+
 function getIcon(name, fallback = faCode) {
   return icons[name] || fallback;
 }
@@ -523,7 +542,7 @@ export default function PortfolioView({ data }) {
           )}
 
           <div className="my-8 grid grid-cols-1 items-stretch justify-between gap-6">
-            {visibleProjects.map((project) => {
+            {visibleProjects.map((project, index) => {
               const highlights = (project.highlights || []).filter(hasText);
               const tools = (project.tools || []).filter(hasText);
               const hasHighlights = highlights.length > 0;
@@ -531,25 +550,44 @@ export default function PortfolioView({ data }) {
                 hasText(project.link) ||
                 hasText(project.liveLink) ||
                 hasHighlights;
-              const isExpanded = hasHighlights && expandedProject === project.title;
+              const isExpanded =
+                hasHighlights && expandedProject === project.title;
+              const projectIndex = projectsWithContent.findIndex(
+                (item) => item.title === project.title
+              );
+              const stableIndex = projectIndex >= 0 ? projectIndex : index;
+              const accent =
+                projectAccentClasses[stableIndex % projectAccentClasses.length];
+              const projectNumber = String(stableIndex + 1).padStart(2, "0");
 
               return (
                 <article
-                  className="motion-card border-l-2 border-amber-400 bg-slate-900/70 px-5 py-6 shadow-[0_16px_40px_rgba(15,23,42,0.25)]"
+                  className={`motion-card border-l-2 px-5 py-6 shadow-[0_16px_40px_rgba(15,23,42,0.25)] ${accent.article}`}
                   key={`${projectFilter}-${project.title}`}
                 >
                   <div className="flex flex-col justify-between gap-5 md:flex-row md:items-start">
                     <div className="grid gap-2">
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span
+                          className={`rounded border px-2.5 py-1 text-xs font-semibold uppercase ${accent.marker}`}
+                        >
+                          Project {projectNumber}
+                        </span>
+                      </div>
+                      <h3 className={`text-3xl font-semibold ${accent.title}`}>
+                        {project.title}
+                      </h3>
                       {hasText(project.type) && (
-                        <p className="text-base font-semibold text-slate-300">
+                        <p className="max-w-3xl text-base font-semibold leading-7 text-slate-300">
                           {project.type}
                         </p>
                       )}
-                      <h3 className="text-3xl font-semibold text-amber-400">
-                        {project.title}
-                      </h3>
                       {hasText(project.role) && (
-                        <p className="text-slate-200">{project.role}</p>
+                        <p
+                          className={`mt-1 w-fit rounded border px-3 py-1 text-sm font-semibold ${accent.role}`}
+                        >
+                          (Role: {project.role})
+                        </p>
                       )}
                     </div>
                     {hasProjectActions && (
@@ -579,7 +617,9 @@ export default function PortfolioView({ data }) {
                             }
                             type="button"
                           >
-                            <span>{isExpanded ? "Hide details" : "View details"}</span>
+                            <span>
+                              {isExpanded ? "Hide details" : "View details"}
+                            </span>
                             <FontAwesomeIcon
                               icon={faChevronDown}
                               className={`text-xs transition-transform ${
@@ -602,7 +642,7 @@ export default function PortfolioView({ data }) {
                     <div className="mt-5 flex flex-row flex-wrap gap-2">
                       {tools.map((tool) => (
                         <span
-                          className="rounded border border-slate-600 bg-slate-800/60 px-3 py-1 text-base text-amber-400"
+                          className={`rounded border px-3 py-1 text-base ${accent.tool}`}
                           key={`${project.title}-${tool}`}
                         >
                           {tool}
@@ -620,10 +660,13 @@ export default function PortfolioView({ data }) {
                     >
                       <div className="grid gap-3">
                         {highlights.map((highlight) => (
-                          <p className="grid grid-cols-[auto_1fr] gap-3 leading-7 text-slate-100" key={highlight}>
+                          <p
+                            className="grid grid-cols-[auto_1fr] gap-3 leading-7 text-slate-100"
+                            key={highlight}
+                          >
                             <FontAwesomeIcon
                               icon={faCheck}
-                              className="mt-1 text-sm text-amber-400"
+                              className={`mt-1 text-sm ${accent.check}`}
                             />
                             <span>{highlight}</span>
                           </p>
