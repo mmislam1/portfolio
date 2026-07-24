@@ -535,25 +535,25 @@ export default function PortfolioView({ data }) {
 
               return (
                 <article
-                  className="motion-card rounded-md border-2 border-amber-400 bg-slate-900 p-5"
+                  className="motion-card border-l-2 border-amber-400 bg-slate-900/70 px-5 py-6 shadow-[0_16px_40px_rgba(15,23,42,0.25)]"
                   key={`${projectFilter}-${project.title}`}
                 >
-                  <div className="flex flex-col justify-between gap-4 md:flex-row md:items-start">
-                    <div>
+                  <div className="flex flex-col justify-between gap-5 md:flex-row md:items-start">
+                    <div className="grid gap-2">
                       {hasText(project.type) && (
                         <p className="text-base font-semibold text-slate-300">
                           {project.type}
                         </p>
                       )}
-                      <h3 className="mt-1 text-3xl font-semibold text-amber-400">
+                      <h3 className="text-3xl font-semibold text-amber-400">
                         {project.title}
                       </h3>
                       {hasText(project.role) && (
-                        <p className="mt-2 text-slate-200">{project.role}</p>
+                        <p className="text-slate-200">{project.role}</p>
                       )}
                     </div>
                     {hasProjectActions && (
-                      <div className="flex items-center gap-4">
+                      <div className="flex flex-wrap items-center gap-4">
                         <ProjectIconLink
                           href={project.link}
                           icon={faGithub}
@@ -567,7 +567,11 @@ export default function PortfolioView({ data }) {
                         {hasHighlights && (
                           <button
                             aria-expanded={isExpanded}
-                            className="motion-action rounded border-2 border-slate-500 px-4 py-2 font-semibold text-amber-400 hover:border-amber-400"
+                            className={`motion-action inline-flex items-center gap-2 rounded border-2 px-4 py-2 text-sm font-semibold ${
+                              isExpanded
+                                ? "border-amber-400 bg-amber-400 text-slate-900"
+                                : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400 hover:bg-slate-800"
+                            }`}
                             onClick={() =>
                               setExpandedProject(
                                 isExpanded ? "" : project.title
@@ -575,10 +579,10 @@ export default function PortfolioView({ data }) {
                             }
                             type="button"
                           >
-                            {isExpanded ? "Hide details" : "Details"}
+                            <span>{isExpanded ? "Hide details" : "View details"}</span>
                             <FontAwesomeIcon
                               icon={faChevronDown}
-                              className={`ml-2 transition-transform ${
+                              className={`text-xs transition-transform ${
                                 isExpanded ? "rotate-180" : ""
                               }`}
                             />
@@ -589,16 +593,16 @@ export default function PortfolioView({ data }) {
                   </div>
 
                   {hasText(project.desc) && (
-                    <p className="mt-5 rounded-md bg-slate-700 p-3 text-lg leading-7 text-slate-100">
+                    <p className="mt-5 max-w-4xl text-lg leading-8 text-slate-100">
                       {project.desc}
                     </p>
                   )}
 
                   {tools.length > 0 && (
-                    <div className="mt-4 flex flex-row flex-wrap gap-2">
+                    <div className="mt-5 flex flex-row flex-wrap gap-2">
                       {tools.map((tool) => (
                         <span
-                          className="rounded border border-slate-500 px-3 py-1 text-lg text-amber-400"
+                          className="rounded border border-slate-600 bg-slate-800/60 px-3 py-1 text-base text-amber-400"
                           key={`${project.title}-${tool}`}
                         >
                           {tool}
@@ -616,12 +620,12 @@ export default function PortfolioView({ data }) {
                     >
                       <div className="grid gap-3">
                         {highlights.map((highlight) => (
-                          <p className="text-slate-100" key={highlight}>
+                          <p className="grid grid-cols-[auto_1fr] gap-3 leading-7 text-slate-100" key={highlight}>
                             <FontAwesomeIcon
                               icon={faCheck}
-                              className="mr-3 text-amber-400"
+                              className="mt-1 text-sm text-amber-400"
                             />
-                            {highlight}
+                            <span>{highlight}</span>
                           </p>
                         ))}
                       </div>
