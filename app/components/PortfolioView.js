@@ -248,10 +248,7 @@ export default function PortfolioView({ data }) {
     visibleSkillGroups[0]?.title || ""
   );
   const [projectFilter, setProjectFilter] = useState("All");
-  const [expandedProject, setExpandedProject] = useState(
-    projectsWithContent.find((project) => (project.highlights || []).length > 0)
-      ?.title || ""
-  );
+  const [expandedProject, setExpandedProject] = useState("");
   const [copied, setCopied] = useState(false);
 
   const projectFilters = [
@@ -327,7 +324,7 @@ export default function PortfolioView({ data }) {
             <div className="flex w-full max-w-3xl flex-wrap items-center justify-center gap-x-8 gap-y-5 sm:justify-between">
               {hasResumeLink && (
                 <a
-                  className="motion-action rounded border-2 border-amber-400 bg-amber-400 px-8 py-2 text-2xl font-semibold text-slate-900 hover:bg-slate-900 hover:text-amber-400"
+                  className="motion-action rounded border-2 border-amber-400 bg-slate-900 px-8 py-2 text-2xl font-semibold text-amber-400 hover:bg-amber-400 hover:text-slate-900"
                   href={profile.resumeLink}
                   rel="noreferrer"
                   target="_blank"
@@ -578,7 +575,7 @@ export default function PortfolioView({ data }) {
                             }
                             type="button"
                           >
-                            Details
+                            {isExpanded ? "Hide details" : "Details"}
                             <FontAwesomeIcon
                               icon={faChevronDown}
                               className={`ml-2 transition-transform ${
