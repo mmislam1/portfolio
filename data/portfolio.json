@@ -16,6 +16,16 @@
         "label": "LinkedIn",
         "href": "https://www.linkedin.com/in/mohaiminul-islam-29a454139/",
         "icon": "linkedin"
+      },
+      {
+        "label": "LeetCode",
+        "href": "https://leetcode.com/MMislam",
+        "icon": "leetcode"
+      },
+      {
+        "label": "Codeforces",
+        "href": "https://codeforces.com/profile/mmislam",
+        "icon": "codeforces"
       }
     ]
   },

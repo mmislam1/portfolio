@@ -14,10 +14,12 @@ const tabs = [
 const iconOptions = [
   "briefcase",
   "code",
+  "codeforces",
   "envelope",
   "github",
   "graduation",
   "layers",
+  "leetcode",
   "linkedin",
 ];
 

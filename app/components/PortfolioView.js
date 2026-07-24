@@ -34,8 +34,39 @@ const icons = {
   linkedin: faLinkedin,
 };
 
+const brandBadges = {
+  codeforces: "CF",
+  leetcode: "LC",
+};
+
 function getIcon(name, fallback = faCode) {
   return icons[name] || fallback;
+}
+
+function ProfileIconLink({ link }) {
+  const badge = brandBadges[link.icon];
+
+  return (
+    <a
+      aria-label={link.label}
+      className="motion-action inline-flex"
+      href={link.href}
+      rel="noreferrer"
+      target="_blank"
+      title={link.label}
+    >
+      {badge ? (
+        <span className="grid h-12 w-12 items-center justify-center rounded-full border-2 border-amber-400 text-lg font-bold text-amber-400 hover:border-orange-600 hover:text-orange-600">
+          {badge}
+        </span>
+      ) : (
+        <FontAwesomeIcon
+          icon={getIcon(link.icon)}
+          className="animate-colorChange text-5xl hover:text-orange-600"
+        />
+      )}
+    </a>
+  );
 }
 
 function StarRating({ value }) {
@@ -313,20 +344,7 @@ export default function PortfolioView({ data }) {
                 </a>
               )}
               {profileLinks.map((link) => (
-                <a
-                  aria-label={link.label}
-                  className="motion-action inline-flex"
-                  href={link.href}
-                  key={link.label}
-                  rel="noreferrer"
-                  target="_blank"
-                  title={link.label}
-                >
-                  <FontAwesomeIcon
-                    icon={getIcon(link.icon)}
-                    className="animate-colorChange text-5xl hover:text-orange-600"
-                  />
-                </a>
+                <ProfileIconLink key={link.label} link={link} />
               ))}
               <button
                 className="motion-action rounded border-2 border-amber-400 px-5 py-3 text-base font-semibold text-amber-400 hover:bg-amber-400 hover:text-slate-900"
