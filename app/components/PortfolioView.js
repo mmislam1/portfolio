@@ -300,24 +300,10 @@ export default function PortfolioView({ data }) {
           <div className="grid w-full grid-cols-1 items-center justify-around gap-6">
             <div className="flex flex-col-reverse items-center justify-around gap-9 md:flex-row">
               <div className="grid w-full max-w-3xl gap-6 text-center md:text-left">
-                {(hasText(profile.greeting) || hasText(profile.name)) && (
-                  <div>
-                    {hasText(profile.greeting) && (
-                      <p className="text-xl text-slate-200">
-                        {profile.greeting}
-                      </p>
-                    )}
-                    {hasText(profile.name) && (
-                      <h1 className="mt-2 text-4xl font-semibold text-white md:text-5xl">
-                        {profile.name}
-                      </h1>
-                    )}
-                    {hasText(profile.headline) && (
-                      <p className="mt-4 text-xl font-semibold leading-8 text-amber-400">
-                        {profile.headline}
-                      </p>
-                    )}
-                  </div>
+                {hasText(profile.headline) && (
+                  <h1 className="text-3xl font-semibold leading-tight text-amber-400 md:text-4xl">
+                    {profile.headline}
+                  </h1>
                 )}
                 {hasText(profile.summary) && (
                   <p className="text-lg leading-8 text-slate-100">
