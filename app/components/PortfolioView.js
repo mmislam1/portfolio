@@ -312,6 +312,11 @@ export default function PortfolioView({ data }) {
                         {profile.name}
                       </h1>
                     )}
+                    {hasText(profile.headline) && (
+                      <p className="mt-4 text-xl font-semibold leading-8 text-amber-400">
+                        {profile.headline}
+                      </p>
+                    )}
                   </div>
                 )}
                 {hasText(profile.summary) && (
