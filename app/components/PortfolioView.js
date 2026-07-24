@@ -389,6 +389,108 @@ export default function PortfolioView({ data }) {
         </section>
       )}
 
+      {visibleExperience.length > 0 && (
+        <section
+          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-10 lg:px-24 xl:px-72"
+          id="experience"
+        >
+          <h2 className="m-auto text-4xl font-semibold text-amber-400">
+            EXPERIENCE
+          </h2>
+
+          <div className="my-8 grid w-full grid-cols-1 gap-6">
+            {timelineBounds && (
+              <div className="motion-panel grid gap-3 border-b border-slate-600 pb-5">
+                <div className="flex flex-wrap items-end justify-between gap-3">
+                  <p className="text-lg font-semibold text-slate-200">
+                    Job tenure overview
+                  </p>
+                  <p className="text-sm font-semibold text-amber-400">
+                    {timelineBounds.startLabel} - {timelineBounds.endLabel}
+                  </p>
+                </div>
+                <div className="relative h-2 overflow-hidden rounded-full bg-slate-800">
+                  {jobTenures.map((tenure, index) => (
+                    <span
+                      aria-label={`${visibleExperience[index].title} from ${tenure.start} to ${tenure.end}`}
+                      className="absolute inset-y-0 rounded-full bg-amber-400"
+                      key={visibleExperience[index].title}
+                      style={getTimelineStyle(tenure, timelineBounds)}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="grid grid-cols-1">
+              {visibleExperience.map((item, index) => {
+                const tenure = jobTenures[index];
+
+                return (
+                  <article
+                    className="motion-panel grid gap-4 border-b border-slate-700 py-6 first:pt-0 last:border-b-0 md:grid-cols-[13rem_2rem_1fr]"
+                    key={item.title}
+                  >
+                    <div className="grid content-start gap-1 md:text-right">
+                      {hasText(tenure.period) && (
+                        <p className="text-sm font-semibold text-amber-400">
+                          {tenure.period}
+                        </p>
+                      )}
+                      {hasText(tenure.duration) && (
+                        <p className="text-sm font-semibold text-slate-300">
+                          {tenure.duration}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="hidden justify-items-center md:grid">
+                      <div className="relative grid min-h-32 justify-items-center">
+                        <span className="absolute inset-y-0 w-px bg-slate-600" />
+                        <span className="relative mt-2 h-3 w-3 rounded-full border-2 border-amber-400 bg-slate-900" />
+                      </div>
+                    </div>
+
+                    <div className="grid content-start gap-3">
+                      {hasText(tenure.role) && (
+                        <p className="font-semibold text-slate-200">
+                          {tenure.role}
+                        </p>
+                      )}
+                      <h3 className="text-2xl font-semibold text-amber-400">
+                        {item.title}
+                      </h3>
+
+                      {timelineBounds && tenure.hasRange && (
+                        <div>
+                          <div className="relative h-2 overflow-hidden rounded-full bg-slate-800">
+                            <span
+                              aria-label={`${item.title} tenure from ${tenure.start} to ${tenure.end}`}
+                              className="absolute inset-y-0 rounded-full bg-amber-400 shadow-[0_0_16px_rgba(251,191,36,0.35)]"
+                              style={getTimelineStyle(tenure, timelineBounds)}
+                            />
+                          </div>
+                          <div className="mt-2 flex justify-between text-xs font-semibold text-slate-400">
+                            <span>{timelineBounds.startLabel}</span>
+                            <span>{timelineBounds.endLabel}</span>
+                          </div>
+                        </div>
+                      )}
+
+                      {hasText(item.details) && (
+                        <p className="leading-7 text-slate-100">
+                          {item.details}
+                        </p>
+                      )}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
       {projectsWithContent.length > 0 && (
         <section
           className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-10 lg:px-24 xl:px-72"
@@ -528,98 +630,6 @@ export default function PortfolioView({ data }) {
                       </div>
                     </div>
                   )}
-                </article>
-              );
-            })}
-          </div>
-        </section>
-      )}
-
-      {visibleExperience.length > 0 && (
-        <section
-          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-10 lg:px-24 xl:px-72"
-          id="experience"
-        >
-          <h2 className="m-auto text-4xl font-semibold text-amber-400">
-            EXPERIENCE
-          </h2>
-          <div className="motion-panel my-8 grid grid-cols-1 gap-5 rounded-md border-2 border-slate-500 bg-slate-800 p-5">
-            {timelineBounds && (
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-500 pb-4">
-                <p className="text-lg font-semibold text-slate-200">
-                  Professional job timeline
-                </p>
-                <p className="rounded border border-amber-400 px-3 py-1 text-sm font-semibold text-amber-400">
-                  {timelineBounds.startLabel} - {timelineBounds.endLabel}
-                </p>
-              </div>
-            )}
-
-            {visibleExperience.map((item, index) => {
-              const tenure = jobTenures[index];
-
-              return (
-                <article
-                  className="motion-card grid gap-5 rounded-md border-2 border-slate-500 bg-slate-700 p-5 lg:grid-cols-[13rem_1fr]"
-                  key={item.title}
-                >
-                  <div className="grid content-start gap-3">
-                    <div className="flex items-center gap-3">
-                      {hasText(item.icon) && (
-                        <div className="grid h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-amber-400 text-amber-400">
-                          <FontAwesomeIcon
-                            icon={getIcon(item.icon)}
-                            className="text-xl"
-                          />
-                        </div>
-                      )}
-                      <div>
-                        {hasText(tenure.duration) && (
-                          <p className="text-2xl font-semibold text-amber-400">
-                            {tenure.duration}
-                          </p>
-                        )}
-                        {hasText(tenure.period) && (
-                          <p className="text-sm font-semibold text-slate-200">
-                            {tenure.period}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    {hasText(tenure.role) && (
-                      <p className="font-semibold text-slate-200">
-                        {tenure.role}
-                      </p>
-                    )}
-                    <h3 className="mt-1 text-2xl font-semibold text-amber-400">
-                      {item.title}
-                    </h3>
-
-                    {timelineBounds && tenure.hasRange && (
-                      <div className="mt-4 rounded-md border border-slate-500 bg-slate-900 p-4">
-                        <div className="relative h-4 overflow-hidden rounded-full bg-slate-950">
-                          <div
-                            aria-label={`${item.title} tenure from ${tenure.start} to ${tenure.end}`}
-                            className="absolute inset-y-0 rounded-full bg-amber-400 shadow-[0_0_16px_rgba(251,191,36,0.45)]"
-                            style={getTimelineStyle(tenure, timelineBounds)}
-                          />
-                        </div>
-                        <div className="mt-2 flex justify-between text-xs font-semibold text-slate-300">
-                          <span>{timelineBounds.startLabel}</span>
-                          <span>{timelineBounds.endLabel}</span>
-                        </div>
-                      </div>
-                    )}
-
-                    {hasText(item.details) && (
-                      <p className="mt-4 leading-7 text-slate-100">
-                        {item.details}
-                      </p>
-                    )}
-                  </div>
                 </article>
               );
             })}
