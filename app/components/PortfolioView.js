@@ -333,7 +333,7 @@ export default function PortfolioView({ data }) {
               )}
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex w-full max-w-3xl flex-wrap items-center justify-center gap-x-8 gap-y-5 sm:justify-between">
               {hasResumeLink && (
                 <a
                   className="motion-action rounded border-2 border-amber-400 bg-amber-400 px-8 py-2 text-2xl font-semibold text-slate-900 hover:bg-slate-900 hover:text-amber-400"
@@ -364,7 +364,7 @@ export default function PortfolioView({ data }) {
 
       {visibleSkillGroups.length > 0 && (
         <section
-          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 pb-10 pt-4 lg:px-24 xl:px-72"
+          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 pb-10 pt-12 lg:px-24 xl:px-72"
           id="skills"
         >
           <h2 className="m-auto text-4xl font-semibold text-amber-400">
