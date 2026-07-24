@@ -157,27 +157,9 @@
       "meta": "MERN Stack Developer | March 2025 - August 2025",
       "icon": "briefcase",
       "details": "Built client-facing full-stack features with MongoDB, Express.js, React, and Node.js; designed RESTful APIs; and strengthened code quality through reviews, validation, state management, and error handling."
-    },
-    {
-      "title": "CS Graduate",
-      "meta": "Computer science foundation",
-      "icon": "graduation",
-      "details": "Academic background in software engineering, algorithms, databases, and AI fundamentals."
-    },
-    {
-      "title": "Software Developer",
-      "meta": "MERN stack, Django, databases",
-      "icon": "briefcase",
-      "details": "Builds web application features across frontend, backend, and data layers."
-    },
-    {
-      "title": "Programming Contests",
-      "meta": "Online and onsite participation",
-      "icon": "code",
-      "details": "Practiced structured problem solving through competitive programming environments."
     }
   ],
   "contact": {
-    "formAction": "https://formspree.io/f/xzzppron"
+    "formAction": ""
   }
 }

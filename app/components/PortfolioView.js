@@ -21,7 +21,6 @@ import {
   getVisibleProjects,
   getVisibleSkillGroups,
   hasAboutContent,
-  hasContactContent,
   hasText,
 } from "@/lib/portfolioVisibility";
 
@@ -92,20 +91,126 @@ function ProjectIconLink({ href, icon, label }) {
   );
 }
 
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+const shortMonthNames = monthNames.map((month) => month.slice(0, 3));
+
+function parseMonthYear(value) {
+  const match = value.trim().match(/^([A-Za-z]+)\s+(\d{4})$/);
+
+  if (!match) {
+    return null;
+  }
+
+  const month = monthNames.findIndex(
+    (name) => name.toLowerCase() === match[1].toLowerCase()
+  );
+  const year = Number(match[2]);
+
+  if (month === -1 || !Number.isFinite(year)) {
+    return null;
+  }
+
+  return year * 12 + month;
+}
+
+function formatMonthIndex(value) {
+  const year = Math.floor(value / 12);
+  const month = value % 12;
+
+  return `${shortMonthNames[month]} ${year}`;
+}
+
+function formatDuration(monthCount) {
+  return `${monthCount} month${monthCount === 1 ? "" : "s"}`;
+}
+
+function getJobTenure(item) {
+  const [role = "", period = ""] = (item.meta || "")
+    .split("|")
+    .map((part) => part.trim());
+  const [start = "", end = ""] = period.split("-").map((part) => part.trim());
+  const startIndex = parseMonthYear(start);
+  const endIndex = parseMonthYear(end);
+  const hasRange = startIndex !== null && endIndex !== null && endIndex >= startIndex;
+  const durationMonths = hasRange ? endIndex - startIndex + 1 : 0;
+
+  return {
+    duration: hasRange ? formatDuration(durationMonths) : "",
+    durationMonths,
+    end,
+    endIndex,
+    hasRange,
+    period,
+    role,
+    start,
+    startIndex,
+  };
+}
+
+function getTimelineBounds(tenures) {
+  const rangedTenures = tenures.filter((tenure) => tenure.hasRange);
+
+  if (rangedTenures.length === 0) {
+    return null;
+  }
+
+  const startIndex = Math.min(
+    ...rangedTenures.map((tenure) => tenure.startIndex)
+  );
+  const endIndex = Math.max(...rangedTenures.map((tenure) => tenure.endIndex));
+
+  return {
+    endIndex,
+    endLabel: formatMonthIndex(endIndex),
+    startIndex,
+    startLabel: formatMonthIndex(startIndex),
+    totalMonths: endIndex - startIndex + 1,
+  };
+}
+
+function getTimelineStyle(tenure, bounds) {
+  if (!tenure.hasRange || !bounds) {
+    return {};
+  }
+
+  const left = ((tenure.startIndex - bounds.startIndex) / bounds.totalMonths) * 100;
+  const width = (tenure.durationMonths / bounds.totalMonths) * 100;
+
+  return {
+    left: `${left}%`,
+    width: `${width}%`,
+  };
+}
+
 export default function PortfolioView({ data }) {
   const profile = data.profile || {};
-  const contact = data.contact || {};
   const skillGroups = data.skillGroups || [];
   const projects = data.projects || [];
   const experience = data.experience || [];
   const profileLinks = getVisibleProfileLinks(profile.links || []);
   const visibleSkillGroups = getVisibleSkillGroups(skillGroups);
   const projectsWithContent = getVisibleProjects(projects);
-  const visibleExperience = getVisibleExperience(experience);
+  const visibleExperience = getVisibleExperience(experience).filter(
+    (item) => getJobTenure(item).hasRange
+  );
+  const jobTenures = visibleExperience.map(getJobTenure);
+  const timelineBounds = getTimelineBounds(jobTenures);
   const hasResumeLink = hasText(profile.resumeLink);
-  const hasContactForm = hasText(contact.formAction);
   const showAbout = hasAboutContent(profile);
-  const showContact = hasContactContent({ profile, contact });
 
   const [activeSkillGroup, setActiveSkillGroup] = useState(
     visibleSkillGroups[0]?.title || ""
@@ -438,136 +543,86 @@ export default function PortfolioView({ data }) {
           <h2 className="m-auto text-4xl font-semibold text-amber-400">
             EXPERIENCE
           </h2>
-          <div className="my-8 grid grid-cols-1 gap-5">
-            {visibleExperience.map((item) => (
-              <article
-                className="motion-card grid grid-cols-[auto_1fr] gap-5 rounded-md border-2 border-slate-500 bg-slate-700 p-5"
-                key={item.title}
-              >
-                {hasText(item.icon) && (
-                  <div className="grid h-12 w-12 items-center justify-center rounded-full border-2 border-amber-400 text-amber-400">
-                    <FontAwesomeIcon
-                      icon={getIcon(item.icon)}
-                      className="text-xl"
-                    />
-                  </div>
-                )}
-                <div>
-                  {hasText(item.meta) && (
-                    <p className="font-semibold text-slate-200">{item.meta}</p>
-                  )}
-                  <h3 className="mt-1 text-2xl font-semibold text-amber-400">
-                    {item.title}
-                  </h3>
-                  {hasText(item.details) && (
-                    <p className="mt-3 leading-7 text-slate-100">
-                      {item.details}
-                    </p>
-                  )}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {showContact && (
-        <section
-          className="motion-section contact section grid scroll-mt-32 grid-cols-1 px-6 py-10 lg:px-24 xl:px-72"
-          id="contact"
-        >
-          <h2 className="m-auto text-4xl font-semibold text-amber-400">
-            CONTACT
-          </h2>
-          <div
-            className={`mt-10 grid grid-cols-1 gap-8 ${
-              hasContactForm ? "lg:grid-cols-[1fr_2fr]" : ""
-            }`}
-          >
-            <aside className="grid content-start gap-4">
-              {hasContactForm && (
-                <a
-                  className="motion-action rounded-md border-2 border-slate-500 bg-slate-700 p-5 text-amber-400 hover:border-amber-400"
-                  href="#contact"
-                >
-                  <FontAwesomeIcon icon={faEnvelope} className="mr-3" />
-                  Contact form
-                </a>
-              )}
-              {hasResumeLink && (
-                <a
-                  className="motion-action rounded-md border-2 border-slate-500 bg-slate-700 p-5 text-amber-400 hover:border-amber-400"
-                  href={profile.resumeLink}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <FontAwesomeIcon
-                    icon={faArrowUpRightFromSquare}
-                    className="mr-3"
-                  />
-                  Resume
-                </a>
-              )}
-              {profileLinks.map((link) => (
-                <a
-                  className="motion-action rounded-md border-2 border-slate-500 bg-slate-700 p-5 text-amber-400 hover:border-amber-400"
-                  href={link.href}
-                  key={link.label}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <FontAwesomeIcon icon={getIcon(link.icon)} className="mr-3" />
-                  {link.label}
-                </a>
-              ))}
-            </aside>
-
-            {hasContactForm && (
-              <form
-                action={contact.formAction}
-                className="motion-panel grid grid-cols-1 gap-4"
-                method="POST"
-              >
-                <input
-                  className="rounded-md border-2 border-amber-400 bg-slate-900 p-3 text-xl font-semibold text-amber-400 placeholder:text-slate-400"
-                  name="name"
-                  placeholder="Name"
-                  required
-                  type="text"
-                />
-
-                <input
-                  className="rounded-md border-2 border-amber-400 bg-slate-900 p-3 text-xl font-semibold text-amber-400 placeholder:text-slate-400"
-                  name="phone"
-                  placeholder="Phone Number"
-                  type="text"
-                />
-
-                <input
-                  className="rounded-md border-2 border-amber-400 bg-slate-900 p-3 text-xl font-semibold text-amber-400 placeholder:text-slate-400"
-                  name="email"
-                  placeholder="Email"
-                  required
-                  type="email"
-                />
-
-                <textarea
-                  className="min-h-36 rounded-md border-2 border-amber-400 bg-slate-900 p-3 text-xl font-semibold text-amber-400 placeholder:text-slate-400"
-                  name="message"
-                  placeholder="Message"
-                  required
-                />
-
-                <div className="grid items-center">
-                  <button
-                    className="motion-action rounded border-2 border-amber-400 bg-amber-400 px-8 py-2 text-2xl font-semibold text-slate-900 hover:bg-slate-900 hover:text-amber-400"
-                    type="submit"
-                  >
-                    Send
-                  </button>
-                </div>
-              </form>
+          <div className="motion-panel my-8 grid grid-cols-1 gap-5 rounded-md border-2 border-slate-500 bg-slate-800 p-5">
+            {timelineBounds && (
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-500 pb-4">
+                <p className="text-lg font-semibold text-slate-200">
+                  Professional job timeline
+                </p>
+                <p className="rounded border border-amber-400 px-3 py-1 text-sm font-semibold text-amber-400">
+                  {timelineBounds.startLabel} - {timelineBounds.endLabel}
+                </p>
+              </div>
             )}
+
+            {visibleExperience.map((item, index) => {
+              const tenure = jobTenures[index];
+
+              return (
+                <article
+                  className="motion-card grid gap-5 rounded-md border-2 border-slate-500 bg-slate-700 p-5 lg:grid-cols-[13rem_1fr]"
+                  key={item.title}
+                >
+                  <div className="grid content-start gap-3">
+                    <div className="flex items-center gap-3">
+                      {hasText(item.icon) && (
+                        <div className="grid h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-amber-400 text-amber-400">
+                          <FontAwesomeIcon
+                            icon={getIcon(item.icon)}
+                            className="text-xl"
+                          />
+                        </div>
+                      )}
+                      <div>
+                        {hasText(tenure.duration) && (
+                          <p className="text-2xl font-semibold text-amber-400">
+                            {tenure.duration}
+                          </p>
+                        )}
+                        {hasText(tenure.period) && (
+                          <p className="text-sm font-semibold text-slate-200">
+                            {tenure.period}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    {hasText(tenure.role) && (
+                      <p className="font-semibold text-slate-200">
+                        {tenure.role}
+                      </p>
+                    )}
+                    <h3 className="mt-1 text-2xl font-semibold text-amber-400">
+                      {item.title}
+                    </h3>
+
+                    {timelineBounds && tenure.hasRange && (
+                      <div className="mt-4 rounded-md border border-slate-500 bg-slate-900 p-4">
+                        <div className="relative h-4 overflow-hidden rounded-full bg-slate-950">
+                          <div
+                            aria-label={`${item.title} tenure from ${tenure.start} to ${tenure.end}`}
+                            className="absolute inset-y-0 rounded-full bg-amber-400 shadow-[0_0_16px_rgba(251,191,36,0.45)]"
+                            style={getTimelineStyle(tenure, timelineBounds)}
+                          />
+                        </div>
+                        <div className="mt-2 flex justify-between text-xs font-semibold text-slate-300">
+                          <span>{timelineBounds.startLabel}</span>
+                          <span>{timelineBounds.endLabel}</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {hasText(item.details) && (
+                      <p className="mt-4 leading-7 text-slate-100">
+                        {item.details}
+                      </p>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </section>
       )}

@@ -9,7 +9,6 @@ const tabs = [
   "Skills",
   "Projects",
   "Experience",
-  "Contact",
 ];
 
 const iconOptions = [
@@ -134,13 +133,6 @@ export default function AdminEditor({ initialData }) {
     setData((current) => ({
       ...current,
       profile: { ...current.profile, [key]: value },
-    }));
-  };
-
-  const updateContact = (key, value) => {
-    setData((current) => ({
-      ...current,
-      contact: { ...current.contact, [key]: value },
     }));
   };
 
@@ -592,19 +584,6 @@ export default function AdminEditor({ initialData }) {
               />
             </Card>
           ))}
-        </section>
-      )}
-
-      {activeTab === "Contact" && (
-        <section className="grid gap-5">
-          <SectionHeader title="CONTACT" />
-          <Card>
-            <Field
-              label="Form action"
-              onChange={(value) => updateContact("formAction", value)}
-              value={data.contact.formAction}
-            />
-          </Card>
         </section>
       )}
     </main>
