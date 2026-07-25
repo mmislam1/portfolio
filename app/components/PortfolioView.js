@@ -43,18 +43,9 @@ const projectAccentClasses = [
   {
     article: "border-amber-400 bg-slate-900/70",
     check: "text-amber-400",
-    marker: "border-amber-400 bg-amber-400/10 text-amber-300",
     role: "border-amber-400/40 bg-amber-400/10 text-amber-100",
     title: "text-amber-400",
     tool: "border-slate-600 bg-slate-800/60 text-amber-400",
-  },
-  {
-    article: "border-cyan-400 bg-slate-800/70",
-    check: "text-cyan-300",
-    marker: "border-cyan-400 bg-cyan-400/10 text-cyan-200",
-    role: "border-cyan-400/40 bg-cyan-400/10 text-cyan-100",
-    title: "text-cyan-300",
-    tool: "border-slate-600 bg-slate-900/60 text-cyan-200",
   },
 ];
 
@@ -541,7 +532,7 @@ export default function PortfolioView({ data }) {
             </p>
           )}
 
-          <div className="my-8 grid grid-cols-1 items-stretch justify-between gap-6">
+          <div className="my-8 grid grid-cols-1 items-stretch divide-y divide-slate-700">
             {visibleProjects.map((project, index) => {
               const highlights = (project.highlights || []).filter(hasText);
               const tools = (project.tools || []).filter(hasText);
@@ -558,7 +549,6 @@ export default function PortfolioView({ data }) {
               const stableIndex = projectIndex >= 0 ? projectIndex : index;
               const accent =
                 projectAccentClasses[stableIndex % projectAccentClasses.length];
-              const projectNumber = String(stableIndex + 1).padStart(2, "0");
 
               return (
                 <article
@@ -567,13 +557,6 @@ export default function PortfolioView({ data }) {
                 >
                   <div className="flex flex-col justify-between gap-5 md:flex-row md:items-start">
                     <div className="grid gap-2">
-                      <div className="flex flex-wrap items-center gap-3">
-                        <span
-                          className={`rounded border px-2.5 py-1 text-xs font-semibold uppercase ${accent.marker}`}
-                        >
-                          Project {projectNumber}
-                        </span>
-                      </div>
                       <h3 className={`text-3xl font-semibold ${accent.title}`}>
                         {project.title}
                       </h3>
