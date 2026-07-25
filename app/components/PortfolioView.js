@@ -39,15 +39,13 @@ const customBrandIcons = {
   leetcode: LeetCodeIcon,
 };
 
-const projectAccentClasses = [
-  {
-    article: "border-amber-400 bg-slate-900/70",
-    check: "text-amber-400",
-    role: "border-amber-400/40 bg-amber-400/10 text-amber-100",
-    title: "text-amber-400",
-    tool: "border-slate-600 bg-slate-800/60 text-amber-400",
-  },
-];
+const projectAccent = {
+  article: "border-amber-400 bg-slate-900/70",
+  check: "text-amber-400",
+  role: "text-amber-400",
+  title: "text-amber-400",
+  tool: "border-slate-600 bg-slate-800/60 text-amber-400",
+};
 
 function getIcon(name, fallback = faCode) {
   return icons[name] || fallback;
@@ -532,7 +530,7 @@ export default function PortfolioView({ data }) {
             </p>
           )}
 
-          <div className="my-8 grid grid-cols-1 items-stretch divide-y divide-slate-700">
+          <div className="my-8 grid grid-cols-1 items-stretch">
             {visibleProjects.map((project, index) => {
               const highlights = (project.highlights || []).filter(hasText);
               const tools = (project.tools || []).filter(hasText);
@@ -543,121 +541,123 @@ export default function PortfolioView({ data }) {
                 hasHighlights;
               const isExpanded =
                 hasHighlights && expandedProject === project.title;
-              const projectIndex = projectsWithContent.findIndex(
-                (item) => item.title === project.title
-              );
-              const stableIndex = projectIndex >= 0 ? projectIndex : index;
-              const accent =
-                projectAccentClasses[stableIndex % projectAccentClasses.length];
+              const separatorClass =
+                index > 0 ? "mt-8 border-t border-amber-400/60 pt-8" : "";
 
               return (
-                <article
-                  className={`motion-card border-l-2 px-5 py-6 shadow-[0_16px_40px_rgba(15,23,42,0.25)] ${accent.article}`}
+                <div
+                  className={separatorClass}
                   key={`${projectFilter}-${project.title}`}
                 >
-                  <div className="flex flex-col justify-between gap-5 md:flex-row md:items-start">
-                    <div className="grid gap-2">
-                      <h3 className={`text-3xl font-semibold ${accent.title}`}>
-                        {project.title}
-                      </h3>
-                      {hasText(project.type) && (
-                        <p className="max-w-3xl text-base font-semibold leading-7 text-slate-300">
-                          {project.type}
-                        </p>
-                      )}
-                      {hasText(project.role) && (
-                        <p
-                          className={`mt-1 w-fit rounded border px-3 py-1 text-sm font-semibold ${accent.role}`}
+                  <article
+                    className={`motion-card border-l-2 px-5 py-6 shadow-[0_16px_40px_rgba(15,23,42,0.25)] ${projectAccent.article}`}
+                  >
+                    <div className="flex flex-col justify-between gap-5 md:flex-row md:items-start">
+                      <div className="grid gap-2">
+                        <h3
+                          className={`text-3xl font-semibold ${projectAccent.title}`}
                         >
-                          (Role: {project.role})
-                        </p>
-                      )}
-                    </div>
-                    {hasProjectActions && (
-                      <div className="flex flex-wrap items-center gap-4">
-                        <ProjectIconLink
-                          href={project.link}
-                          icon={faGithub}
-                          label={`${project.title} GitHub repository`}
-                        />
-                        <ProjectIconLink
-                          href={project.liveLink}
-                          icon={faArrowUpRightFromSquare}
-                          label={`${project.title} live link`}
-                        />
-                        {hasHighlights && (
-                          <button
-                            aria-expanded={isExpanded}
-                            className={`motion-action inline-flex items-center gap-2 rounded border-2 px-4 py-2 text-sm font-semibold ${
-                              isExpanded
-                                ? "border-amber-400 bg-amber-400 text-slate-900"
-                                : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400 hover:bg-slate-800"
-                            }`}
-                            onClick={() =>
-                              setExpandedProject(
-                                isExpanded ? "" : project.title
-                              )
-                            }
-                            type="button"
+                          {project.title}
+                        </h3>
+                        {hasText(project.type) && (
+                          <p className="max-w-3xl text-base font-semibold leading-7 text-slate-300">
+                            {project.type}
+                          </p>
+                        )}
+                        {hasText(project.role) && (
+                          <p
+                            className={`mt-1 text-sm font-semibold uppercase tracking-wide ${projectAccent.role}`}
                           >
-                            <span>
-                              {isExpanded ? "Hide details" : "View details"}
-                            </span>
-                            <FontAwesomeIcon
-                              icon={faChevronDown}
-                              className={`text-xs transition-transform ${
-                                isExpanded ? "rotate-180" : ""
-                              }`}
-                            />
-                          </button>
+                            Role: {project.role}
+                          </p>
                         )}
                       </div>
-                    )}
-                  </div>
-
-                  {hasText(project.desc) && (
-                    <p className="mt-5 max-w-4xl text-lg leading-8 text-slate-100">
-                      {project.desc}
-                    </p>
-                  )}
-
-                  {tools.length > 0 && (
-                    <div className="mt-5 flex flex-row flex-wrap gap-2">
-                      {tools.map((tool) => (
-                        <span
-                          className={`rounded border px-3 py-1 text-base ${accent.tool}`}
-                          key={`${project.title}-${tool}`}
-                        >
-                          {tool}
-                        </span>
-                      ))}
+                      {hasProjectActions && (
+                        <div className="flex flex-wrap items-center gap-4">
+                          <ProjectIconLink
+                            href={project.link}
+                            icon={faGithub}
+                            label={`${project.title} GitHub repository`}
+                          />
+                          <ProjectIconLink
+                            href={project.liveLink}
+                            icon={faArrowUpRightFromSquare}
+                            label={`${project.title} live link`}
+                          />
+                          {hasHighlights && (
+                            <button
+                              aria-expanded={isExpanded}
+                              className={`motion-action inline-flex items-center gap-2 rounded border-2 px-4 py-2 text-sm font-semibold ${
+                                isExpanded
+                                  ? "border-amber-400 bg-amber-400 text-slate-900"
+                                  : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400 hover:bg-slate-800"
+                              }`}
+                              onClick={() =>
+                                setExpandedProject(
+                                  isExpanded ? "" : project.title
+                                )
+                              }
+                              type="button"
+                            >
+                              <span>
+                                {isExpanded ? "Hide details" : "View details"}
+                              </span>
+                              <FontAwesomeIcon
+                                icon={faChevronDown}
+                                className={`text-xs transition-transform ${
+                                  isExpanded ? "rotate-180" : ""
+                                }`}
+                              />
+                            </button>
+                          )}
+                        </div>
+                      )}
                     </div>
-                  )}
 
-                  {hasHighlights && (
-                    <div
-                      aria-hidden={!isExpanded}
-                      className={`motion-details ${
-                        isExpanded ? "motion-details-open" : ""
-                      }`}
-                    >
-                      <div className="grid gap-3">
-                        {highlights.map((highlight) => (
-                          <p
-                            className="grid grid-cols-[auto_1fr] gap-3 leading-7 text-slate-100"
-                            key={highlight}
+                    {hasText(project.desc) && (
+                      <p className="mt-5 max-w-4xl text-lg leading-8 text-slate-100">
+                        {project.desc}
+                      </p>
+                    )}
+
+                    {tools.length > 0 && (
+                      <div className="mt-5 flex flex-row flex-wrap gap-2">
+                        {tools.map((tool) => (
+                          <span
+                            className={`rounded border px-3 py-1 text-base ${projectAccent.tool}`}
+                            key={`${project.title}-${tool}`}
                           >
-                            <FontAwesomeIcon
-                              icon={faCheck}
-                              className={`mt-1 text-sm ${accent.check}`}
-                            />
-                            <span>{highlight}</span>
-                          </p>
+                            {tool}
+                          </span>
                         ))}
                       </div>
-                    </div>
-                  )}
-                </article>
+                    )}
+
+                    {hasHighlights && (
+                      <div
+                        aria-hidden={!isExpanded}
+                        className={`motion-details ${
+                          isExpanded ? "motion-details-open" : ""
+                        }`}
+                      >
+                        <div className="grid gap-3">
+                          {highlights.map((highlight) => (
+                            <p
+                              className="grid grid-cols-[auto_1fr] gap-3 leading-7 text-slate-100"
+                              key={highlight}
+                            >
+                              <FontAwesomeIcon
+                                icon={faCheck}
+                                className={`mt-1 text-sm ${projectAccent.check}`}
+                              />
+                              <span>{highlight}</span>
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </article>
+                </div>
               );
             })}
           </div>
