@@ -66,19 +66,40 @@
   ],
   "skillGroups": [
     {
+      "title": "Programming Languages",
+      "skills": [
+        {
+          "title": "JavaScript (ES6+)",
+          "star": 4
+        },
+        {
+          "title": "TypeScript",
+          "star": 3.5
+        },
+        {
+          "title": "Python",
+          "star": 4
+        }
+      ]
+    },
+    {
       "title": "Frontend",
       "skills": [
         {
-          "title": "React",
+          "title": "React.js",
           "star": 4
         },
         {
-          "title": "JavaScript",
-          "star": 4
-        },
-        {
-          "title": "Tailwind CSS",
+          "title": "Redux",
           "star": 3.5
+        },
+        {
+          "title": "HTML5",
+          "star": 4
+        },
+        {
+          "title": "CSS3",
+          "star": 4
         }
       ]
     },
@@ -104,15 +125,69 @@
       ]
     },
     {
-      "title": "Database",
+      "title": "Databases",
       "skills": [
+        {
+          "title": "MongoDB",
+          "star": 3.5
+        },
         {
           "title": "MySQL",
           "star": 4.5
         },
         {
-          "title": "MongoDB",
+          "title": "Microsoft SQL Server (MSSQL)",
           "star": 3.5
+        }
+      ]
+    },
+    {
+      "title": "Data and Visualization",
+      "skills": [
+        {
+          "title": "Pandas",
+          "star": 3.5
+        },
+        {
+          "title": "NumPy",
+          "star": 3.5
+        },
+        {
+          "title": "Matplotlib",
+          "star": 3.5
+        },
+        {
+          "title": "Seaborn",
+          "star": 3.5
+        },
+        {
+          "title": "Excel",
+          "star": 4
+        },
+        {
+          "title": "Tableau",
+          "star": 3.5
+        }
+      ]
+    },
+    {
+      "title": "Tools and Platforms",
+      "skills": [
+        {
+          "title": "Docker",
+          "star": 3.5
+        },
+        {
+          "title": "Git",
+          "star": 4
+        },
+        {
+          "title": "Postman",
+          "star": 4
+        },
+        {
+          "title": "VS Code",
+          "star": 4
         }
       ]
     }

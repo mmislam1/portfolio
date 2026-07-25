@@ -29,14 +29,14 @@ export default async function RootLayout({ children }) {
             {brandName}
           </Link>
           {navItems.length > 0 && (
-            <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 lg:justify-end">
+            <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 lg:justify-end lg:gap-x-12">
               {navItems.map((item) => (
                 <li
                   className="grid items-center justify-center"
                   key={item.label}
                 >
                   <Link
-                    className="motion-action text-center text-sm font-semibold leading-tight hover:text-orange-600 sm:text-xl"
+                    className="motion-action text-center text-sm font-semibold leading-tight tracking-wide hover:text-orange-600 sm:text-xl"
                     href={item.href}
                   >
                     {item.label}
