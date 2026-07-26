@@ -342,7 +342,7 @@ export default function PortfolioView({ data }) {
                 Skill category
               </label>
               <select
-                className="motion-action mt-8 w-full rounded border-2 border-amber-400 bg-slate-900 p-3 text-base font-semibold text-amber-400 sm:hidden"
+                className="motion-action mt-8 w-full rounded border-2 border-amber-400 bg-slate-900 p-3 text-base font-semibold text-amber-400 outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/60 sm:hidden"
                 id="skill-group-select"
                 onChange={(event) => setActiveSkillGroup(event.target.value)}
                 value={activeSkillGroup}
@@ -353,14 +353,14 @@ export default function PortfolioView({ data }) {
                   </option>
                 ))}
               </select>
-              <div className="mt-8 hidden flex-wrap items-center justify-center gap-3 sm:flex">
+              <div className="mt-8 hidden flex-wrap items-center justify-center gap-4 sm:flex">
                 {visibleSkillGroups.map((group) => (
                   <button
                     aria-pressed={activeSkillGroup === group.title}
-                    className={`motion-action rounded border-2 px-5 py-2 text-lg font-semibold ${
+                    className={`motion-action rounded border-2 px-6 py-3 text-lg font-bold shadow-[0_10px_24px_rgba(15,23,42,0.35)] ${
                       activeSkillGroup === group.title
                         ? "border-amber-400 bg-amber-400 text-slate-900"
-                        : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400"
+                        : "border-amber-400/70 bg-slate-900 text-amber-400 hover:border-amber-400 hover:bg-slate-800"
                     }`}
                     key={group.title}
                     onClick={() => setActiveSkillGroup(group.title)}
@@ -373,12 +373,12 @@ export default function PortfolioView({ data }) {
             </>
           )}
           <div
-            className="motion-panel my-8 flex flex-wrap items-center justify-center gap-3 rounded-xl border-2 border-slate-500 bg-slate-700 p-5"
+            className="motion-panel my-8 flex flex-wrap items-center justify-center gap-3 rounded-xl border-2 border-slate-500 bg-slate-700 p-5 sm:gap-4"
             key={activeSkillGroup}
           >
             {activeSkills.map((skill) => (
               <span
-                className="motion-card rounded-md border-2 border-slate-500 bg-slate-900 px-4 py-3 text-center text-base font-semibold text-amber-400 sm:text-lg"
+                className="motion-card w-full rounded-md border-2 border-slate-500 bg-slate-900 px-4 py-3 text-center text-base font-semibold text-amber-400 sm:w-auto sm:border-amber-400/70 sm:px-6 sm:py-4 sm:text-lg sm:font-bold sm:shadow-[0_10px_24px_rgba(15,23,42,0.35)]"
                 key={skill.title}
               >
                 {skill.title}
@@ -494,7 +494,7 @@ export default function PortfolioView({ data }) {
                 Project filter
               </label>
               <select
-                className="motion-action mt-8 w-full rounded border-2 border-amber-400 bg-slate-900 p-3 text-base font-semibold text-amber-400 sm:hidden"
+                className="motion-action mt-8 w-full rounded border-2 border-amber-400 bg-slate-900 p-3 text-base font-semibold text-amber-400 outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/60 sm:hidden"
                 id="project-filter-select"
                 onChange={(event) => setProjectFilter(event.target.value)}
                 value={projectFilter}
