@@ -66,128 +66,121 @@
   ],
   "skillGroups": [
     {
-      "title": "Programming Languages",
+      "title": "Project Stack",
       "skills": [
         {
-          "title": "JavaScript (ES6+)",
-          "star": 4
+          "title": "Next.js"
         },
         {
-          "title": "TypeScript",
-          "star": 3.5
+          "title": "React.js"
         },
         {
-          "title": "Python",
-          "star": 4
+          "title": "Node.js"
+        },
+        {
+          "title": "Express.js"
+        },
+        {
+          "title": "Nest.js"
+        },
+        {
+          "title": "MongoDB"
+        },
+        {
+          "title": "PHP"
+        },
+        {
+          "title": "MySQL"
         }
       ]
     },
     {
-      "title": "Frontend",
+      "title": "Project Integrations",
       "skills": [
         {
-          "title": "React.js",
-          "star": 4
+          "title": "REST APIs"
         },
         {
-          "title": "Redux",
-          "star": 3.5
+          "title": "Paddle"
         },
         {
-          "title": "HTML5",
-          "star": 4
+          "title": "SerpApi"
         },
         {
-          "title": "CSS3",
-          "star": 4
+          "title": "Gemini API"
+        },
+        {
+          "title": "Email API"
+        },
+        {
+          "title": "JWT Authentication"
         }
       ]
     },
     {
-      "title": "Backend",
+      "title": "Automation and Data",
       "skills": [
         {
-          "title": "Express.js",
-          "star": 4.5
+          "title": "Python"
         },
         {
-          "title": "Node.js",
-          "star": 4
+          "title": "python-docx"
         },
         {
-          "title": "Django",
-          "star": 3.5
+          "title": "Excel"
         },
         {
-          "title": "PHP",
-          "star": 3.5
+          "title": "Pandas"
+        },
+        {
+          "title": "NumPy"
+        },
+        {
+          "title": "Matplotlib"
+        },
+        {
+          "title": "Seaborn"
+        },
+        {
+          "title": "Tableau"
         }
       ]
     },
     {
-      "title": "Databases",
+      "title": "Core Skills",
       "skills": [
         {
-          "title": "MongoDB",
-          "star": 3.5
+          "title": "JavaScript (ES6+)"
         },
         {
-          "title": "MySQL",
-          "star": 4.5
+          "title": "TypeScript"
         },
         {
-          "title": "Microsoft SQL Server (MSSQL)",
-          "star": 3.5
-        }
-      ]
-    },
-    {
-      "title": "Data and Visualization",
-      "skills": [
-        {
-          "title": "Pandas",
-          "star": 3.5
+          "title": "Redux"
         },
         {
-          "title": "NumPy",
-          "star": 3.5
+          "title": "HTML5"
         },
         {
-          "title": "Matplotlib",
-          "star": 3.5
+          "title": "CSS3"
         },
         {
-          "title": "Seaborn",
-          "star": 3.5
+          "title": "Django"
         },
         {
-          "title": "Excel",
-          "star": 4
+          "title": "Microsoft SQL Server (MSSQL)"
         },
         {
-          "title": "Tableau",
-          "star": 3.5
-        }
-      ]
-    },
-    {
-      "title": "Tools and Platforms",
-      "skills": [
-        {
-          "title": "Docker",
-          "star": 3.5
+          "title": "Docker"
         },
         {
-          "title": "Git",
-          "star": 4
+          "title": "Git"
         },
         {
-          "title": "Postman",
-          "star": 4
+          "title": "Postman"
         },
         {
-          "title": "VS Code",
-          "star": 4
+          "title": "VS Code"
         }
       ]
     }

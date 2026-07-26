@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
@@ -106,35 +105,6 @@ function ProfileIconLink({ link }) {
         />
       )}
     </a>
-  );
-}
-
-function StarRating({ value }) {
-  return (
-    <div className="grid grid-cols-5 items-center justify-center gap-2 rounded-md border border-slate-500 p-4">
-      {Array.from({ length: 5 }, (_, index) => {
-        const rating = Number(value) || 0;
-        const fullStars = Math.floor(rating);
-        const hasHalf = rating % 1 !== 0;
-        const src =
-          index < fullStars
-            ? "/full.png"
-            : index === fullStars && hasHalf
-            ? "/half.png"
-            : "/empty.png";
-
-        return (
-          <Image
-            key={index}
-            src={src}
-            alt=""
-            width={30}
-            height={30}
-            aria-hidden="true"
-          />
-        );
-      })}
-    </div>
   );
 }
 
@@ -386,19 +356,16 @@ export default function PortfolioView({ data }) {
             </div>
           )}
           <div
-            className="motion-panel my-8 grid grid-cols-1 items-stretch justify-between gap-6 rounded-xl border-2 border-slate-500 bg-slate-700 p-5 md:grid-cols-2 xl:grid-cols-3"
+            className="motion-panel my-8 flex flex-wrap items-center justify-center gap-3 rounded-xl border-2 border-slate-500 bg-slate-700 p-5"
             key={activeSkillGroup}
           >
             {activeSkills.map((skill) => (
-              <article
-                className="motion-card grid grid-cols-1 items-center justify-center rounded-md border-2 border-slate-500 bg-slate-900 p-5"
+              <span
+                className="motion-card rounded-md border-2 border-slate-500 bg-slate-900 px-4 py-3 text-center text-base font-semibold text-amber-400 sm:text-lg"
                 key={skill.title}
               >
-                <h3 className="m-auto mb-4 text-xl font-semibold text-amber-400 xl:text-2xl">
-                  {skill.title}
-                </h3>
-                <StarRating value={skill.star} />
-              </article>
+                {skill.title}
+              </span>
             ))}
           </div>
         </section>

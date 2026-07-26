@@ -371,7 +371,7 @@ export default function AdminEditor({ initialData }) {
               <div className="grid gap-4">
                 {group.skills.map((skill, skillIndex) => (
                   <div
-                    className="grid gap-3 rounded-md border border-slate-500 bg-slate-900 p-4 md:grid-cols-[1fr_120px_auto]"
+                    className="grid gap-3 rounded-md border border-slate-500 bg-slate-900 p-4 md:grid-cols-[1fr_auto]"
                     key={`${skill.title}-${skillIndex}`}
                   >
                     <Field
@@ -388,22 +388,6 @@ export default function AdminEditor({ initialData }) {
                         });
                       }}
                       value={skill.title}
-                    />
-                    <Field
-                      label="Rating"
-                      onChange={(value) => {
-                        const skills = group.skills.map((item, itemIndex) =>
-                          itemIndex === skillIndex
-                            ? { ...item, star: value }
-                            : item
-                        );
-                        updateArrayItem("skillGroups", groupIndex, {
-                          ...group,
-                          skills,
-                        });
-                      }}
-                      type="number"
-                      value={skill.star}
                     />
                     <div className="grid content-end">
                       <Button
@@ -427,7 +411,7 @@ export default function AdminEditor({ initialData }) {
                 onClick={() =>
                   updateArrayItem("skillGroups", groupIndex, {
                     ...group,
-                    skills: [...group.skills, { title: "", star: 0 }],
+                    skills: [...group.skills, { title: "" }],
                   })
                 }
                 variant="fill"
