@@ -7,7 +7,7 @@ import { getVisibleNavItems, hasText } from "@/lib/portfolioVisibility";
 export const metadata = {
   title: "Mohaiminul Islam | Portfolio",
   description:
-    "Portfolio of Mohaiminul Islam, a CS graduate and software developer focused on MERN stack, Django, and databases.",
+    "Portfolio of Mohaiminul Islam, a CS graduate and software developer focused on MERN stack applications, REST APIs, and Python automation.",
 };
 
 export const dynamic = "force-dynamic";

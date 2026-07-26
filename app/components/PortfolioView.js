@@ -337,23 +337,40 @@ export default function PortfolioView({ data }) {
             SKILLS
           </h2>
           {visibleSkillGroups.length > 1 && (
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              {visibleSkillGroups.map((group) => (
-                <button
-                  aria-pressed={activeSkillGroup === group.title}
-                  className={`motion-action rounded border-2 px-5 py-2 text-lg font-semibold ${
-                    activeSkillGroup === group.title
-                      ? "border-amber-400 bg-amber-400 text-slate-900"
-                      : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400"
-                  }`}
-                  key={group.title}
-                  onClick={() => setActiveSkillGroup(group.title)}
-                  type="button"
-                >
-                  {group.title}
-                </button>
-              ))}
-            </div>
+            <>
+              <label className="sr-only" htmlFor="skill-group-select">
+                Skill category
+              </label>
+              <select
+                className="motion-action mt-8 w-full rounded border-2 border-amber-400 bg-slate-900 p-3 text-base font-semibold text-amber-400 sm:hidden"
+                id="skill-group-select"
+                onChange={(event) => setActiveSkillGroup(event.target.value)}
+                value={activeSkillGroup}
+              >
+                {visibleSkillGroups.map((group) => (
+                  <option key={group.title} value={group.title}>
+                    {group.title}
+                  </option>
+                ))}
+              </select>
+              <div className="mt-8 hidden flex-wrap items-center justify-center gap-3 sm:flex">
+                {visibleSkillGroups.map((group) => (
+                  <button
+                    aria-pressed={activeSkillGroup === group.title}
+                    className={`motion-action rounded border-2 px-5 py-2 text-lg font-semibold ${
+                      activeSkillGroup === group.title
+                        ? "border-amber-400 bg-amber-400 text-slate-900"
+                        : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400"
+                    }`}
+                    key={group.title}
+                    onClick={() => setActiveSkillGroup(group.title)}
+                    type="button"
+                  >
+                    {group.title}
+                  </button>
+                ))}
+              </div>
+            </>
           )}
           <div
             className="motion-panel my-8 flex flex-wrap items-center justify-center gap-3 rounded-xl border-2 border-slate-500 bg-slate-700 p-5"
@@ -388,7 +405,7 @@ export default function PortfolioView({ data }) {
 
                 return (
                   <article
-                    className="motion-panel grid gap-4 border-b border-slate-700 py-7 first:pt-0 last:border-b-0 md:grid-cols-[12rem_2rem_1fr]"
+                    className="motion-panel grid gap-4 border-b border-amber-400/60 py-7 first:pt-0 last:border-b-0 md:grid-cols-[12rem_2rem_1fr] md:border-slate-700"
                     key={item.title}
                   >
                     <div className="grid content-start gap-2 md:text-right">
@@ -472,23 +489,40 @@ export default function PortfolioView({ data }) {
             PROJECTS
           </h2>
           {projectFilters.length > 1 && (
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              {projectFilters.map((filter) => (
-                <button
-                  aria-pressed={projectFilter === filter}
-                  className={`motion-action rounded border-2 px-4 py-2 text-base font-semibold ${
-                    projectFilter === filter
-                      ? "border-amber-400 bg-amber-400 text-slate-900"
-                      : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400"
-                  }`}
-                  key={filter}
-                  onClick={() => setProjectFilter(filter)}
-                  type="button"
-                >
-                  {filter}
-                </button>
-              ))}
-            </div>
+            <>
+              <label className="sr-only" htmlFor="project-filter-select">
+                Project filter
+              </label>
+              <select
+                className="motion-action mt-8 w-full rounded border-2 border-amber-400 bg-slate-900 p-3 text-base font-semibold text-amber-400 sm:hidden"
+                id="project-filter-select"
+                onChange={(event) => setProjectFilter(event.target.value)}
+                value={projectFilter}
+              >
+                {projectFilters.map((filter) => (
+                  <option key={filter} value={filter}>
+                    {filter}
+                  </option>
+                ))}
+              </select>
+              <div className="mt-8 hidden flex-wrap items-center justify-center gap-3 sm:flex">
+                {projectFilters.map((filter) => (
+                  <button
+                    aria-pressed={projectFilter === filter}
+                    className={`motion-action rounded border-2 px-4 py-2 text-base font-semibold ${
+                      projectFilter === filter
+                        ? "border-amber-400 bg-amber-400 text-slate-900"
+                        : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400"
+                    }`}
+                    key={filter}
+                    onClick={() => setProjectFilter(filter)}
+                    type="button"
+                  >
+                    {filter}
+                  </button>
+                ))}
+              </div>
+            </>
           )}
           {projectFilters.length > 1 && (
             <p className="mt-5 text-center text-slate-200">
