@@ -66,7 +66,7 @@
   ],
   "skillGroups": [
     {
-      "title": "Project Stack",
+      "title": "Frontend",
       "skills": [
         {
           "title": "Next.js"
@@ -75,8 +75,19 @@
           "title": "React.js"
         },
         {
-          "title": "Node.js"
+          "title": "Redux"
         },
+        {
+          "title": "HTML5"
+        },
+        {
+          "title": "CSS3"
+        }
+      ]
+    },
+    {
+      "title": "Backend",
+      "skills": [
         {
           "title": "Express.js"
         },
@@ -84,45 +95,36 @@
           "title": "Nest.js"
         },
         {
-          "title": "MongoDB"
+          "title": "REST APIs"
+        },
+        {
+          "title": "Node.js"
         },
         {
           "title": "PHP"
         },
         {
+          "title": "Django"
+        }
+      ]
+    },
+    {
+      "title": "Database",
+      "skills": [
+        {
+          "title": "MongoDB"
+        },
+        {
           "title": "MySQL"
+        },
+        {
+          "title": "Microsoft SQL Server (MSSQL)"
         }
       ]
     },
     {
-      "title": "Project Integrations",
+      "title": "Data and Automation",
       "skills": [
-        {
-          "title": "REST APIs"
-        },
-        {
-          "title": "Paddle"
-        },
-        {
-          "title": "SerpApi"
-        },
-        {
-          "title": "Gemini API"
-        },
-        {
-          "title": "Email API"
-        },
-        {
-          "title": "JWT Authentication"
-        }
-      ]
-    },
-    {
-      "title": "Automation and Data",
-      "skills": [
-        {
-          "title": "Python"
-        },
         {
           "title": "python-docx"
         },
@@ -147,7 +149,7 @@
       ]
     },
     {
-      "title": "Core Skills",
+      "title": "Programming Languages",
       "skills": [
         {
           "title": "JavaScript (ES6+)"
@@ -156,19 +158,24 @@
           "title": "TypeScript"
         },
         {
-          "title": "Redux"
+          "title": "Python"
+        }
+      ]
+    },
+    {
+      "title": "Tools and Platforms",
+      "skills": [
+        {
+          "title": "Paddle"
         },
         {
-          "title": "HTML5"
+          "title": "SerpApi"
         },
         {
-          "title": "CSS3"
+          "title": "Gemini API"
         },
         {
-          "title": "Django"
-        },
-        {
-          "title": "Microsoft SQL Server (MSSQL)"
+          "title": "Email API"
         },
         {
           "title": "Docker"
