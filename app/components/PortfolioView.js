@@ -390,6 +390,11 @@ export default function PortfolioView({ data }) {
           <div className="grid w-full grid-cols-1 items-center justify-around gap-6 md:gap-12">
             <div className="flex flex-col-reverse items-center justify-around gap-8 md:flex-row md:gap-16">
               <div className="grid w-full max-w-3xl gap-5 text-center md:gap-8 md:text-left">
+                {hasText(profile.name) && (
+                  <p className="text-xl font-light uppercase leading-none tracking-wide text-site-muted md:text-2xl">
+                    {profile.name}
+                  </p>
+                )}
                 {hasText(profile.headline) && (
                   <h1 className="text-3xl font-light leading-tight text-site-accent md:text-4xl">
                     {profile.headline}
@@ -500,7 +505,7 @@ export default function PortfolioView({ data }) {
 
               return (
                 <article
-                  className="motion-card grid min-h-40 place-items-center rounded-md border border-site-accent-soft bg-site-surface-strong px-5 py-7 text-center text-site-accent-soft sm:min-h-52 sm:px-7 sm:py-12"
+                  className="motion-card grid min-h-40 place-items-center rounded-md border border-site-accent-soft bg-site-surface-strong px-5 py-7 text-center text-site-accent-soft hover:transform-none sm:min-h-52 sm:px-7 sm:py-12"
                   key={skill.title}
                 >
                   <div className="grid justify-items-center gap-3 sm:gap-5">
@@ -521,14 +526,14 @@ export default function PortfolioView({ data }) {
 
       {visibleExperience.length > 0 && (
         <section
-          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-12 md:py-20 lg:px-24 xl:px-72"
+          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 pb-12 pt-6 md:py-20 lg:px-24 xl:px-72"
           id="experience"
         >
           <h2 className="m-auto text-4xl font-light text-site-accent">
             EXPERIENCE
           </h2>
 
-          <div className="my-8 grid w-full grid-cols-1 md:my-12">
+          <div className="mb-8 mt-6 grid w-full grid-cols-1 md:my-12">
             <div className="grid grid-cols-1">
               {visibleExperience.map((item, index) => {
                 const tenure = jobTenures[index];
@@ -593,7 +598,7 @@ export default function PortfolioView({ data }) {
 
       {projectsWithContent.length > 0 && (
         <section
-          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-12 md:py-20 lg:px-24 xl:px-72"
+          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 pb-12 pt-6 md:py-20 lg:px-24 xl:px-72"
           id="projects"
         >
           <h2 className="m-auto text-4xl font-light text-site-accent">
@@ -642,7 +647,7 @@ export default function PortfolioView({ data }) {
             </p>
           )}
 
-          <div className="my-8 grid grid-cols-1 items-stretch md:my-12">
+          <div className="mb-8 mt-6 grid grid-cols-1 items-stretch md:my-12">
             {visibleProjects.map((project, index) => {
               const highlights = (project.highlights || []).filter(hasText);
               const tools = (project.tools || []).filter(hasText);
@@ -749,7 +754,7 @@ export default function PortfolioView({ data }) {
 
       <button
         aria-label="Back to top"
-        className="motion-action fixed bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full border-2 border-site-accent bg-site-bg text-site-accent shadow-lg hover:bg-site-accent hover:text-site-inverse"
+        className="motion-action shadow-site-floating fixed bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full border-2 border-site-accent bg-site-bg text-site-accent hover:bg-site-accent hover:text-site-inverse"
         onClick={scrollToTop}
         type="button"
       >

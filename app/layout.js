@@ -4,7 +4,11 @@ import "./fontawesome";
 import { getPortfolioData } from "@/lib/portfolioDb";
 import { getVisibleNavItems, hasText } from "@/lib/portfolioVisibility";
 import { seoKeywords, siteDescription, siteTitle, siteUrl } from "@/lib/seo";
-import { getSiteThemeStyle, normalizeSiteColors } from "@/lib/siteTheme";
+import {
+  getSiteColorScheme,
+  getSiteThemeStyle,
+  normalizeSiteColors,
+} from "@/lib/siteTheme";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -69,7 +73,7 @@ export async function generateViewport() {
   const colors = normalizeSiteColors(data.theme?.colors);
 
   return {
-    colorScheme: "dark",
+    colorScheme: getSiteColorScheme(data.theme),
     themeColor: colors.background,
   };
 }

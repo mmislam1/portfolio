@@ -109,7 +109,7 @@ function ColorField({ label, value, onChange }) {
         className="h-12 rounded-md border-2 border-site-accent bg-site-bg p-1 text-site-accent"
         onChange={(event) => onChange(event.target.value)}
         type="color"
-        value={value || "#000000"}
+        value={value || defaultSiteColors.background}
       />
     </label>
   );

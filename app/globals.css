@@ -9,30 +9,22 @@
   }
 
   body {
-    background: rgb(var(--portfolio-color-background, 15 23 42) / 1);
-    color: rgb(var(--portfolio-color-text, 255 255 255) / 1);
-    font-family: var(
-      --portfolio-font-family,
-      Inter,
-      Segoe UI,
-      Roboto,
-      Helvetica Neue,
-      Arial,
-      sans-serif
-    );
+    background: rgb(var(--portfolio-color-background) / 1);
+    color: rgb(var(--portfolio-color-text) / 1);
+    font-family: var(--portfolio-font-family);
     min-height: 100vh;
   }
 
   ::selection {
-    background: rgb(var(--portfolio-color-accent, 251 191 36) / 1);
-    color: rgb(var(--portfolio-color-inverse, 15 23 42) / 1);
+    background: rgb(var(--portfolio-color-accent) / 1);
+    color: rgb(var(--portfolio-color-inverse) / 1);
   }
 
   button,
   a,
   input,
   textarea {
-    outline-color: rgb(var(--portfolio-color-accent-deep, 202 138 4) / 1);
+    outline-color: rgb(var(--portfolio-color-accent-deep) / 1);
     transition-duration: 220ms;
     transition-property:
       background-color, border-color, color, opacity, box-shadow, transform;
@@ -89,11 +81,15 @@
   }
 
   .shadow-accent-glow {
-    box-shadow: 0 0 14px rgb(var(--portfolio-color-accent, 251 191 36) / 0.3);
+    box-shadow: 0 0 14px rgb(var(--portfolio-color-accent) / 0.3);
   }
 
   .shadow-site-panel {
-    box-shadow: 0 16px 40px rgb(var(--portfolio-color-background, 15 23 42) / 0.25);
+    box-shadow: 0 16px 40px rgb(var(--portfolio-color-background) / 0.25);
+  }
+
+  .shadow-site-floating {
+    box-shadow: 0 12px 28px rgb(var(--portfolio-color-background) / 0.35);
   }
 }
 

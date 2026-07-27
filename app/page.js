@@ -19,7 +19,7 @@ export default async function Home() {
       name: data.profile?.name || "Mohaiminul Islam",
       url: siteUrl,
       image: `${siteUrl}/mm.jpg`,
-      jobTitle: "Full-Stack MERN Developer",
+      jobTitle: "Full-Stack Developer",
       description: siteDescription,
       sameAs: profileLinks,
       knowsAbout: seoKeywords,
