@@ -289,6 +289,7 @@ function getJobHighlights(item) {
 
 export default function PortfolioView({ data }) {
   const profile = data.profile || {};
+  const focusAreas = data.focusAreas || [];
   const skillGroups = data.skillGroups || [];
   const projects = data.projects || [];
   const experience = data.experience || [];
@@ -301,6 +302,15 @@ export default function PortfolioView({ data }) {
   const jobTenures = visibleExperience.map(getJobTenure);
   const hasResumeLink = hasText(profile.resumeLink);
   const showAbout = hasAboutContent(profile);
+  const visibleFocusAreas = focusAreas.filter(
+    (item) => hasText(item.title) && hasText(item.text)
+  );
+  const aboutStackItems = hasText(profile.headline)
+    ? (profile.headline.split("|")[1] || "")
+        .split(",")
+        .map((item) => item.trim())
+        .filter(Boolean)
+    : [];
 
   const [activeSkillGroup, setActiveSkillGroup] = useState(
     visibleSkillGroups[0]?.title || ""
@@ -390,11 +400,6 @@ export default function PortfolioView({ data }) {
           <div className="grid w-full grid-cols-1 items-center justify-around gap-6 md:gap-12">
             <div className="flex flex-col-reverse items-center justify-around gap-8 md:flex-row md:gap-16">
               <div className="grid w-full max-w-3xl gap-5 text-center md:gap-8 md:text-left">
-                {hasText(profile.name) && (
-                  <p className="text-xl font-light uppercase leading-none tracking-wide text-site-muted md:text-2xl">
-                    {profile.name}
-                  </p>
-                )}
                 {hasText(profile.headline) && (
                   <h1 className="text-3xl font-light leading-tight text-site-accent md:text-4xl">
                     {profile.headline}
@@ -404,6 +409,18 @@ export default function PortfolioView({ data }) {
                   <p className="text-lg leading-8 text-site-text-soft md:leading-9">
                     {profile.summary}
                   </p>
+                )}
+                {aboutStackItems.length > 0 && (
+                  <div className="flex flex-wrap justify-center gap-2 md:justify-start">
+                    {aboutStackItems.map((item) => (
+                      <span
+                        className="motion-panel rounded border border-site-border bg-site-surface/40 px-3 py-1.5 text-sm font-light leading-none text-site-accent md:text-base"
+                        key={item}
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 )}
               </div>
 
@@ -418,6 +435,30 @@ export default function PortfolioView({ data }) {
                 </div>
               )}
             </div>
+
+            {visibleFocusAreas.length > 0 && (
+              <div className="grid w-full grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
+                {visibleFocusAreas.map((item) => (
+                  <article
+                    className="motion-panel grid gap-3 border-t border-site-border-subtle bg-site-surface/30 px-4 py-4 text-left"
+                    key={item.title}
+                  >
+                    <div className="flex items-center gap-3 text-site-accent">
+                      <FontAwesomeIcon
+                        className="text-xl"
+                        icon={getIcon(item.icon)}
+                      />
+                      <h3 className="text-lg font-light leading-tight">
+                        {item.title}
+                      </h3>
+                    </div>
+                    <p className="text-base font-light leading-7 text-site-text-soft">
+                      {item.text}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            )}
 
             <div className="flex w-full max-w-3xl flex-wrap items-center justify-center gap-x-7 gap-y-5 sm:justify-between md:gap-x-10 md:gap-y-6">
               <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-5 md:gap-x-10 md:gap-y-6">
