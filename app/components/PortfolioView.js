@@ -172,11 +172,11 @@ function ProfileIconLink({ link }) {
       title={link.label}
     >
       {CustomIcon ? (
-        <CustomIcon className="animate-colorChange text-5xl hover:text-orange-600" />
+        <CustomIcon className="animate-colorChange text-4xl hover:text-orange-600 sm:text-5xl" />
       ) : (
         <FontAwesomeIcon
           icon={getIcon(link.icon)}
-          className="animate-colorChange text-5xl hover:text-orange-600"
+          className="animate-colorChange text-4xl hover:text-orange-600 sm:text-5xl"
         />
       )}
     </a>

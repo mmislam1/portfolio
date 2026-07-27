@@ -39,7 +39,7 @@
   .motion-section {
     clip-path: polygon(0 12%, 90% 0, 100% 88%, 10% 100%);
     opacity: 0;
-    transform: translateY(22px) scale(0.985);
+    transform: scale(0.985);
     transform-origin: center;
     transition:
       opacity 560ms ease,
@@ -50,7 +50,7 @@
   .motion-section-visible {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: scale(1);
   }
 
   .motion-panel {
@@ -118,13 +118,13 @@
     from {
       clip-path: polygon(0 14%, 88% 0, 100% 86%, 12% 100%);
       opacity: 0;
-      transform: translateY(14px) scale(0.985);
+      transform: scale(0.985);
     }
 
     to {
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: scale(1);
     }
   }
 
