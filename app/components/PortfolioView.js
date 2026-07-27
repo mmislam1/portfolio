@@ -538,17 +538,9 @@ export default function PortfolioView({ data }) {
 
                 return (
                   <article
-                    className="motion-panel grid gap-6 border-b border-amber-400/60 py-9 first:pt-0 last:border-b-0 md:grid-cols-[12rem_2rem_1fr] md:border-slate-700"
+                    className="motion-panel grid gap-6 border-b border-amber-400/60 py-9 first:pt-0 last:border-b-0 md:grid-cols-[2rem_1fr] md:border-slate-700"
                     key={item.title}
                   >
-                    <div className="hidden content-start md:grid md:text-right">
-                      {hasText(tenure.periodLabel) && (
-                        <p className="text-sm italic leading-8 text-slate-300">
-                          {tenure.periodLabel}
-                        </p>
-                      )}
-                    </div>
-
                     <div className="hidden justify-items-center md:grid">
                       <div className="relative grid min-h-36 justify-items-center">
                         <span className="absolute inset-y-0 w-px bg-slate-700" />
@@ -561,14 +553,14 @@ export default function PortfolioView({ data }) {
                         <h3 className="text-2xl font-light text-amber-400">
                           {item.title}
                         </h3>
+                        {hasText(tenure.periodLabel) && (
+                          <p className="mt-2 text-sm italic text-slate-400">
+                            {tenure.periodLabel}
+                          </p>
+                        )}
                         {hasText(tenure.role) && (
                           <p className="mt-2 text-slate-200">
                             {tenure.role}
-                          </p>
-                        )}
-                        {hasText(tenure.period) && (
-                          <p className="mt-2 text-sm italic text-slate-400 md:hidden">
-                            {tenure.periodLabel}
                           </p>
                         )}
                       </div>
