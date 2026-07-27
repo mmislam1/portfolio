@@ -412,29 +412,35 @@ export default function PortfolioView({ data }) {
             </div>
 
             <div className="flex w-full max-w-3xl flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:justify-between">
-              {hasResumeLink && (
-                <a
-                  className="motion-action animate-colorChange rounded border-2 border-amber-400 bg-slate-900 px-8 py-3 text-2xl font-light text-amber-400 hover:bg-amber-400 hover:text-slate-900"
-                  href={profile.resumeLink}
-                  rel="noreferrer"
-                  target="_blank"
+              <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
+                {profileLinks.map((link) => (
+                  <ProfileIconLink key={link.label} link={link} />
+                ))}
+              </div>
+              <div className="flex flex-wrap items-center justify-center gap-4 sm:justify-end">
+                {hasResumeLink && (
+                  <a
+                    className="motion-action rounded border-2 border-amber-400 bg-slate-900 px-8 py-3 text-2xl font-light text-amber-400 hover:bg-amber-400 hover:text-slate-900"
+                    href={profile.resumeLink}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    Resume
+                  </a>
+                )}
+                <button
+                  className="motion-action rounded border-2 border-amber-400 px-5 py-3 text-base font-light text-amber-400 hover:bg-amber-400 hover:text-slate-900"
+                  onClick={copyProfileLink}
+                  type="button"
                 >
-                  Resume
-                </a>
-              )}
-              {profileLinks.map((link) => (
-                <ProfileIconLink key={link.label} link={link} />
-              ))}
-              <button
-                className="motion-action animate-colorChange rounded border-2 border-amber-400 px-5 py-3 text-base font-light text-amber-400 hover:bg-amber-400 hover:text-slate-900"
-                onClick={copyProfileLink}
-                type="button"
-              >
-                <FontAwesomeIcon
-                  icon={copied ? faCheck : faArrowUpRightFromSquare}
-                />
-                <span className="ml-2">{copied ? "Copied" : "Copy Link"}</span>
-              </button>
+                  <FontAwesomeIcon
+                    icon={copied ? faCheck : faArrowUpRightFromSquare}
+                  />
+                  <span className="ml-2">
+                    {copied ? "Copied" : "Copy Link"}
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         </section>
