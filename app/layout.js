@@ -4,7 +4,7 @@ import "./fontawesome";
 import { getPortfolioData } from "@/lib/portfolioDb";
 import { getVisibleNavItems, hasText } from "@/lib/portfolioVisibility";
 import { seoKeywords, siteDescription, siteTitle, siteUrl } from "@/lib/seo";
-import { getSiteThemeStyle } from "@/lib/siteTheme";
+import { getSiteThemeStyle, normalizeSiteColors } from "@/lib/siteTheme";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -63,6 +63,16 @@ export const metadata = {
 };
 
 export const dynamic = "force-dynamic";
+
+export async function generateViewport() {
+  const data = await getPortfolioData();
+  const colors = normalizeSiteColors(data.theme?.colors);
+
+  return {
+    colorScheme: "dark",
+    themeColor: colors.background,
+  };
+}
 
 export default async function RootLayout({ children }) {
   const data = await getPortfolioData();
