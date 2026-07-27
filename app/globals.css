@@ -9,12 +9,23 @@
   }
 
   body {
+    background: rgb(var(--portfolio-color-background, 15 23 42) / 1);
+    color: rgb(var(--portfolio-color-text, 255 255 255) / 1);
+    font-family: var(
+      --portfolio-font-family,
+      Inter,
+      Segoe UI,
+      Roboto,
+      Helvetica Neue,
+      Arial,
+      sans-serif
+    );
     min-height: 100vh;
   }
 
   ::selection {
-    background: #fbbf24;
-    color: #0f172a;
+    background: rgb(var(--portfolio-color-accent, 251 191 36) / 1);
+    color: rgb(var(--portfolio-color-inverse, 15 23 42) / 1);
   }
 
   button,
@@ -77,6 +88,13 @@
       both;
   }
 
+  .shadow-accent-glow {
+    box-shadow: 0 0 14px rgb(var(--portfolio-color-accent, 251 191 36) / 0.3);
+  }
+
+  .shadow-site-panel {
+    box-shadow: 0 16px 40px rgb(var(--portfolio-color-background, 15 23 42) / 0.25);
+  }
 }
 
 @layer utilities {

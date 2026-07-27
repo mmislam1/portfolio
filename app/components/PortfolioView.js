@@ -75,11 +75,11 @@ const customBrandIcons = {
 };
 
 const projectAccent = {
-  article: "border-amber-400 bg-slate-900/70",
-  check: "text-amber-400",
-  role: "text-amber-400",
-  title: "text-amber-400",
-  tool: "border-slate-600 bg-slate-800/60 text-amber-400",
+  article: "border-site-accent bg-site-bg/70",
+  check: "text-site-accent",
+  role: "text-site-accent",
+  title: "text-site-accent",
+  tool: "border-site-border bg-site-surface/60 text-site-accent",
 };
 
 const skillIconComponents = {
@@ -172,11 +172,11 @@ function ProfileIconLink({ link }) {
       title={link.label}
     >
       {CustomIcon ? (
-        <CustomIcon className="animate-colorChange text-4xl hover:text-orange-600 sm:text-5xl" />
+        <CustomIcon className="animate-colorChange text-4xl hover:text-site-hover sm:text-5xl" />
       ) : (
         <FontAwesomeIcon
           icon={getIcon(link.icon)}
-          className="animate-colorChange text-4xl hover:text-orange-600 sm:text-5xl"
+          className="animate-colorChange text-4xl hover:text-site-hover sm:text-5xl"
         />
       )}
     </a>
@@ -201,7 +201,7 @@ function ProjectIconLink({ href, icon, label }) {
     >
       <FontAwesomeIcon
         icon={icon}
-        className="animate-colorChange text-3xl hover:text-orange-600"
+        className="animate-colorChange text-3xl hover:text-site-hover"
       />
     </a>
   );
@@ -381,7 +381,7 @@ export default function PortfolioView({ data }) {
   };
 
   return (
-    <main className="motion-page grid grid-cols-1 bg-slate-900 font-light text-white">
+    <main className="motion-page grid grid-cols-1 bg-site-bg font-light text-site-text">
       {showAbout && (
         <section
           className="motion-section grid scroll-mt-32 items-center justify-center px-6 pb-10 pt-8 text-lg md:pb-20 md:pt-16 lg:px-24 xl:px-72"
@@ -391,19 +391,19 @@ export default function PortfolioView({ data }) {
             <div className="flex flex-col-reverse items-center justify-around gap-8 md:flex-row md:gap-16">
               <div className="grid w-full max-w-3xl gap-5 text-center md:gap-8 md:text-left">
                 {hasText(profile.headline) && (
-                  <h1 className="text-3xl font-light leading-tight text-amber-400 md:text-4xl">
+                  <h1 className="text-3xl font-light leading-tight text-site-accent md:text-4xl">
                     {profile.headline}
                   </h1>
                 )}
                 {hasText(profile.summary) && (
-                  <p className="text-lg leading-8 text-slate-100 md:leading-9">
+                  <p className="text-lg leading-8 text-site-text-soft md:leading-9">
                     {profile.summary}
                   </p>
                 )}
               </div>
 
               {hasText(profile.photo) && (
-                <div className="motion-card min-h-60 min-w-60 max-h-60 max-w-60 overflow-hidden rounded-full border-2 border-amber-400 bg-white">
+                <div className="motion-card min-h-60 min-w-60 max-h-60 max-w-60 overflow-hidden rounded-full border-2 border-site-accent bg-site-image-bg">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={profile.photo}
@@ -423,7 +423,7 @@ export default function PortfolioView({ data }) {
               <div className="flex flex-nowrap items-center justify-center gap-3 sm:gap-4 sm:justify-end">
                 {hasResumeLink && (
                   <a
-                    className="motion-action inline-flex h-12 w-[7.75rem] items-center justify-center rounded border-2 border-amber-400 bg-slate-900 px-3 py-3 text-center text-base font-light leading-none text-amber-400 hover:bg-amber-400 hover:text-slate-900 sm:h-14 sm:w-40 sm:px-5 sm:text-lg"
+                    className="motion-action inline-flex h-12 w-[7.75rem] items-center justify-center rounded border-2 border-site-accent bg-site-bg px-3 py-3 text-center text-base font-light leading-none text-site-accent hover:bg-site-accent hover:text-site-inverse sm:h-14 sm:w-40 sm:px-5 sm:text-lg"
                     href={profile.resumeLink}
                     rel="noreferrer"
                     target="_blank"
@@ -432,7 +432,7 @@ export default function PortfolioView({ data }) {
                   </a>
                 )}
                 <button
-                  className="motion-action inline-flex h-12 w-[7.75rem] items-center justify-center gap-1.5 rounded border-2 border-amber-400 px-3 py-3 text-center text-base font-light leading-none text-amber-400 hover:bg-amber-400 hover:text-slate-900 sm:h-14 sm:w-40 sm:gap-2 sm:px-5 sm:text-lg"
+                  className="motion-action inline-flex h-12 w-[7.75rem] items-center justify-center gap-1.5 rounded border-2 border-site-accent px-3 py-3 text-center text-base font-light leading-none text-site-accent hover:bg-site-accent hover:text-site-inverse sm:h-14 sm:w-40 sm:gap-2 sm:px-5 sm:text-lg"
                   onClick={copyProfileLink}
                   type="button"
                 >
@@ -452,7 +452,7 @@ export default function PortfolioView({ data }) {
           className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 pb-12 pt-18 md:pb-20 md:pt-28 lg:px-24 xl:px-72"
           id="skills"
         >
-          <h2 className="m-auto text-4xl font-light text-amber-400">
+          <h2 className="m-auto text-4xl font-light text-site-accent">
             SKILLS
           </h2>
           {visibleSkillGroups.length > 1 && (
@@ -461,7 +461,7 @@ export default function PortfolioView({ data }) {
                 Skill category
               </label>
               <select
-                className="motion-action mt-6 w-full rounded border-2 border-amber-400 bg-slate-900 p-3 text-base font-light text-amber-400 outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/60 sm:hidden"
+                className="motion-action mt-6 w-full rounded border-2 border-site-accent bg-site-bg p-3 text-base font-light text-site-accent outline-none focus:border-site-accent focus:ring-2 focus:ring-site-accent/60 sm:hidden"
                 id="skill-group-select"
                 onChange={(event) => setActiveSkillGroup(event.target.value)}
                 value={activeSkillGroup}
@@ -478,8 +478,8 @@ export default function PortfolioView({ data }) {
                     aria-pressed={activeSkillGroup === group.title}
                     className={`motion-action inline-flex min-h-12 items-center justify-center rounded border-2 px-6 py-3 text-center text-lg font-light leading-none ${
                       activeSkillGroup === group.title
-                        ? "border-amber-400 bg-amber-400 text-slate-900"
-                        : "border-amber-400/70 bg-slate-900 text-amber-400 hover:border-amber-400 hover:bg-slate-800"
+                        ? "border-site-accent bg-site-accent text-site-inverse"
+                        : "border-site-accent/70 bg-site-bg text-site-accent hover:border-site-accent hover:bg-site-surface"
                     }`}
                     key={group.title}
                     onClick={() => setActiveSkillGroup(group.title)}
@@ -500,7 +500,7 @@ export default function PortfolioView({ data }) {
 
               return (
                 <article
-                  className="motion-card grid min-h-40 place-items-center rounded-md border border-amber-300 bg-slate-950 px-5 py-7 text-center text-amber-300 sm:min-h-52 sm:px-7 sm:py-12"
+                  className="motion-card grid min-h-40 place-items-center rounded-md border border-site-accent-soft bg-site-surface-strong px-5 py-7 text-center text-site-accent-soft sm:min-h-52 sm:px-7 sm:py-12"
                   key={skill.title}
                 >
                   <div className="grid justify-items-center gap-3 sm:gap-5">
@@ -524,7 +524,7 @@ export default function PortfolioView({ data }) {
           className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-12 md:py-20 lg:px-24 xl:px-72"
           id="experience"
         >
-          <h2 className="m-auto text-4xl font-light text-amber-400">
+          <h2 className="m-auto text-4xl font-light text-site-accent">
             EXPERIENCE
           </h2>
 
@@ -536,28 +536,28 @@ export default function PortfolioView({ data }) {
 
                 return (
                   <article
-                    className="motion-panel grid gap-4 border-b border-amber-400/60 py-7 first:pt-0 last:border-b-0 md:grid-cols-[2rem_1fr] md:gap-6 md:border-slate-700 md:py-9"
+                    className="motion-panel grid gap-4 border-b border-site-accent/60 py-7 first:pt-0 last:border-b-0 md:grid-cols-[2rem_1fr] md:gap-6 md:border-site-border-subtle md:py-9"
                     key={item.title}
                   >
                     <div className="hidden justify-items-center md:grid">
                       <div className="relative grid min-h-36 justify-items-center">
-                        <span className="absolute inset-y-0 w-px bg-slate-700" />
-                        <span className="relative mt-2 h-3 w-3 rounded-full border-2 border-amber-400 bg-slate-900 shadow-[0_0_14px_rgba(251,191,36,0.3)]" />
+                        <span className="absolute inset-y-0 w-px bg-site-border-subtle" />
+                        <span className="shadow-accent-glow relative mt-2 h-3 w-3 rounded-full border-2 border-site-accent bg-site-bg" />
                       </div>
                     </div>
 
                     <div className="grid content-start gap-4 md:gap-5">
                       <div>
-                        <h3 className="text-2xl font-light text-amber-400">
+                        <h3 className="text-2xl font-light text-site-accent">
                           {item.title}
                         </h3>
                         {hasText(tenure.periodLabel) && (
-                          <p className="mt-2 text-sm italic text-slate-400">
+                          <p className="mt-2 text-sm italic text-site-muted-strong">
                             {tenure.periodLabel}
                           </p>
                         )}
                         {hasText(tenure.role) && (
-                          <p className="mt-2 text-slate-200">
+                          <p className="mt-2 text-site-muted">
                             {tenure.role}
                           </p>
                         )}
@@ -567,17 +567,17 @@ export default function PortfolioView({ data }) {
                         <ul className="grid gap-2 md:gap-3">
                           {highlights.map((highlight) => (
                             <li
-                              className="grid grid-cols-[auto_1fr] gap-4 leading-8 text-slate-100"
+                              className="grid grid-cols-[auto_1fr] gap-4 leading-8 text-site-text-soft"
                               key={highlight}
                             >
-                              <span className="mt-3.5 h-1.5 w-1.5 rounded-full bg-amber-400" />
+                              <span className="mt-3.5 h-1.5 w-1.5 rounded-full bg-site-accent" />
                               <span>{highlight}.</span>
                             </li>
                           ))}
                         </ul>
                       ) : (
                         hasText(item.details) && (
-                          <p className="leading-8 text-slate-100">
+                          <p className="leading-8 text-site-text-soft">
                             {item.details}
                           </p>
                         )
@@ -596,7 +596,7 @@ export default function PortfolioView({ data }) {
           className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-12 md:py-20 lg:px-24 xl:px-72"
           id="projects"
         >
-          <h2 className="m-auto text-4xl font-light text-amber-400">
+          <h2 className="m-auto text-4xl font-light text-site-accent">
             PROJECTS
           </h2>
           {projectFilters.length > 1 && (
@@ -605,7 +605,7 @@ export default function PortfolioView({ data }) {
                 Project filter
               </label>
               <select
-                className="motion-action mt-6 w-full rounded border-2 border-amber-400 bg-slate-900 p-3 text-base font-light text-amber-400 outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/60 sm:hidden"
+                className="motion-action mt-6 w-full rounded border-2 border-site-accent bg-site-bg p-3 text-base font-light text-site-accent outline-none focus:border-site-accent focus:ring-2 focus:ring-site-accent/60 sm:hidden"
                 id="project-filter-select"
                 onChange={(event) => setProjectFilter(event.target.value)}
                 value={projectFilter}
@@ -622,8 +622,8 @@ export default function PortfolioView({ data }) {
                     aria-pressed={projectFilter === filter}
                     className={`motion-action inline-flex min-h-11 items-center justify-center rounded border-2 px-5 py-2.5 text-center text-base font-light leading-none ${
                       projectFilter === filter
-                        ? "border-amber-400 bg-amber-400 text-slate-900"
-                        : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400"
+                        ? "border-site-accent bg-site-accent text-site-inverse"
+                        : "border-site-border bg-site-bg text-site-accent hover:border-site-accent"
                     }`}
                     key={filter}
                     onClick={() => setProjectFilter(filter)}
@@ -636,7 +636,7 @@ export default function PortfolioView({ data }) {
             </>
           )}
           {projectFilters.length > 1 && (
-            <p className="mt-5 text-center text-slate-200 md:mt-7">
+            <p className="mt-5 text-center text-site-muted md:mt-7">
               Showing {visibleProjects.length} project
               {visibleProjects.length === 1 ? "" : "s"}.
             </p>
@@ -651,7 +651,7 @@ export default function PortfolioView({ data }) {
                 hasText(project.link) || hasText(project.liveLink);
               const separatorClass =
                 index > 0
-                  ? "mt-8 border-t border-amber-400/60 pt-8 md:mt-10 md:pt-10"
+                  ? "mt-8 border-t border-site-accent/60 pt-8 md:mt-10 md:pt-10"
                   : "";
 
               return (
@@ -660,7 +660,7 @@ export default function PortfolioView({ data }) {
                   key={`${projectFilter}-${project.title}`}
                 >
                   <article
-                    className={`motion-card border-l-2 px-5 py-6 shadow-[0_16px_40px_rgba(15,23,42,0.25)] md:px-7 md:py-9 ${projectAccent.article}`}
+                    className={`motion-card shadow-site-panel border-l-2 px-5 py-6 md:px-7 md:py-9 ${projectAccent.article}`}
                   >
                     <div className="flex flex-col justify-between gap-5 md:flex-row md:items-start md:gap-7">
                       <div className="grid gap-3">
@@ -670,7 +670,7 @@ export default function PortfolioView({ data }) {
                           {project.title}
                         </h3>
                         {hasText(project.type) && (
-                          <p className="max-w-3xl text-base leading-8 text-slate-300">
+                          <p className="max-w-3xl text-base leading-8 text-site-muted">
                             {project.type}
                           </p>
                         )}
@@ -699,7 +699,7 @@ export default function PortfolioView({ data }) {
                     </div>
 
                     {hasText(project.desc) && (
-                      <p className="mt-5 max-w-4xl text-lg leading-8 text-slate-100 md:mt-7 md:leading-9">
+                      <p className="mt-5 max-w-4xl text-lg leading-8 text-site-text-soft md:mt-7 md:leading-9">
                         {project.desc}
                       </p>
                     )}
@@ -718,11 +718,11 @@ export default function PortfolioView({ data }) {
                     )}
 
                     {hasHighlights && (
-                      <div className="mt-5 border-t border-slate-600 pt-5 md:mt-7 md:pt-6">
+                      <div className="mt-5 border-t border-site-border pt-5 md:mt-7 md:pt-6">
                         <ul className="grid gap-3 md:gap-4">
                           {highlights.map((highlight) => (
                             <li
-                              className="grid grid-cols-[auto_1fr] items-start gap-3 text-slate-100"
+                              className="grid grid-cols-[auto_1fr] items-start gap-3 text-site-text-soft"
                               key={highlight}
                             >
                               <span
@@ -749,7 +749,7 @@ export default function PortfolioView({ data }) {
 
       <button
         aria-label="Back to top"
-        className="motion-action fixed bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full border-2 border-amber-400 bg-slate-900 text-amber-400 shadow-lg hover:bg-amber-400 hover:text-slate-900"
+        className="motion-action fixed bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full border-2 border-site-accent bg-site-bg text-site-accent shadow-lg hover:bg-site-accent hover:text-site-inverse"
         onClick={scrollToTop}
         type="button"
       >

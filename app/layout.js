@@ -4,6 +4,7 @@ import "./fontawesome";
 import { getPortfolioData } from "@/lib/portfolioDb";
 import { getVisibleNavItems, hasText } from "@/lib/portfolioVisibility";
 import { seoKeywords, siteDescription, siteTitle, siteUrl } from "@/lib/seo";
+import { getSiteThemeStyle } from "@/lib/siteTheme";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -68,26 +69,30 @@ export default async function RootLayout({ children }) {
   const navItems = getVisibleNavItems(data);
   const brandName = hasText(data.profile?.name) ? data.profile.name : "Portfolio";
   const brandHref = navItems[0]?.href || "/";
+  const themeStyle = getSiteThemeStyle(data.theme);
 
   return (
     <html lang="en">
-      <body className="grid min-h-screen grid-cols-1 bg-slate-900 font-sans text-white">
-        <nav className="sticky top-0 z-50 flex flex-col items-center justify-center gap-3 border-2 border-amber-400 bg-slate-900 px-2 py-4 text-amber-400 sm:gap-5 sm:px-5 sm:py-6 lg:flex-row lg:justify-between lg:px-20">
+      <body
+        className="grid min-h-screen grid-cols-1 bg-site-bg text-site-text"
+        style={themeStyle}
+      >
+        <nav className="sticky top-0 z-50 flex flex-col items-center justify-center gap-3 border border-site-accent bg-site-bg px-2 py-4 text-site-accent sm:gap-5 sm:px-5 sm:py-6 lg:flex-row lg:justify-between lg:px-20">
           <Link
-            className="motion-action inline-flex min-h-12 items-center justify-center text-center text-3xl font-light leading-none hover:text-orange-600 lg:justify-start lg:text-5xl"
+            className="motion-action inline-flex min-h-12 items-center justify-center text-center text-3xl font-light uppercase leading-none hover:text-site-hover lg:justify-start lg:text-5xl"
             href={brandHref}
           >
             {brandName}
           </Link>
           {navItems.length > 0 && (
-            <ul className="flex w-full flex-nowrap items-center justify-center gap-x-2 gap-y-2 sm:w-auto sm:flex-wrap sm:gap-x-10 sm:gap-y-4 lg:justify-end lg:gap-x-14">
+            <ul className="flex w-full flex-nowrap items-center justify-between gap-x-3 gap-y-2 sm:w-auto sm:flex-wrap sm:justify-center sm:gap-x-10 sm:gap-y-4 lg:justify-end lg:gap-x-14">
               {navItems.map((item) => (
                 <li
                   className="grid items-center justify-center"
                   key={item.label}
                 >
                   <Link
-                    className="motion-action inline-flex min-h-8 items-center justify-center whitespace-nowrap text-center text-[15px] font-light leading-none tracking-normal hover:text-orange-600 sm:min-h-9 sm:text-xl sm:tracking-wide"
+                    className="motion-action inline-flex min-h-8 items-center justify-center whitespace-nowrap text-center text-[15px] font-light uppercase leading-none tracking-normal hover:text-site-hover sm:min-h-9 sm:text-xl sm:tracking-wide"
                     href={item.href}
                   >
                     {item.label}

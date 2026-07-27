@@ -1,4 +1,24 @@
 {
+  "theme": {
+    "colors": {
+      "background": "#0f172a",
+      "surface": "#1e293b",
+      "surfaceStrong": "#020617",
+      "text": "#ffffff",
+      "textSoft": "#f1f5f9",
+      "muted": "#cbd5e1",
+      "mutedStrong": "#94a3b8",
+      "accent": "#fbbf24",
+      "accentSoft": "#fcd34d",
+      "accentDeep": "#ca8a04",
+      "hover": "#ea580c",
+      "border": "#475569",
+      "borderSubtle": "#334155",
+      "imageBackground": "#ffffff",
+      "inverse": "#0f172a"
+    },
+    "fontFamily": "Inter, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
+  },
   "profile": {
     "greeting": "",
     "name": "Mohaiminul Islam",

@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { useState } from "react";
 import { skillIconOptions } from "@/lib/skillIconOptions";
+import { defaultSiteColors, siteColorFields } from "@/lib/siteTheme";
 
 const tabs = [
+  "Appearance",
   "Profile",
   "Stats",
   "Skills",
@@ -40,10 +42,10 @@ function linesToArray(value) {
 
 function Field({ label, value, onChange, type = "text" }) {
   return (
-    <label className="grid gap-2 text-sm font-semibold text-slate-200">
+    <label className="grid gap-2 text-sm font-semibold text-site-muted">
       <span>{label}</span>
       <input
-        className="rounded-md border-2 border-amber-400 bg-slate-900 p-3 text-base font-semibold text-amber-400 placeholder:text-slate-400"
+        className="rounded-md border-2 border-site-accent bg-site-bg p-3 text-base font-semibold text-site-accent placeholder:text-site-muted-strong"
         onChange={(event) => onChange(event.target.value)}
         type={type}
         value={value || ""}
@@ -54,10 +56,10 @@ function Field({ label, value, onChange, type = "text" }) {
 
 function TextField({ label, value, onChange, rows = 4 }) {
   return (
-    <label className="grid gap-2 text-sm font-semibold text-slate-200">
+    <label className="grid gap-2 text-sm font-semibold text-site-muted">
       <span>{label}</span>
       <textarea
-        className="min-h-28 rounded-md border-2 border-amber-400 bg-slate-900 p-3 text-base font-semibold text-amber-400 placeholder:text-slate-400"
+        className="min-h-28 rounded-md border-2 border-site-accent bg-site-bg p-3 text-base font-semibold text-site-accent placeholder:text-site-muted-strong"
         onChange={(event) => onChange(event.target.value)}
         rows={rows}
         value={value || ""}
@@ -78,10 +80,10 @@ function SelectField({
   );
 
   return (
-    <label className="grid gap-2 text-sm font-semibold text-slate-200">
+    <label className="grid gap-2 text-sm font-semibold text-site-muted">
       <span>{label}</span>
       <select
-        className="rounded-md border-2 border-amber-400 bg-slate-900 p-3 text-base font-semibold text-amber-400"
+        className="rounded-md border-2 border-site-accent bg-site-bg p-3 text-base font-semibold text-site-accent"
         onChange={(event) => onChange(event.target.value)}
         value={value || fallbackValue}
       >
@@ -95,9 +97,23 @@ function SelectField({
   );
 }
 
+function ColorField({ label, value, onChange }) {
+  return (
+    <label className="grid gap-2 text-sm font-semibold text-site-muted">
+      <span>{label}</span>
+      <input
+        className="h-12 rounded-md border-2 border-site-accent bg-site-bg p-1 text-site-accent"
+        onChange={(event) => onChange(event.target.value)}
+        type="color"
+        value={value || "#000000"}
+      />
+    </label>
+  );
+}
+
 function Card({ children }) {
   return (
-    <div className="grid gap-4 rounded-md border-2 border-slate-500 bg-slate-700 p-5">
+    <div className="grid gap-4 rounded-md border-2 border-site-border bg-site-surface p-5">
       {children}
     </div>
   );
@@ -106,8 +122,8 @@ function Card({ children }) {
 function Button({ children, onClick, type = "button", variant = "outline" }) {
   const classes =
     variant === "fill"
-      ? "border-amber-400 bg-amber-400 text-slate-900 hover:bg-slate-900 hover:text-amber-400"
-      : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400";
+      ? "border-site-accent bg-site-accent text-site-inverse hover:bg-site-bg hover:text-site-accent"
+      : "border-site-border bg-site-bg text-site-accent hover:border-site-accent";
 
   return (
     <button
@@ -123,7 +139,7 @@ function Button({ children, onClick, type = "button", variant = "outline" }) {
 function SectionHeader({ title, onAdd }) {
   return (
     <div className="flex flex-wrap items-center justify-between gap-3">
-      <h2 className="text-3xl font-semibold text-amber-400">{title}</h2>
+      <h2 className="text-3xl font-semibold text-site-accent">{title}</h2>
       {onAdd && (
         <Button onClick={onAdd} variant="fill">
           Add
@@ -146,6 +162,26 @@ export default function AdminEditor({ initialData }) {
     setData((current) => ({
       ...current,
       profile: { ...current.profile, [key]: value },
+    }));
+  };
+
+  const updateTheme = (key, value) => {
+    setData((current) => ({
+      ...current,
+      theme: { ...current.theme, [key]: value },
+    }));
+  };
+
+  const updateThemeColor = (key, value) => {
+    setData((current) => ({
+      ...current,
+      theme: {
+        ...current.theme,
+        colors: {
+          ...current.theme?.colors,
+          [key]: value,
+        },
+      },
     }));
   };
 
@@ -214,15 +250,15 @@ export default function AdminEditor({ initialData }) {
   };
 
   return (
-    <main className="grid min-h-screen gap-8 bg-slate-900 px-6 py-10 text-white lg:px-24 xl:px-72">
+    <main className="grid min-h-screen gap-8 bg-site-bg px-6 py-10 text-site-text lg:px-24 xl:px-72">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="text-4xl font-semibold text-amber-400">
+        <h1 className="text-4xl font-semibold text-site-accent">
           EDIT PORTFOLIO
         </h1>
         <div className="flex flex-wrap items-center gap-3">
-          {status && <p className="font-semibold text-slate-200">{status}</p>}
+          {status && <p className="font-semibold text-site-muted">{status}</p>}
           <Link
-            className="rounded border-2 border-slate-500 bg-slate-900 px-4 py-2 font-semibold text-amber-400 hover:border-amber-400"
+            className="rounded border-2 border-site-border bg-site-bg px-4 py-2 font-semibold text-site-accent hover:border-site-accent"
             href="/"
           >
             Portfolio
@@ -239,8 +275,8 @@ export default function AdminEditor({ initialData }) {
             aria-pressed={activeTab === tab}
             className={`rounded border-2 px-4 py-2 font-semibold ${
               activeTab === tab
-                ? "border-amber-400 bg-amber-400 text-slate-900"
-                : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400"
+                ? "border-site-accent bg-site-accent text-site-inverse"
+                : "border-site-border bg-site-bg text-site-accent hover:border-site-accent"
             }`}
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -250,6 +286,32 @@ export default function AdminEditor({ initialData }) {
           </button>
         ))}
       </div>
+
+      {activeTab === "Appearance" && (
+        <section className="grid gap-5">
+          <SectionHeader title="APPEARANCE" />
+          <Card>
+            <Field
+              label="Font family"
+              onChange={(value) => updateTheme("fontFamily", value)}
+              value={data.theme?.fontFamily}
+            />
+            <div className="grid gap-4 sm:grid-cols-2">
+              {siteColorFields.map((field) => (
+                <ColorField
+                  key={field.key}
+                  label={field.label}
+                  onChange={(value) => updateThemeColor(field.key, value)}
+                  value={
+                    data.theme?.colors?.[field.key] ||
+                    defaultSiteColors[field.key]
+                  }
+                />
+              ))}
+            </div>
+          </Card>
+        </section>
+      )}
 
       {activeTab === "Profile" && (
         <section className="grid gap-5">
@@ -360,7 +422,7 @@ export default function AdminEditor({ initialData }) {
           {data.skillGroups.map((group, groupIndex) => (
             <Card key={`${group.title}-${groupIndex}`}>
               <div className="flex flex-wrap justify-between gap-3">
-                <h3 className="text-2xl font-semibold text-amber-400">
+                <h3 className="text-2xl font-semibold text-site-accent">
                   {group.title || "Skill group"}
                 </h3>
                 <Button
@@ -382,7 +444,7 @@ export default function AdminEditor({ initialData }) {
               <div className="grid gap-4">
                 {group.skills.map((skill, skillIndex) => (
                   <div
-                    className="grid gap-3 rounded-md border border-slate-500 bg-slate-900 p-4 lg:grid-cols-[1fr_16rem_auto]"
+                    className="grid gap-3 rounded-md border border-site-border bg-site-bg p-4 lg:grid-cols-[1fr_16rem_auto]"
                     key={`${skill.title}-${skillIndex}`}
                   >
                     <Field
