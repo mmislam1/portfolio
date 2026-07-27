@@ -24,7 +24,8 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "next": "^16.2.11",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "react-icons": "^5.7.0"
   },
   "overrides": {
     "postcss": "^8.5.10"

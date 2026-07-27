@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { skillIconOptions } from "@/lib/skillIconOptions";
 
 const tabs = [
   "Profile",
@@ -65,18 +66,28 @@ function TextField({ label, value, onChange, rows = 4 }) {
   );
 }
 
-function SelectField({ label, value, onChange }) {
+function SelectField({
+  label,
+  value,
+  onChange,
+  options = iconOptions,
+  fallbackValue = "code",
+}) {
+  const normalizedOptions = options.map((option) =>
+    typeof option === "string" ? { label: option, value: option } : option
+  );
+
   return (
     <label className="grid gap-2 text-sm font-semibold text-slate-200">
       <span>{label}</span>
       <select
         className="rounded-md border-2 border-amber-400 bg-slate-900 p-3 text-base font-semibold text-amber-400"
         onChange={(event) => onChange(event.target.value)}
-        value={value || "code"}
+        value={value || fallbackValue}
       >
-        {iconOptions.map((option) => (
-          <option key={option} value={option}>
-            {option}
+        {normalizedOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
           </option>
         ))}
       </select>
@@ -371,7 +382,7 @@ export default function AdminEditor({ initialData }) {
               <div className="grid gap-4">
                 {group.skills.map((skill, skillIndex) => (
                   <div
-                    className="grid gap-3 rounded-md border border-slate-500 bg-slate-900 p-4 md:grid-cols-[1fr_auto]"
+                    className="grid gap-3 rounded-md border border-slate-500 bg-slate-900 p-4 lg:grid-cols-[1fr_16rem_auto]"
                     key={`${skill.title}-${skillIndex}`}
                   >
                     <Field
@@ -388,6 +399,23 @@ export default function AdminEditor({ initialData }) {
                         });
                       }}
                       value={skill.title}
+                    />
+                    <SelectField
+                      fallbackValue="FaCode"
+                      label="Icon"
+                      onChange={(value) => {
+                        const skills = group.skills.map((item, itemIndex) =>
+                          itemIndex === skillIndex
+                            ? { ...item, icon: value }
+                            : item
+                        );
+                        updateArrayItem("skillGroups", groupIndex, {
+                          ...group,
+                          skills,
+                        });
+                      }}
+                      options={skillIconOptions}
+                      value={skill.icon}
                     />
                     <div className="grid content-end">
                       <Button
@@ -411,7 +439,7 @@ export default function AdminEditor({ initialData }) {
                 onClick={() =>
                   updateArrayItem("skillGroups", groupIndex, {
                     ...group,
-                    skills: [...group.skills, { title: "" }],
+                    skills: [...group.skills, { title: "", icon: "FaCode" }],
                   })
                 }
                 variant="fill"

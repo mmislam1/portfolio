@@ -2,45 +2,55 @@
 
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCss3Alt,
-  faDocker,
-  faGitAlt,
-  faGithub,
-  faHtml5,
-  faJs,
-  faLinkedin,
-  faNodeJs,
-  faPhp,
-  faPython,
-  faReact,
-} from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import {
   faArrowUp,
   faArrowUpRightFromSquare,
   faBriefcase,
-  faChartColumn,
-  faChartLine,
-  faChartPie,
   faCheck,
   faChevronDown,
   faCode,
-  faCodeBranch,
-  faCreditCard,
-  faCubes,
-  faDatabase,
   faEnvelope,
-  faFileCode,
-  faFileWord,
   faGraduationCap,
   faLayerGroup,
-  faMagnifyingGlass,
-  faNetworkWired,
-  faPaperPlane,
-  faServer,
-  faTable,
-  faWandMagicSparkles,
 } from "@fortawesome/free-solid-svg-icons";
+import {
+  FaChartColumn,
+  FaChartLine,
+  FaChartPie,
+  FaCode as FaSkillCode,
+  FaDatabase as FaSkillDatabase,
+  FaEnvelope as FaSkillEnvelope,
+  FaFileExcel,
+  FaFileWord,
+  FaMagnifyingGlass,
+  FaNetworkWired,
+} from "react-icons/fa6";
+import {
+  SiCss,
+  SiDocker,
+  SiExpress,
+  SiGit,
+  SiGooglegemini,
+  SiHtml5,
+  SiJavascript,
+  SiMongodb,
+  SiMysql,
+  SiNestjs,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiNumpy,
+  SiPaddle,
+  SiPandas,
+  SiPhp,
+  SiPostman,
+  SiPython,
+  SiReact,
+  SiRedux,
+  SiTypescript,
+} from "react-icons/si";
+import { VscVscode } from "react-icons/vsc";
+import { getSkillIconName } from "@/lib/skillIconOptions";
 import {
   getVisibleExperience,
   getVisibleProfileLinks,
@@ -73,47 +83,47 @@ const projectAccent = {
   tool: "border-slate-600 bg-slate-800/60 text-amber-400",
 };
 
-const skillIcons = {
-  "css3": faCss3Alt,
-  "django": faServer,
-  "docker": faDocker,
-  "email api": faEnvelope,
-  "excel": faTable,
-  "express.js": faServer,
-  "gemini api": faWandMagicSparkles,
-  "git": faGitAlt,
-  "html5": faHtml5,
-  "javascript (es6+)": faJs,
-  "matplotlib": faChartLine,
-  "microsoft sql server (mssql)": faDatabase,
-  "mongodb": faDatabase,
-  "mysql": faDatabase,
-  "nest.js": faCubes,
-  "next.js": faLayerGroup,
-  "node.js": faNodeJs,
-  "numpy": faChartColumn,
-  "paddle": faCreditCard,
-  "pandas": faTable,
-  "php": faPhp,
-  "postman": faPaperPlane,
-  "python": faPython,
-  "python-docx": faFileWord,
-  "react.js": faReact,
-  "redux": faCodeBranch,
-  "rest apis": faNetworkWired,
-  "seaborn": faChartPie,
-  "serpapi": faMagnifyingGlass,
-  "tableau": faChartColumn,
-  "typescript": faFileCode,
-  "vs code": faCode,
+const skillIconComponents = {
+  FaChartColumn,
+  FaChartLine,
+  FaChartPie,
+  FaCode: FaSkillCode,
+  FaDatabase: FaSkillDatabase,
+  FaEnvelope: FaSkillEnvelope,
+  FaFileExcel,
+  FaFileWord,
+  FaMagnifyingGlass,
+  FaNetworkWired,
+  SiCss,
+  SiDocker,
+  SiExpress,
+  SiGit,
+  SiGooglegemini,
+  SiHtml5,
+  SiJavascript,
+  SiMongodb,
+  SiMysql,
+  SiNestjs,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiNumpy,
+  SiPaddle,
+  SiPandas,
+  SiPhp,
+  SiPostman,
+  SiPython,
+  SiReact,
+  SiRedux,
+  SiTypescript,
+  VscVscode,
 };
 
 function getIcon(name, fallback = faCode) {
   return icons[name] || fallback;
 }
 
-function getSkillIcon(title) {
-  return skillIcons[title.toLowerCase()] || faCode;
+function getSkillIconComponent(skill) {
+  return skillIconComponents[getSkillIconName(skill)] || FaSkillCode;
 }
 
 function LeetCodeIcon({ className }) {
@@ -478,19 +488,26 @@ export default function PortfolioView({ data }) {
             className="motion-panel my-10 grid w-full grid-cols-1 gap-5 rounded-xl border-2 border-amber-300 bg-slate-800 p-5 shadow-[0_22px_54px_rgba(15,23,42,0.45)] sm:grid-cols-2 sm:gap-6 sm:p-8 xl:grid-cols-3"
             key={activeSkillGroup}
           >
-            {activeSkills.map((skill) => (
-              <article
-                className="motion-card grid min-h-36 grid-cols-[auto_1fr] items-center gap-5 rounded-md border-4 border-amber-300 bg-slate-950 px-5 py-6 text-left shadow-[0_18px_38px_rgba(251,191,36,0.2)] sm:min-h-40 sm:px-6 sm:py-7 sm:shadow-[0_24px_48px_rgba(251,191,36,0.24)]"
-                key={skill.title}
-              >
-                <span className="grid h-16 w-16 items-center justify-center rounded-md border-2 border-amber-200 bg-amber-400 text-3xl text-slate-950 shadow-[0_12px_26px_rgba(251,191,36,0.28)] sm:h-20 sm:w-20 sm:text-4xl">
-                  <FontAwesomeIcon icon={getSkillIcon(skill.title)} />
-                </span>
-                <span className="text-2xl font-extrabold leading-tight text-amber-300 sm:text-3xl">
-                  {skill.title}
-                </span>
-              </article>
-            ))}
+            {activeSkills.map((skill) => {
+              const SkillIcon = getSkillIconComponent(skill);
+
+              return (
+                <article
+                  className="motion-card grid min-h-44 place-items-center rounded-md border-4 border-amber-300 bg-slate-950 px-5 py-8 text-center text-amber-300 shadow-[0_18px_38px_rgba(251,191,36,0.2)] sm:min-h-52 sm:px-6 sm:py-10 sm:shadow-[0_24px_48px_rgba(251,191,36,0.24)]"
+                  key={skill.title}
+                >
+                  <div className="grid justify-items-center gap-4">
+                    <SkillIcon
+                      aria-hidden="true"
+                      className="text-6xl sm:text-7xl"
+                    />
+                    <span className="text-2xl font-extrabold leading-tight sm:text-3xl">
+                      {skill.title}
+                    </span>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </section>
       )}

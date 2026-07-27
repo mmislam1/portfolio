@@ -35,8 +35,8 @@
       "label": "Stack focus"
     },
     {
-      "value": "Django",
-      "label": "Backend option"
+      "value": "NestJS",
+      "label": "API layer"
     },
     {
       "value": "SQL",
@@ -69,19 +69,24 @@
       "title": "Frontend",
       "skills": [
         {
-          "title": "Next.js"
+          "title": "Next.js",
+          "icon": "SiNextdotjs"
         },
         {
-          "title": "React.js"
+          "title": "React.js",
+          "icon": "SiReact"
         },
         {
-          "title": "Redux"
+          "title": "Redux",
+          "icon": "SiRedux"
         },
         {
-          "title": "HTML5"
+          "title": "HTML5",
+          "icon": "SiHtml5"
         },
         {
-          "title": "CSS3"
+          "title": "CSS3",
+          "icon": "SiCss"
         }
       ]
     },
@@ -89,22 +94,24 @@
       "title": "Backend",
       "skills": [
         {
-          "title": "Express.js"
+          "title": "Express.js",
+          "icon": "SiExpress"
         },
         {
-          "title": "Nest.js"
+          "title": "Nest.js",
+          "icon": "SiNestjs"
         },
         {
-          "title": "REST APIs"
+          "title": "REST APIs",
+          "icon": "FaNetworkWired"
         },
         {
-          "title": "Node.js"
+          "title": "Node.js",
+          "icon": "SiNodedotjs"
         },
         {
-          "title": "PHP"
-        },
-        {
-          "title": "Django"
+          "title": "PHP",
+          "icon": "SiPhp"
         }
       ]
     },
@@ -112,13 +119,16 @@
       "title": "Database",
       "skills": [
         {
-          "title": "MongoDB"
+          "title": "MongoDB",
+          "icon": "SiMongodb"
         },
         {
-          "title": "MySQL"
+          "title": "MySQL",
+          "icon": "SiMysql"
         },
         {
-          "title": "Microsoft SQL Server (MSSQL)"
+          "title": "Microsoft SQL Server (MSSQL)",
+          "icon": "FaDatabase"
         }
       ]
     },
@@ -126,13 +136,16 @@
       "title": "Programming Languages",
       "skills": [
         {
-          "title": "JavaScript (ES6+)"
+          "title": "JavaScript (ES6+)",
+          "icon": "SiJavascript"
         },
         {
-          "title": "TypeScript"
+          "title": "TypeScript",
+          "icon": "SiTypescript"
         },
         {
-          "title": "Python"
+          "title": "Python",
+          "icon": "SiPython"
         }
       ]
     },
@@ -140,28 +153,36 @@
       "title": "Tools and Platforms",
       "skills": [
         {
-          "title": "Paddle"
+          "title": "Paddle",
+          "icon": "SiPaddle"
         },
         {
-          "title": "SerpApi"
+          "title": "SerpApi",
+          "icon": "FaMagnifyingGlass"
         },
         {
-          "title": "Gemini API"
+          "title": "Gemini API",
+          "icon": "SiGooglegemini"
         },
         {
-          "title": "Email API"
+          "title": "Email API",
+          "icon": "FaEnvelope"
         },
         {
-          "title": "Docker"
+          "title": "Docker",
+          "icon": "SiDocker"
         },
         {
-          "title": "Git"
+          "title": "Git",
+          "icon": "SiGit"
         },
         {
-          "title": "Postman"
+          "title": "Postman",
+          "icon": "SiPostman"
         },
         {
-          "title": "VS Code"
+          "title": "VS Code",
+          "icon": "VscVscode"
         }
       ]
     },
@@ -169,25 +190,32 @@
       "title": "Data and Automation",
       "skills": [
         {
-          "title": "python-docx"
+          "title": "python-docx",
+          "icon": "FaFileWord"
         },
         {
-          "title": "Excel"
+          "title": "Excel",
+          "icon": "FaFileExcel"
         },
         {
-          "title": "Pandas"
+          "title": "Pandas",
+          "icon": "SiPandas"
         },
         {
-          "title": "NumPy"
+          "title": "NumPy",
+          "icon": "SiNumpy"
         },
         {
-          "title": "Matplotlib"
+          "title": "Matplotlib",
+          "icon": "FaChartLine"
         },
         {
-          "title": "Seaborn"
+          "title": "Seaborn",
+          "icon": "FaChartPie"
         },
         {
-          "title": "Tableau"
+          "title": "Tableau",
+          "icon": "FaChartColumn"
         }
       ]
     }
