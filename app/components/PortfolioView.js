@@ -485,7 +485,7 @@ export default function PortfolioView({ data }) {
             </>
           )}
           <div
-            className="motion-panel my-10 grid w-full grid-cols-1 gap-5 rounded-xl border-2 border-amber-300 bg-slate-800 p-5 shadow-[0_22px_54px_rgba(15,23,42,0.45)] sm:grid-cols-2 sm:gap-6 sm:p-8 xl:grid-cols-3"
+            className="motion-panel my-10 grid w-full grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 xl:grid-cols-3"
             key={activeSkillGroup}
           >
             {activeSkills.map((skill) => {
@@ -493,7 +493,7 @@ export default function PortfolioView({ data }) {
 
               return (
                 <article
-                  className="motion-card grid min-h-44 place-items-center rounded-md border-4 border-amber-300 bg-slate-950 px-5 py-8 text-center text-amber-300 shadow-[0_18px_38px_rgba(251,191,36,0.2)] sm:min-h-52 sm:px-6 sm:py-10 sm:shadow-[0_24px_48px_rgba(251,191,36,0.24)]"
+                  className="motion-card grid min-h-44 place-items-center rounded-md border border-amber-300 bg-slate-950 px-5 py-8 text-center text-amber-300 sm:min-h-52 sm:px-6 sm:py-10"
                   key={skill.title}
                 >
                   <div className="grid justify-items-center gap-4">
@@ -501,7 +501,7 @@ export default function PortfolioView({ data }) {
                       aria-hidden="true"
                       className="text-6xl sm:text-7xl"
                     />
-                    <span className="text-2xl font-extrabold leading-tight sm:text-3xl">
+                    <span className="text-2xl font-light leading-tight sm:text-3xl">
                       {skill.title}
                     </span>
                   </div>
