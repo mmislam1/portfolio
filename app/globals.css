@@ -85,44 +85,6 @@
     transform-origin: center;
   }
 
-  .motion-details {
-    border-top: 1px solid transparent;
-    display: grid;
-    grid-template-rows: 0fr;
-    margin-top: 0;
-    opacity: 0;
-    overflow: hidden;
-    padding-top: 0;
-    transition:
-      grid-template-rows 360ms ease,
-      opacity 260ms ease,
-      margin-top 360ms ease,
-      padding-top 360ms ease,
-      border-color 360ms ease;
-  }
-
-  .motion-details > div {
-    clip-path: polygon(0 12%, 90% 0, 100% 88%, 10% 100%);
-    min-height: 0;
-    overflow: hidden;
-    transform: translateY(10px) scale(0.985);
-    transition:
-      clip-path 360ms ease,
-      transform 360ms ease;
-  }
-
-  .motion-details-open {
-    border-color: #64748b;
-    grid-template-rows: 1fr;
-    margin-top: 1.25rem;
-    opacity: 1;
-    padding-top: 1.25rem;
-  }
-
-  .motion-details-open > div {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    transform: translateY(0) scale(1);
-  }
 }
 
 @layer utilities {

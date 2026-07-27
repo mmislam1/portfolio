@@ -8,7 +8,6 @@ import {
   faArrowUpRightFromSquare,
   faBriefcase,
   faCheck,
-  faChevronDown,
   faCode,
   faEnvelope,
   faGraduationCap,
@@ -307,7 +306,6 @@ export default function PortfolioView({ data }) {
     visibleSkillGroups[0]?.title || ""
   );
   const [projectFilter, setProjectFilter] = useState("All");
-  const [expandedProject, setExpandedProject] = useState("");
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -422,10 +420,10 @@ export default function PortfolioView({ data }) {
                   <ProfileIconLink key={link.label} link={link} />
                 ))}
               </div>
-              <div className="flex flex-wrap items-center justify-center gap-4 sm:justify-end">
+              <div className="flex flex-nowrap items-center justify-center gap-3 sm:gap-4 sm:justify-end">
                 {hasResumeLink && (
                   <a
-                    className="motion-action inline-flex h-14 w-40 items-center justify-center rounded border-2 border-amber-400 bg-slate-900 px-5 py-3 text-center text-lg font-light leading-none text-amber-400 hover:bg-amber-400 hover:text-slate-900"
+                    className="motion-action inline-flex h-12 w-[7.75rem] items-center justify-center rounded border-2 border-amber-400 bg-slate-900 px-3 py-3 text-center text-base font-light leading-none text-amber-400 hover:bg-amber-400 hover:text-slate-900 sm:h-14 sm:w-40 sm:px-5 sm:text-lg"
                     href={profile.resumeLink}
                     rel="noreferrer"
                     target="_blank"
@@ -434,7 +432,7 @@ export default function PortfolioView({ data }) {
                   </a>
                 )}
                 <button
-                  className="motion-action inline-flex h-14 w-40 items-center justify-center gap-2 rounded border-2 border-amber-400 px-5 py-3 text-center text-lg font-light leading-none text-amber-400 hover:bg-amber-400 hover:text-slate-900"
+                  className="motion-action inline-flex h-12 w-[7.75rem] items-center justify-center gap-1.5 rounded border-2 border-amber-400 px-3 py-3 text-center text-base font-light leading-none text-amber-400 hover:bg-amber-400 hover:text-slate-900 sm:h-14 sm:w-40 sm:gap-2 sm:px-5 sm:text-lg"
                   onClick={copyProfileLink}
                   type="button"
                 >
@@ -650,11 +648,7 @@ export default function PortfolioView({ data }) {
               const tools = (project.tools || []).filter(hasText);
               const hasHighlights = highlights.length > 0;
               const hasProjectActions =
-                hasText(project.link) ||
-                hasText(project.liveLink) ||
-                hasHighlights;
-              const isExpanded =
-                hasHighlights && expandedProject === project.title;
+                hasText(project.link) || hasText(project.liveLink);
               const separatorClass =
                 index > 0 ? "mt-10 border-t border-amber-400/60 pt-10" : "";
 
@@ -698,32 +692,6 @@ export default function PortfolioView({ data }) {
                             icon={faArrowUpRightFromSquare}
                             label={`${project.title} live link`}
                           />
-                          {hasHighlights && (
-                            <button
-                              aria-expanded={isExpanded}
-                              className={`motion-action inline-flex min-h-11 items-center justify-center gap-2 rounded border-2 px-4 py-2.5 text-center text-sm font-light leading-none ${
-                                isExpanded
-                                  ? "border-amber-400 bg-amber-400 text-slate-900"
-                                  : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400 hover:bg-slate-800"
-                              }`}
-                              onClick={() =>
-                                setExpandedProject(
-                                  isExpanded ? "" : project.title
-                                )
-                              }
-                              type="button"
-                            >
-                              <span>
-                                {isExpanded ? "Hide details" : "View details"}
-                              </span>
-                              <FontAwesomeIcon
-                                icon={faChevronDown}
-                                className={`text-xs transition-transform ${
-                                  isExpanded ? "rotate-180" : ""
-                                }`}
-                              />
-                            </button>
-                          )}
                         </div>
                       )}
                     </div>
@@ -748,26 +716,25 @@ export default function PortfolioView({ data }) {
                     )}
 
                     {hasHighlights && (
-                      <div
-                        aria-hidden={!isExpanded}
-                        className={`motion-details ${
-                          isExpanded ? "motion-details-open" : ""
-                        }`}
-                      >
-                        <div className="grid gap-4">
+                      <div className="mt-7 border-t border-slate-600 pt-6">
+                        <ul className="grid gap-4">
                           {highlights.map((highlight) => (
-                            <p
-                              className="grid grid-cols-[auto_1fr] gap-4 leading-8 text-slate-100"
+                            <li
+                              className="grid grid-cols-[auto_1fr] items-start gap-3 text-slate-100"
                               key={highlight}
                             >
-                              <FontAwesomeIcon
-                                icon={faCheck}
-                                className={`mt-1 text-sm ${projectAccent.check}`}
-                              />
-                              <span>{highlight}</span>
-                            </p>
+                              <span
+                                className={`flex h-8 w-5 items-center justify-center text-sm leading-none ${projectAccent.check}`}
+                              >
+                                <FontAwesomeIcon
+                                  icon={faCheck}
+                                  className="block"
+                                />
+                              </span>
+                              <span className="leading-8">{highlight}</span>
+                            </li>
                           ))}
-                        </div>
+                        </ul>
                       </div>
                     )}
                   </article>
