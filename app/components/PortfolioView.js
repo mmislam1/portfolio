@@ -384,7 +384,7 @@ export default function PortfolioView({ data }) {
     <main className="motion-page grid grid-cols-1 bg-site-bg font-light text-site-text">
       {showAbout && (
         <section
-          className="motion-section grid scroll-mt-32 items-center justify-center px-6 pb-14 pt-8 text-lg md:pb-20 md:pt-16 lg:px-24 xl:px-72"
+          className="motion-section grid scroll-mt-32 items-center justify-center px-6 pb-12 pt-8 text-lg md:pb-20 md:pt-16 lg:px-24 xl:px-72"
           id="about"
         >
           <div className="grid w-full grid-cols-1 items-center justify-around gap-6 md:gap-12">
@@ -449,7 +449,7 @@ export default function PortfolioView({ data }) {
 
       {visibleSkillGroups.length > 0 && (
         <section
-          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 pb-14 pt-14 md:pb-20 md:pt-28 lg:px-24 xl:px-72"
+          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 pb-12 pt-12 md:pb-20 md:pt-28 lg:px-24 xl:px-72"
           id="skills"
         >
           <h2 className="m-auto text-4xl font-light text-site-accent">
@@ -521,7 +521,7 @@ export default function PortfolioView({ data }) {
 
       {visibleExperience.length > 0 && (
         <section
-          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-14 md:py-20 lg:px-24 xl:px-72"
+          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-12 md:py-20 lg:px-24 xl:px-72"
           id="experience"
         >
           <h2 className="m-auto text-4xl font-light text-site-accent">
@@ -593,7 +593,7 @@ export default function PortfolioView({ data }) {
 
       {projectsWithContent.length > 0 && (
         <section
-          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-14 md:py-20 lg:px-24 xl:px-72"
+          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-12 md:py-20 lg:px-24 xl:px-72"
           id="projects"
         >
           <h2 className="m-auto text-4xl font-light text-site-accent">

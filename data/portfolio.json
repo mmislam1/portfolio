@@ -242,7 +242,7 @@
   ],
   "projects": [
     {
-      "title": "Image Reverse Search",
+      "title": "IpHint",
       "type": "Dual-language reverse image search platform",
       "role": "Full-stack",
       "desc": "Built a production web platform with a Next.js frontend and standalone Express.js/MongoDB backend for image ingestion, reverse-search routing, user submissions, payment processing, and admin analytics.",

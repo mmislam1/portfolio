@@ -77,9 +77,9 @@ export default async function RootLayout({ children }) {
         className="grid min-h-screen grid-cols-1 bg-site-bg text-site-text"
         style={themeStyle}
       >
-        <nav className="sticky top-0 z-50 flex flex-col items-center justify-center gap-3 border border-site-accent bg-site-bg px-2 py-4 text-site-accent sm:gap-5 sm:px-5 sm:py-6 lg:flex-row lg:justify-between lg:px-20">
+        <nav className="sticky top-0 z-50 flex flex-col items-center justify-center gap-2 border border-site-accent bg-site-bg px-5 py-2 text-site-accent sm:gap-5 sm:px-8 sm:py-6 lg:flex-row lg:justify-between lg:px-24">
           <Link
-            className="motion-action inline-flex min-h-12 items-center justify-center text-center text-3xl font-light uppercase leading-none hover:text-site-hover lg:justify-start lg:text-5xl"
+            className="motion-action inline-flex min-h-10 items-center justify-center text-center text-3xl font-light uppercase leading-none hover:text-site-hover lg:min-h-12 lg:justify-start lg:text-5xl"
             href={brandHref}
           >
             {brandName}
@@ -92,7 +92,7 @@ export default async function RootLayout({ children }) {
                   key={item.label}
                 >
                   <Link
-                    className="motion-action inline-flex min-h-8 items-center justify-center whitespace-nowrap text-center text-[15px] font-light uppercase leading-none tracking-normal hover:text-site-hover sm:min-h-9 sm:text-xl sm:tracking-wide"
+                    className="motion-action inline-flex min-h-7 items-center justify-center whitespace-nowrap text-center text-[15px] font-light uppercase leading-none tracking-normal hover:text-site-hover sm:min-h-9 sm:text-xl sm:tracking-wide"
                     href={item.href}
                   >
                     {item.label}
