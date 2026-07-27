@@ -373,12 +373,12 @@ export default function PortfolioView({ data }) {
             </>
           )}
           <div
-            className="motion-panel my-8 flex flex-wrap items-center justify-center gap-3 rounded-xl border-2 border-slate-500 bg-slate-700 p-5 sm:gap-4"
+            className="motion-panel my-8 flex flex-wrap items-center justify-center gap-4 rounded-xl border-2 border-amber-400/60 bg-slate-800 p-5 shadow-[0_18px_44px_rgba(15,23,42,0.35)] sm:gap-5 sm:p-6"
             key={activeSkillGroup}
           >
             {activeSkills.map((skill) => (
               <span
-                className="motion-card w-full rounded-md border-2 border-slate-500 bg-slate-900 px-4 py-3 text-center text-base font-semibold text-amber-400 sm:w-auto sm:border-amber-400/70 sm:px-6 sm:py-4 sm:text-lg sm:font-bold sm:shadow-[0_10px_24px_rgba(15,23,42,0.35)]"
+                className="motion-card w-full rounded-md border-2 border-amber-300 bg-amber-400 px-5 py-4 text-center text-lg font-extrabold text-slate-950 shadow-[0_12px_30px_rgba(251,191,36,0.18)] sm:w-auto sm:px-7 sm:py-5 sm:text-xl sm:shadow-[0_16px_34px_rgba(251,191,36,0.22)]"
                 key={skill.title}
               >
                 {skill.title}
