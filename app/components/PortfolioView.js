@@ -1,18 +1,45 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import {
+  faCss3Alt,
+  faDocker,
+  faGitAlt,
+  faGithub,
+  faHtml5,
+  faJs,
+  faLinkedin,
+  faNodeJs,
+  faPhp,
+  faPython,
+  faReact,
+} from "@fortawesome/free-brands-svg-icons";
 import {
   faArrowUp,
   faArrowUpRightFromSquare,
   faBriefcase,
+  faChartColumn,
+  faChartLine,
+  faChartPie,
   faCheck,
   faChevronDown,
   faCode,
+  faCodeBranch,
+  faCreditCard,
+  faCubes,
+  faDatabase,
   faEnvelope,
+  faFileCode,
+  faFileWord,
   faGraduationCap,
   faLayerGroup,
+  faMagnifyingGlass,
+  faNetworkWired,
+  faPaperPlane,
+  faServer,
+  faTable,
+  faWandMagicSparkles,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   getVisibleExperience,
@@ -46,8 +73,47 @@ const projectAccent = {
   tool: "border-slate-600 bg-slate-800/60 text-amber-400",
 };
 
+const skillIcons = {
+  "css3": faCss3Alt,
+  "django": faServer,
+  "docker": faDocker,
+  "email api": faEnvelope,
+  "excel": faTable,
+  "express.js": faServer,
+  "gemini api": faWandMagicSparkles,
+  "git": faGitAlt,
+  "html5": faHtml5,
+  "javascript (es6+)": faJs,
+  "matplotlib": faChartLine,
+  "microsoft sql server (mssql)": faDatabase,
+  "mongodb": faDatabase,
+  "mysql": faDatabase,
+  "nest.js": faCubes,
+  "next.js": faLayerGroup,
+  "node.js": faNodeJs,
+  "numpy": faChartColumn,
+  "paddle": faCreditCard,
+  "pandas": faTable,
+  "php": faPhp,
+  "postman": faPaperPlane,
+  "python": faPython,
+  "python-docx": faFileWord,
+  "react.js": faReact,
+  "redux": faCodeBranch,
+  "rest apis": faNetworkWired,
+  "seaborn": faChartPie,
+  "serpapi": faMagnifyingGlass,
+  "tableau": faChartColumn,
+  "typescript": faFileCode,
+  "vs code": faCode,
+};
+
 function getIcon(name, fallback = faCode) {
   return icons[name] || fallback;
+}
+
+function getSkillIcon(title) {
+  return skillIcons[title.toLowerCase()] || faCode;
 }
 
 function LeetCodeIcon({ className }) {
@@ -229,6 +295,42 @@ export default function PortfolioView({ data }) {
   const [expandedProject, setExpandedProject] = useState("");
   const [copied, setCopied] = useState(false);
 
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll(".motion-section"));
+
+    if (!sections.length) {
+      return undefined;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      sections.forEach((section) =>
+        section.classList.add("motion-section-visible")
+      );
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          entry.target.classList.add("motion-section-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        rootMargin: "0px 0px -8% 0px",
+        threshold: 0.16,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
   const projectFilters = [
     "All",
     ...new Set(
@@ -373,16 +475,21 @@ export default function PortfolioView({ data }) {
             </>
           )}
           <div
-            className="motion-panel my-8 flex flex-wrap items-center justify-center gap-4 rounded-xl border-2 border-amber-400/60 bg-slate-800 p-5 shadow-[0_18px_44px_rgba(15,23,42,0.35)] sm:gap-5 sm:p-6"
+            className="motion-panel my-10 grid w-full grid-cols-1 gap-5 rounded-xl border-2 border-amber-300 bg-slate-800 p-5 shadow-[0_22px_54px_rgba(15,23,42,0.45)] sm:grid-cols-2 sm:gap-6 sm:p-8 xl:grid-cols-3"
             key={activeSkillGroup}
           >
             {activeSkills.map((skill) => (
-              <span
-                className="motion-card w-full rounded-md border-2 border-amber-300 bg-amber-400 px-5 py-4 text-center text-lg font-extrabold text-slate-950 shadow-[0_12px_30px_rgba(251,191,36,0.18)] sm:w-auto sm:px-7 sm:py-5 sm:text-xl sm:shadow-[0_16px_34px_rgba(251,191,36,0.22)]"
+              <article
+                className="motion-card grid min-h-36 grid-cols-[auto_1fr] items-center gap-5 rounded-md border-4 border-amber-300 bg-slate-950 px-5 py-6 text-left shadow-[0_18px_38px_rgba(251,191,36,0.2)] sm:min-h-40 sm:px-6 sm:py-7 sm:shadow-[0_24px_48px_rgba(251,191,36,0.24)]"
                 key={skill.title}
               >
-                {skill.title}
-              </span>
+                <span className="grid h-16 w-16 items-center justify-center rounded-md border-2 border-amber-200 bg-amber-400 text-3xl text-slate-950 shadow-[0_12px_26px_rgba(251,191,36,0.28)] sm:h-20 sm:w-20 sm:text-4xl">
+                  <FontAwesomeIcon icon={getSkillIcon(skill.title)} />
+                </span>
+                <span className="text-2xl font-extrabold leading-tight text-amber-300 sm:text-3xl">
+                  {skill.title}
+                </span>
+              </article>
             ))}
           </div>
         </section>

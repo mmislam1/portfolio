@@ -35,7 +35,16 @@
   }
 
   .motion-section {
-    animation: portfolio-rise-in 520ms ease both;
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 560ms ease,
+      transform 560ms ease;
+  }
+
+  .motion-section-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .motion-panel {

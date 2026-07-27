@@ -123,32 +123,6 @@
       ]
     },
     {
-      "title": "Data and Automation",
-      "skills": [
-        {
-          "title": "python-docx"
-        },
-        {
-          "title": "Excel"
-        },
-        {
-          "title": "Pandas"
-        },
-        {
-          "title": "NumPy"
-        },
-        {
-          "title": "Matplotlib"
-        },
-        {
-          "title": "Seaborn"
-        },
-        {
-          "title": "Tableau"
-        }
-      ]
-    },
-    {
       "title": "Programming Languages",
       "skills": [
         {
@@ -188,6 +162,32 @@
         },
         {
           "title": "VS Code"
+        }
+      ]
+    },
+    {
+      "title": "Data and Automation",
+      "skills": [
+        {
+          "title": "python-docx"
+        },
+        {
+          "title": "Excel"
+        },
+        {
+          "title": "Pandas"
+        },
+        {
+          "title": "NumPy"
+        },
+        {
+          "title": "Matplotlib"
+        },
+        {
+          "title": "Seaborn"
+        },
+        {
+          "title": "Tableau"
         }
       ]
     }
