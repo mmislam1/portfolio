@@ -72,7 +72,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="grid min-h-screen grid-cols-1 bg-slate-900 font-sans text-white">
-        <nav className="sticky top-0 z-50 flex flex-col items-center justify-center gap-3 border-2 border-amber-400 bg-slate-900 px-3 py-4 text-amber-400 sm:gap-5 sm:px-5 sm:py-6 lg:flex-row lg:justify-between lg:px-20">
+        <nav className="sticky top-0 z-50 flex flex-col items-center justify-center gap-3 border-2 border-amber-400 bg-slate-900 px-2 py-4 text-amber-400 sm:gap-5 sm:px-5 sm:py-6 lg:flex-row lg:justify-between lg:px-20">
           <Link
             className="motion-action inline-flex min-h-12 items-center justify-center text-center text-3xl font-light leading-none hover:text-orange-600 lg:justify-start lg:text-5xl"
             href={brandHref}
@@ -80,14 +80,14 @@ export default async function RootLayout({ children }) {
             {brandName}
           </Link>
           {navItems.length > 0 && (
-            <ul className="flex w-full flex-nowrap items-center justify-center gap-x-3 gap-y-2 sm:w-auto sm:flex-wrap sm:gap-x-10 sm:gap-y-4 lg:justify-end lg:gap-x-14">
+            <ul className="flex w-full flex-nowrap items-center justify-center gap-x-2 gap-y-2 sm:w-auto sm:flex-wrap sm:gap-x-10 sm:gap-y-4 lg:justify-end lg:gap-x-14">
               {navItems.map((item) => (
                 <li
                   className="grid items-center justify-center"
                   key={item.label}
                 >
                   <Link
-                    className="motion-action inline-flex min-h-8 items-center justify-center whitespace-nowrap text-center text-sm font-light leading-none tracking-normal hover:text-orange-600 sm:min-h-9 sm:text-xl sm:tracking-wide"
+                    className="motion-action inline-flex min-h-8 items-center justify-center whitespace-nowrap text-center text-[15px] font-light leading-none tracking-normal hover:text-orange-600 sm:min-h-9 sm:text-xl sm:tracking-wide"
                     href={item.href}
                   >
                     {item.label}

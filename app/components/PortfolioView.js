@@ -384,19 +384,19 @@ export default function PortfolioView({ data }) {
     <main className="motion-page grid grid-cols-1 bg-slate-900 font-light text-white">
       {showAbout && (
         <section
-          className="motion-section grid scroll-mt-32 items-center justify-center px-6 pb-16 pt-14 text-lg md:pb-20 md:pt-16 lg:px-24 xl:px-72"
+          className="motion-section grid scroll-mt-32 items-center justify-center px-6 pb-10 pt-8 text-lg md:pb-20 md:pt-16 lg:px-24 xl:px-72"
           id="about"
         >
-          <div className="grid w-full grid-cols-1 items-center justify-around gap-9 md:gap-12">
-            <div className="flex flex-col-reverse items-center justify-around gap-12 md:flex-row md:gap-16">
-              <div className="grid w-full max-w-3xl gap-8 text-center md:text-left">
+          <div className="grid w-full grid-cols-1 items-center justify-around gap-6 md:gap-12">
+            <div className="flex flex-col-reverse items-center justify-around gap-8 md:flex-row md:gap-16">
+              <div className="grid w-full max-w-3xl gap-5 text-center md:gap-8 md:text-left">
                 {hasText(profile.headline) && (
                   <h1 className="text-3xl font-light leading-tight text-amber-400 md:text-4xl">
                     {profile.headline}
                   </h1>
                 )}
                 {hasText(profile.summary) && (
-                  <p className="text-lg leading-9 text-slate-100">
+                  <p className="text-lg leading-8 text-slate-100 md:leading-9">
                     {profile.summary}
                   </p>
                 )}
@@ -414,8 +414,8 @@ export default function PortfolioView({ data }) {
               )}
             </div>
 
-            <div className="flex w-full max-w-3xl flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:justify-between">
-              <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
+            <div className="flex w-full max-w-3xl flex-wrap items-center justify-center gap-x-7 gap-y-5 sm:justify-between md:gap-x-10 md:gap-y-6">
+              <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-5 md:gap-x-10 md:gap-y-6">
                 {profileLinks.map((link) => (
                   <ProfileIconLink key={link.label} link={link} />
                 ))}
@@ -449,7 +449,7 @@ export default function PortfolioView({ data }) {
 
       {visibleSkillGroups.length > 0 && (
         <section
-          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 pb-16 pt-28 md:pb-20 lg:px-24 xl:px-72"
+          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 pb-12 pt-18 md:pb-20 md:pt-28 lg:px-24 xl:px-72"
           id="skills"
         >
           <h2 className="m-auto text-4xl font-light text-amber-400">
@@ -461,7 +461,7 @@ export default function PortfolioView({ data }) {
                 Skill category
               </label>
               <select
-                className="motion-action mt-10 w-full rounded border-2 border-amber-400 bg-slate-900 p-3 text-base font-light text-amber-400 outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/60 sm:hidden"
+                className="motion-action mt-6 w-full rounded border-2 border-amber-400 bg-slate-900 p-3 text-base font-light text-amber-400 outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/60 sm:hidden"
                 id="skill-group-select"
                 onChange={(event) => setActiveSkillGroup(event.target.value)}
                 value={activeSkillGroup}
@@ -492,7 +492,7 @@ export default function PortfolioView({ data }) {
             </>
           )}
           <div
-            className="motion-panel my-12 grid w-full grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 xl:grid-cols-3"
+            className="motion-panel my-8 grid w-full grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-8 md:my-12 xl:grid-cols-3"
             key={activeSkillGroup}
           >
             {activeSkills.map((skill) => {
@@ -500,10 +500,10 @@ export default function PortfolioView({ data }) {
 
               return (
                 <article
-                  className="motion-card grid min-h-44 place-items-center rounded-md border border-amber-300 bg-slate-950 px-5 py-9 text-center text-amber-300 sm:min-h-52 sm:px-7 sm:py-12"
+                  className="motion-card grid min-h-40 place-items-center rounded-md border border-amber-300 bg-slate-950 px-5 py-7 text-center text-amber-300 sm:min-h-52 sm:px-7 sm:py-12"
                   key={skill.title}
                 >
-                  <div className="grid justify-items-center gap-5">
+                  <div className="grid justify-items-center gap-3 sm:gap-5">
                     <SkillIcon
                       aria-hidden="true"
                       className="text-6xl sm:text-7xl"
@@ -521,14 +521,14 @@ export default function PortfolioView({ data }) {
 
       {visibleExperience.length > 0 && (
         <section
-          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-16 md:py-20 lg:px-24 xl:px-72"
+          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-12 md:py-20 lg:px-24 xl:px-72"
           id="experience"
         >
           <h2 className="m-auto text-4xl font-light text-amber-400">
             EXPERIENCE
           </h2>
 
-          <div className="my-12 grid w-full grid-cols-1">
+          <div className="my-8 grid w-full grid-cols-1 md:my-12">
             <div className="grid grid-cols-1">
               {visibleExperience.map((item, index) => {
                 const tenure = jobTenures[index];
@@ -536,7 +536,7 @@ export default function PortfolioView({ data }) {
 
                 return (
                   <article
-                    className="motion-panel grid gap-6 border-b border-amber-400/60 py-9 first:pt-0 last:border-b-0 md:grid-cols-[2rem_1fr] md:border-slate-700"
+                    className="motion-panel grid gap-4 border-b border-amber-400/60 py-7 first:pt-0 last:border-b-0 md:grid-cols-[2rem_1fr] md:gap-6 md:border-slate-700 md:py-9"
                     key={item.title}
                   >
                     <div className="hidden justify-items-center md:grid">
@@ -546,7 +546,7 @@ export default function PortfolioView({ data }) {
                       </div>
                     </div>
 
-                    <div className="grid content-start gap-5">
+                    <div className="grid content-start gap-4 md:gap-5">
                       <div>
                         <h3 className="text-2xl font-light text-amber-400">
                           {item.title}
@@ -564,7 +564,7 @@ export default function PortfolioView({ data }) {
                       </div>
 
                       {highlights.length > 0 ? (
-                        <ul className="grid gap-3">
+                        <ul className="grid gap-2 md:gap-3">
                           {highlights.map((highlight) => (
                             <li
                               className="grid grid-cols-[auto_1fr] gap-4 leading-8 text-slate-100"
@@ -593,7 +593,7 @@ export default function PortfolioView({ data }) {
 
       {projectsWithContent.length > 0 && (
         <section
-          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-16 md:py-20 lg:px-24 xl:px-72"
+          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-12 md:py-20 lg:px-24 xl:px-72"
           id="projects"
         >
           <h2 className="m-auto text-4xl font-light text-amber-400">
@@ -605,7 +605,7 @@ export default function PortfolioView({ data }) {
                 Project filter
               </label>
               <select
-                className="motion-action mt-10 w-full rounded border-2 border-amber-400 bg-slate-900 p-3 text-base font-light text-amber-400 outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/60 sm:hidden"
+                className="motion-action mt-6 w-full rounded border-2 border-amber-400 bg-slate-900 p-3 text-base font-light text-amber-400 outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/60 sm:hidden"
                 id="project-filter-select"
                 onChange={(event) => setProjectFilter(event.target.value)}
                 value={projectFilter}
@@ -636,13 +636,13 @@ export default function PortfolioView({ data }) {
             </>
           )}
           {projectFilters.length > 1 && (
-            <p className="mt-7 text-center text-slate-200">
+            <p className="mt-5 text-center text-slate-200 md:mt-7">
               Showing {visibleProjects.length} project
               {visibleProjects.length === 1 ? "" : "s"}.
             </p>
           )}
 
-          <div className="my-12 grid grid-cols-1 items-stretch">
+          <div className="my-8 grid grid-cols-1 items-stretch md:my-12">
             {visibleProjects.map((project, index) => {
               const highlights = (project.highlights || []).filter(hasText);
               const tools = (project.tools || []).filter(hasText);
@@ -650,7 +650,9 @@ export default function PortfolioView({ data }) {
               const hasProjectActions =
                 hasText(project.link) || hasText(project.liveLink);
               const separatorClass =
-                index > 0 ? "mt-10 border-t border-amber-400/60 pt-10" : "";
+                index > 0
+                  ? "mt-8 border-t border-amber-400/60 pt-8 md:mt-10 md:pt-10"
+                  : "";
 
               return (
                 <div
@@ -658,9 +660,9 @@ export default function PortfolioView({ data }) {
                   key={`${projectFilter}-${project.title}`}
                 >
                   <article
-                    className={`motion-card border-l-2 px-6 py-8 shadow-[0_16px_40px_rgba(15,23,42,0.25)] md:px-7 md:py-9 ${projectAccent.article}`}
+                    className={`motion-card border-l-2 px-5 py-6 shadow-[0_16px_40px_rgba(15,23,42,0.25)] md:px-7 md:py-9 ${projectAccent.article}`}
                   >
-                    <div className="flex flex-col justify-between gap-7 md:flex-row md:items-start">
+                    <div className="flex flex-col justify-between gap-5 md:flex-row md:items-start md:gap-7">
                       <div className="grid gap-3">
                         <h3
                           className={`text-3xl font-light ${projectAccent.title}`}
@@ -697,13 +699,13 @@ export default function PortfolioView({ data }) {
                     </div>
 
                     {hasText(project.desc) && (
-                      <p className="mt-7 max-w-4xl text-lg leading-9 text-slate-100">
+                      <p className="mt-5 max-w-4xl text-lg leading-8 text-slate-100 md:mt-7 md:leading-9">
                         {project.desc}
                       </p>
                     )}
 
                     {tools.length > 0 && (
-                      <div className="mt-7 flex flex-row flex-wrap gap-3">
+                      <div className="mt-5 flex flex-row flex-wrap gap-2 md:mt-7 md:gap-3">
                         {tools.map((tool) => (
                           <span
                             className={`rounded border px-3 py-1.5 text-base ${projectAccent.tool}`}
@@ -716,8 +718,8 @@ export default function PortfolioView({ data }) {
                     )}
 
                     {hasHighlights && (
-                      <div className="mt-7 border-t border-slate-600 pt-6">
-                        <ul className="grid gap-4">
+                      <div className="mt-5 border-t border-slate-600 pt-5 md:mt-7 md:pt-6">
+                        <ul className="grid gap-3 md:gap-4">
                           {highlights.map((highlight) => (
                             <li
                               className="grid grid-cols-[auto_1fr] items-start gap-3 text-slate-100"

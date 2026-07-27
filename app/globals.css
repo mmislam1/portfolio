@@ -33,36 +33,29 @@
   .motion-page {
     animation: portfolio-geometric-page-in 520ms cubic-bezier(0.22, 1, 0.36, 1)
       both;
-    transform-origin: center;
   }
 
   .motion-section {
     clip-path: polygon(0 12%, 90% 0, 100% 88%, 10% 100%);
     opacity: 0;
-    transform: scale(0.985);
-    transform-origin: center;
     transition:
       opacity 560ms ease,
-      transform 560ms ease,
       clip-path 560ms ease;
   }
 
   .motion-section-visible {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     opacity: 1;
-    transform: scale(1);
   }
 
   .motion-panel {
     animation: portfolio-geometric-fade-in 420ms cubic-bezier(0.22, 1, 0.36, 1)
       both;
-    transform-origin: center;
   }
 
   .motion-card {
     animation: portfolio-geometric-rise-in 480ms cubic-bezier(0.22, 1, 0.36, 1)
       both;
-    transform-origin: center;
     transition:
       border-color 220ms ease,
       clip-path 220ms ease,
@@ -82,7 +75,6 @@
   .motion-action {
     animation: portfolio-geometric-action-in 420ms cubic-bezier(0.22, 1, 0.36, 1)
       both;
-    transform-origin: center;
   }
 
 }
@@ -104,13 +96,11 @@
     from {
       clip-path: polygon(0 14%, 88% 0, 100% 86%, 12% 100%);
       opacity: 0;
-      transform: scale(0.985);
     }
 
     to {
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
       opacity: 1;
-      transform: scale(1);
     }
   }
 
@@ -118,13 +108,11 @@
     from {
       clip-path: polygon(0 14%, 88% 0, 100% 86%, 12% 100%);
       opacity: 0;
-      transform: scale(0.985);
     }
 
     to {
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
       opacity: 1;
-      transform: scale(1);
     }
   }
 
@@ -132,13 +120,11 @@
     from {
       clip-path: polygon(0 18%, 86% 0, 100% 82%, 14% 100%);
       opacity: 0;
-      transform: scale(0.96);
     }
 
     to {
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
       opacity: 1;
-      transform: scale(1);
     }
   }
 
