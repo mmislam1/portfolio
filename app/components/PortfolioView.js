@@ -166,7 +166,7 @@ function ProfileIconLink({ link }) {
   return (
     <a
       aria-label={link.label}
-      className="motion-action inline-flex"
+      className="motion-action inline-flex items-center justify-center"
       href={link.href}
       rel="noreferrer"
       target="_blank"
@@ -194,7 +194,7 @@ function ProjectIconLink({ href, icon, label }) {
   return (
     <a
       aria-label={label}
-      className="motion-action inline-flex"
+      className="motion-action inline-flex items-center justify-center"
       href={cleanHref}
       rel="noreferrer"
       target="_blank"
@@ -246,6 +246,10 @@ function formatDuration(monthCount) {
   return `${monthCount} month${monthCount === 1 ? "" : "s"}`;
 }
 
+function formatPeriod(start, end) {
+  return [start, end].filter(hasText).join(" to ");
+}
+
 function getJobTenure(item) {
   const [role = "", period = ""] = (item.meta || "")
     .split("|")
@@ -263,6 +267,7 @@ function getJobTenure(item) {
     endIndex,
     hasRange,
     period,
+    periodLabel: formatPeriod(start, end),
     role,
     start,
     startIndex,
@@ -420,7 +425,7 @@ export default function PortfolioView({ data }) {
               <div className="flex flex-wrap items-center justify-center gap-4 sm:justify-end">
                 {hasResumeLink && (
                   <a
-                    className="motion-action rounded border-2 border-amber-400 bg-slate-900 px-8 py-3 text-2xl font-light text-amber-400 hover:bg-amber-400 hover:text-slate-900"
+                    className="motion-action inline-flex h-14 w-40 items-center justify-center rounded border-2 border-amber-400 bg-slate-900 px-5 py-3 text-center text-lg font-light leading-none text-amber-400 hover:bg-amber-400 hover:text-slate-900"
                     href={profile.resumeLink}
                     rel="noreferrer"
                     target="_blank"
@@ -429,16 +434,14 @@ export default function PortfolioView({ data }) {
                   </a>
                 )}
                 <button
-                  className="motion-action rounded border-2 border-amber-400 px-5 py-3 text-base font-light text-amber-400 hover:bg-amber-400 hover:text-slate-900"
+                  className="motion-action inline-flex h-14 w-40 items-center justify-center gap-2 rounded border-2 border-amber-400 px-5 py-3 text-center text-lg font-light leading-none text-amber-400 hover:bg-amber-400 hover:text-slate-900"
                   onClick={copyProfileLink}
                   type="button"
                 >
                   <FontAwesomeIcon
                     icon={copied ? faCheck : faArrowUpRightFromSquare}
                   />
-                  <span className="ml-2">
-                    {copied ? "Copied" : "Copy Link"}
-                  </span>
+                  <span>{copied ? "Copied" : "Copy Link"}</span>
                 </button>
               </div>
             </div>
@@ -475,7 +478,7 @@ export default function PortfolioView({ data }) {
                 {visibleSkillGroups.map((group) => (
                   <button
                     aria-pressed={activeSkillGroup === group.title}
-                    className={`motion-action rounded border-2 px-6 py-3 text-lg font-light ${
+                    className={`motion-action inline-flex min-h-12 items-center justify-center rounded border-2 px-6 py-3 text-center text-lg font-light leading-none ${
                       activeSkillGroup === group.title
                         ? "border-amber-400 bg-amber-400 text-slate-900"
                         : "border-amber-400/70 bg-slate-900 text-amber-400 hover:border-amber-400 hover:bg-slate-800"
@@ -538,22 +541,10 @@ export default function PortfolioView({ data }) {
                     className="motion-panel grid gap-6 border-b border-amber-400/60 py-9 first:pt-0 last:border-b-0 md:grid-cols-[12rem_2rem_1fr] md:border-slate-700"
                     key={item.title}
                   >
-                    <div className="grid content-start gap-3 md:text-right">
-                      <div className="grid gap-2">
-                        {hasText(tenure.start) && (
-                          <p className="text-sm font-light text-amber-400">
-                            {tenure.start}
-                          </p>
-                        )}
-                        {hasText(tenure.end) && (
-                          <p className="text-sm font-light text-slate-200">
-                            {tenure.end}
-                          </p>
-                        )}
-                      </div>
-                      {hasText(tenure.duration) && (
-                        <p className="text-xs font-light uppercase tracking-wide text-slate-400">
-                          {tenure.duration}
+                    <div className="hidden content-start md:grid md:text-right">
+                      {hasText(tenure.periodLabel) && (
+                        <p className="text-sm italic leading-8 text-slate-300">
+                          {tenure.periodLabel}
                         </p>
                       )}
                     </div>
@@ -576,8 +567,8 @@ export default function PortfolioView({ data }) {
                           </p>
                         )}
                         {hasText(tenure.period) && (
-                          <p className="mt-2 text-sm font-light text-slate-400 md:hidden">
-                            {tenure.period} | {tenure.duration}
+                          <p className="mt-2 text-sm italic text-slate-400 md:hidden">
+                            {tenure.periodLabel}
                           </p>
                         )}
                       </div>
@@ -639,7 +630,7 @@ export default function PortfolioView({ data }) {
                 {projectFilters.map((filter) => (
                   <button
                     aria-pressed={projectFilter === filter}
-                    className={`motion-action rounded border-2 px-5 py-2.5 text-base font-light ${
+                    className={`motion-action inline-flex min-h-11 items-center justify-center rounded border-2 px-5 py-2.5 text-center text-base font-light leading-none ${
                       projectFilter === filter
                         ? "border-amber-400 bg-amber-400 text-slate-900"
                         : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400"
@@ -718,7 +709,7 @@ export default function PortfolioView({ data }) {
                           {hasHighlights && (
                             <button
                               aria-expanded={isExpanded}
-                              className={`motion-action inline-flex items-center gap-2 rounded border-2 px-4 py-2.5 text-sm font-light ${
+                              className={`motion-action inline-flex min-h-11 items-center justify-center gap-2 rounded border-2 px-4 py-2.5 text-center text-sm font-light leading-none ${
                                 isExpanded
                                   ? "border-amber-400 bg-amber-400 text-slate-900"
                                   : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400 hover:bg-slate-800"
@@ -797,7 +788,7 @@ export default function PortfolioView({ data }) {
 
       <button
         aria-label="Back to top"
-        className="motion-action fixed bottom-5 right-5 grid h-12 w-12 items-center justify-center rounded-full border-2 border-amber-400 bg-slate-900 text-amber-400 shadow-lg hover:bg-amber-400 hover:text-slate-900"
+        className="motion-action fixed bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full border-2 border-amber-400 bg-slate-900 text-amber-400 shadow-lg hover:bg-amber-400 hover:text-slate-900"
         onClick={scrollToTop}
         type="button"
       >

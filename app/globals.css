@@ -31,30 +31,41 @@
 
 @layer components {
   .motion-page {
-    animation: portfolio-fade-in 420ms ease both;
+    animation: portfolio-geometric-page-in 520ms cubic-bezier(0.22, 1, 0.36, 1)
+      both;
+    transform-origin: center;
   }
 
   .motion-section {
+    clip-path: polygon(0 12%, 90% 0, 100% 88%, 10% 100%);
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(22px) scale(0.985);
+    transform-origin: center;
     transition:
       opacity 560ms ease,
-      transform 560ms ease;
+      transform 560ms ease,
+      clip-path 560ms ease;
   }
 
   .motion-section-visible {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 
   .motion-panel {
-    animation: portfolio-fade-in 360ms ease both;
+    animation: portfolio-geometric-fade-in 420ms cubic-bezier(0.22, 1, 0.36, 1)
+      both;
+    transform-origin: center;
   }
 
   .motion-card {
-    animation: portfolio-rise-in 420ms ease both;
+    animation: portfolio-geometric-rise-in 480ms cubic-bezier(0.22, 1, 0.36, 1)
+      both;
+    transform-origin: center;
     transition:
       border-color 220ms ease,
+      clip-path 220ms ease,
       box-shadow 220ms ease,
       opacity 220ms ease,
       transform 220ms ease;
@@ -66,6 +77,12 @@
 
   .motion-action:hover {
     transform: translateY(-1px);
+  }
+
+  .motion-action {
+    animation: portfolio-geometric-action-in 420ms cubic-bezier(0.22, 1, 0.36, 1)
+      both;
+    transform-origin: center;
   }
 
   .motion-details {
@@ -85,8 +102,13 @@
   }
 
   .motion-details > div {
+    clip-path: polygon(0 12%, 90% 0, 100% 88%, 10% 100%);
     min-height: 0;
     overflow: hidden;
+    transform: translateY(10px) scale(0.985);
+    transition:
+      clip-path 360ms ease,
+      transform 360ms ease;
   }
 
   .motion-details-open {
@@ -96,28 +118,65 @@
     opacity: 1;
     padding-top: 1.25rem;
   }
+
+  .motion-details-open > div {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: translateY(0) scale(1);
+  }
 }
 
 @layer utilities {
-  @keyframes portfolio-fade-in {
+  @keyframes portfolio-geometric-page-in {
     from {
+      clip-path: polygon(0 10%, 92% 0, 100% 90%, 8% 100%);
       opacity: 0;
     }
 
     to {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
       opacity: 1;
     }
   }
 
-  @keyframes portfolio-rise-in {
+  @keyframes portfolio-geometric-fade-in {
     from {
+      clip-path: polygon(0 14%, 88% 0, 100% 86%, 12% 100%);
       opacity: 0;
-      transform: translateY(12px);
+      transform: scale(0.985);
     }
 
     to {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
       opacity: 1;
-      transform: translateY(0);
+      transform: scale(1);
+    }
+  }
+
+  @keyframes portfolio-geometric-rise-in {
+    from {
+      clip-path: polygon(0 14%, 88% 0, 100% 86%, 12% 100%);
+      opacity: 0;
+      transform: translateY(14px) scale(0.985);
+    }
+
+    to {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes portfolio-geometric-action-in {
+    from {
+      clip-path: polygon(0 18%, 86% 0, 100% 82%, 14% 100%);
+      opacity: 0;
+      transform: scale(0.96);
+    }
+
+    to {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      opacity: 1;
+      transform: scale(1);
     }
   }
 

@@ -72,22 +72,22 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="grid min-h-screen grid-cols-1 bg-slate-900 font-sans text-white">
-        <nav className="sticky top-0 z-50 grid grid-cols-1 items-center justify-center gap-5 border-2 border-amber-400 bg-slate-900 px-5 py-6 text-amber-400 lg:grid-cols-[auto_1fr] lg:justify-between lg:px-20">
+        <nav className="sticky top-0 z-50 flex flex-col items-center justify-center gap-3 border-2 border-amber-400 bg-slate-900 px-3 py-4 text-amber-400 sm:gap-5 sm:px-5 sm:py-6 lg:flex-row lg:justify-between lg:px-20">
           <Link
-            className="motion-action mx-auto text-center text-3xl font-light hover:text-orange-600 lg:m-0 lg:text-left lg:text-5xl"
+            className="motion-action inline-flex min-h-12 items-center justify-center text-center text-3xl font-light leading-none hover:text-orange-600 lg:justify-start lg:text-5xl"
             href={brandHref}
           >
             {brandName}
           </Link>
           {navItems.length > 0 && (
-            <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 lg:justify-end lg:gap-x-14">
+            <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:gap-x-10 sm:gap-y-4 lg:justify-end lg:gap-x-14">
               {navItems.map((item) => (
                 <li
                   className="grid items-center justify-center"
                   key={item.label}
                 >
                   <Link
-                    className="motion-action text-center text-sm font-light leading-tight tracking-wide hover:text-orange-600 sm:text-xl"
+                    className="motion-action inline-flex min-h-8 items-center justify-center whitespace-nowrap text-center text-xs font-light leading-none tracking-wide hover:text-orange-600 sm:min-h-9 sm:text-xl"
                     href={item.href}
                   >
                     {item.label}
