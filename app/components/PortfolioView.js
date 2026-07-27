@@ -505,15 +505,15 @@ export default function PortfolioView({ data }) {
 
               return (
                 <article
-                  className="motion-card grid min-h-40 place-items-center rounded-md border border-site-accent-soft bg-site-surface-strong px-5 py-7 text-center text-site-accent-soft hover:transform-none sm:min-h-52 sm:px-7 sm:py-12"
+                  className="motion-card grid min-h-24 place-items-center rounded-md border border-site-accent-soft bg-site-surface-strong px-4 py-4 text-center text-site-accent-soft hover:transform-none sm:min-h-28 sm:px-6 sm:py-5"
                   key={skill.title}
                 >
-                  <div className="grid justify-items-center gap-3 sm:gap-5">
+                  <div className="flex w-full items-center justify-center gap-4 sm:gap-5">
                     <SkillIcon
                       aria-hidden="true"
-                      className="text-6xl sm:text-7xl"
+                      className="shrink-0 text-4xl sm:text-5xl"
                     />
-                    <span className="text-2xl font-light leading-tight sm:text-3xl">
+                    <span className="min-w-0 text-left text-xl font-light leading-tight sm:text-2xl">
                       {skill.title}
                     </span>
                   </div>
