@@ -70,18 +70,18 @@
   "focusAreas": [
     {
       "icon": "code",
-      "title": "React and Next.js interfaces",
-      "text": "Responsive product screens, dashboard flows, Redux-backed UI, and polished user-facing web experiences."
+      "title": "Full-stack development",
+      "text": "React interfaces, API layers, authentication-ready flows, and database-backed features."
     },
     {
       "icon": "layers",
-      "title": "Node.js API work",
-      "text": "Express.js and NestJS REST APIs with payment, email, search, and AI service integrations."
+      "title": "Database design",
+      "text": "Relational and non-relational data models for practical web application requirements."
     },
     {
       "icon": "briefcase",
-      "title": "Product delivery",
-      "text": "Admin workflows, production project ownership, deployment-minded implementation, and contest-tested problem solving."
+      "title": "Problem solving",
+      "text": "Programming contest practice, algorithmic thinking, and implementation discipline."
     }
   ],
   "skillGroups": [
