@@ -6,6 +6,10 @@ import { notFound } from "next/navigation";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Edit Portfolio | Mohaiminul Islam",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default async function AdminPage() {

@@ -3,11 +3,62 @@ import "./globals.css";
 import "./fontawesome";
 import { getPortfolioData } from "@/lib/portfolioDb";
 import { getVisibleNavItems, hasText } from "@/lib/portfolioVisibility";
+import { seoKeywords, siteDescription, siteTitle, siteUrl } from "@/lib/seo";
 
 export const metadata = {
-  title: "Mohaiminul Islam | Portfolio",
-  description:
-    "Portfolio of Mohaiminul Islam, a CS graduate and software developer focused on MERN stack applications, REST APIs, and Python automation.",
+  metadataBase: new URL(siteUrl),
+  applicationName: "Mohaiminul Islam Portfolio",
+  title: {
+    default: siteTitle,
+    template: "%s | Mohaiminul Islam",
+  },
+  description: siteDescription,
+  keywords: seoKeywords,
+  authors: [{ name: "Mohaiminul Islam" }],
+  creator: "Mohaiminul Islam",
+  publisher: "Mohaiminul Islam",
+  category: "technology",
+  alternates: {
+    canonical: "/",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
+  openGraph: {
+    title: siteTitle,
+    description: siteDescription,
+    url: "/",
+    siteName: "Mohaiminul Islam Portfolio",
+    images: [
+      {
+        url: "/mm.jpg",
+        width: 300,
+        height: 300,
+        alt: "Mohaiminul Islam",
+      },
+    ],
+    locale: "en_US",
+    type: "profile",
+  },
+  twitter: {
+    card: "summary",
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/mm.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export const dynamic = "force-dynamic";
