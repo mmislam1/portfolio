@@ -378,22 +378,22 @@ export default function PortfolioView({ data }) {
   };
 
   return (
-    <main className="motion-page grid grid-cols-1 bg-slate-900 text-white">
+    <main className="motion-page grid grid-cols-1 bg-slate-900 font-light text-white">
       {showAbout && (
         <section
-          className="motion-section grid scroll-mt-32 items-center justify-center px-6 pb-4 pt-10 font-semibold text-lg lg:px-24 xl:px-72"
+          className="motion-section grid scroll-mt-32 items-center justify-center px-6 pb-16 pt-14 text-lg md:pb-20 md:pt-16 lg:px-24 xl:px-72"
           id="about"
         >
-          <div className="grid w-full grid-cols-1 items-center justify-around gap-6">
-            <div className="flex flex-col-reverse items-center justify-around gap-9 md:flex-row">
-              <div className="grid w-full max-w-3xl gap-6 text-center md:text-left">
+          <div className="grid w-full grid-cols-1 items-center justify-around gap-9 md:gap-12">
+            <div className="flex flex-col-reverse items-center justify-around gap-12 md:flex-row md:gap-16">
+              <div className="grid w-full max-w-3xl gap-8 text-center md:text-left">
                 {hasText(profile.headline) && (
-                  <h1 className="text-3xl font-semibold leading-tight text-amber-400 md:text-4xl">
+                  <h1 className="text-3xl font-light leading-tight text-amber-400 md:text-4xl">
                     {profile.headline}
                   </h1>
                 )}
                 {hasText(profile.summary) && (
-                  <p className="text-lg leading-8 text-slate-100">
+                  <p className="text-lg leading-9 text-slate-100">
                     {profile.summary}
                   </p>
                 )}
@@ -411,10 +411,10 @@ export default function PortfolioView({ data }) {
               )}
             </div>
 
-            <div className="flex w-full max-w-3xl flex-wrap items-center justify-center gap-x-8 gap-y-5 sm:justify-between">
+            <div className="flex w-full max-w-3xl flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:justify-between">
               {hasResumeLink && (
                 <a
-                  className="motion-action animate-colorChange rounded border-2 border-amber-400 bg-slate-900 px-8 py-2 text-2xl font-semibold text-amber-400 hover:bg-amber-400 hover:text-slate-900"
+                  className="motion-action animate-colorChange rounded border-2 border-amber-400 bg-slate-900 px-8 py-3 text-2xl font-light text-amber-400 hover:bg-amber-400 hover:text-slate-900"
                   href={profile.resumeLink}
                   rel="noreferrer"
                   target="_blank"
@@ -426,7 +426,7 @@ export default function PortfolioView({ data }) {
                 <ProfileIconLink key={link.label} link={link} />
               ))}
               <button
-                className="motion-action animate-colorChange rounded border-2 border-amber-400 px-5 py-3 text-base font-semibold text-amber-400 hover:bg-amber-400 hover:text-slate-900"
+                className="motion-action animate-colorChange rounded border-2 border-amber-400 px-5 py-3 text-base font-light text-amber-400 hover:bg-amber-400 hover:text-slate-900"
                 onClick={copyProfileLink}
                 type="button"
               >
@@ -442,10 +442,10 @@ export default function PortfolioView({ data }) {
 
       {visibleSkillGroups.length > 0 && (
         <section
-          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 pb-10 pt-24 lg:px-24 xl:px-72"
+          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 pb-16 pt-28 md:pb-20 lg:px-24 xl:px-72"
           id="skills"
         >
-          <h2 className="m-auto text-4xl font-semibold text-amber-400">
+          <h2 className="m-auto text-4xl font-light text-amber-400">
             SKILLS
           </h2>
           {visibleSkillGroups.length > 1 && (
@@ -454,7 +454,7 @@ export default function PortfolioView({ data }) {
                 Skill category
               </label>
               <select
-                className="motion-action mt-8 w-full rounded border-2 border-amber-400 bg-slate-900 p-3 text-base font-semibold text-amber-400 outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/60 sm:hidden"
+                className="motion-action mt-10 w-full rounded border-2 border-amber-400 bg-slate-900 p-3 text-base font-light text-amber-400 outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/60 sm:hidden"
                 id="skill-group-select"
                 onChange={(event) => setActiveSkillGroup(event.target.value)}
                 value={activeSkillGroup}
@@ -465,11 +465,11 @@ export default function PortfolioView({ data }) {
                   </option>
                 ))}
               </select>
-              <div className="mt-8 hidden flex-wrap items-center justify-center gap-4 sm:flex">
+              <div className="mt-10 hidden flex-wrap items-center justify-center gap-5 sm:flex">
                 {visibleSkillGroups.map((group) => (
                   <button
                     aria-pressed={activeSkillGroup === group.title}
-                    className={`motion-action rounded border-2 px-6 py-3 text-lg font-bold shadow-[0_10px_24px_rgba(15,23,42,0.35)] ${
+                    className={`motion-action rounded border-2 px-6 py-3 text-lg font-light ${
                       activeSkillGroup === group.title
                         ? "border-amber-400 bg-amber-400 text-slate-900"
                         : "border-amber-400/70 bg-slate-900 text-amber-400 hover:border-amber-400 hover:bg-slate-800"
@@ -485,7 +485,7 @@ export default function PortfolioView({ data }) {
             </>
           )}
           <div
-            className="motion-panel my-10 grid w-full grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 xl:grid-cols-3"
+            className="motion-panel my-12 grid w-full grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 xl:grid-cols-3"
             key={activeSkillGroup}
           >
             {activeSkills.map((skill) => {
@@ -493,10 +493,10 @@ export default function PortfolioView({ data }) {
 
               return (
                 <article
-                  className="motion-card grid min-h-44 place-items-center rounded-md border border-amber-300 bg-slate-950 px-5 py-8 text-center text-amber-300 sm:min-h-52 sm:px-6 sm:py-10"
+                  className="motion-card grid min-h-44 place-items-center rounded-md border border-amber-300 bg-slate-950 px-5 py-9 text-center text-amber-300 sm:min-h-52 sm:px-7 sm:py-12"
                   key={skill.title}
                 >
-                  <div className="grid justify-items-center gap-4">
+                  <div className="grid justify-items-center gap-5">
                     <SkillIcon
                       aria-hidden="true"
                       className="text-6xl sm:text-7xl"
@@ -514,14 +514,14 @@ export default function PortfolioView({ data }) {
 
       {visibleExperience.length > 0 && (
         <section
-          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-10 lg:px-24 xl:px-72"
+          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-16 md:py-20 lg:px-24 xl:px-72"
           id="experience"
         >
-          <h2 className="m-auto text-4xl font-semibold text-amber-400">
+          <h2 className="m-auto text-4xl font-light text-amber-400">
             EXPERIENCE
           </h2>
 
-          <div className="my-8 grid w-full grid-cols-1">
+          <div className="my-12 grid w-full grid-cols-1">
             <div className="grid grid-cols-1">
               {visibleExperience.map((item, index) => {
                 const tenure = jobTenures[index];
@@ -529,24 +529,24 @@ export default function PortfolioView({ data }) {
 
                 return (
                   <article
-                    className="motion-panel grid gap-4 border-b border-amber-400/60 py-7 first:pt-0 last:border-b-0 md:grid-cols-[12rem_2rem_1fr] md:border-slate-700"
+                    className="motion-panel grid gap-6 border-b border-amber-400/60 py-9 first:pt-0 last:border-b-0 md:grid-cols-[12rem_2rem_1fr] md:border-slate-700"
                     key={item.title}
                   >
-                    <div className="grid content-start gap-2 md:text-right">
-                      <div className="grid gap-1">
+                    <div className="grid content-start gap-3 md:text-right">
+                      <div className="grid gap-2">
                         {hasText(tenure.start) && (
-                          <p className="text-sm font-semibold text-amber-400">
+                          <p className="text-sm font-light text-amber-400">
                             {tenure.start}
                           </p>
                         )}
                         {hasText(tenure.end) && (
-                          <p className="text-sm font-semibold text-slate-200">
+                          <p className="text-sm font-light text-slate-200">
                             {tenure.end}
                           </p>
                         )}
                       </div>
                       {hasText(tenure.duration) && (
-                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                        <p className="text-xs font-light uppercase tracking-wide text-slate-400">
                           {tenure.duration}
                         </p>
                       )}
@@ -559,38 +559,38 @@ export default function PortfolioView({ data }) {
                       </div>
                     </div>
 
-                    <div className="grid content-start gap-4">
+                    <div className="grid content-start gap-5">
                       <div>
-                        <h3 className="text-2xl font-semibold text-amber-400">
+                        <h3 className="text-2xl font-light text-amber-400">
                           {item.title}
                         </h3>
                         {hasText(tenure.role) && (
-                          <p className="mt-1 font-semibold text-slate-200">
+                          <p className="mt-2 text-slate-200">
                             {tenure.role}
                           </p>
                         )}
                         {hasText(tenure.period) && (
-                          <p className="mt-1 text-sm font-semibold text-slate-400 md:hidden">
+                          <p className="mt-2 text-sm font-light text-slate-400 md:hidden">
                             {tenure.period} | {tenure.duration}
                           </p>
                         )}
                       </div>
 
                       {highlights.length > 0 ? (
-                        <ul className="grid gap-2">
+                        <ul className="grid gap-3">
                           {highlights.map((highlight) => (
                             <li
-                              className="grid grid-cols-[auto_1fr] gap-3 leading-7 text-slate-100"
+                              className="grid grid-cols-[auto_1fr] gap-4 leading-8 text-slate-100"
                               key={highlight}
                             >
-                              <span className="mt-3 h-1.5 w-1.5 rounded-full bg-amber-400" />
+                              <span className="mt-3.5 h-1.5 w-1.5 rounded-full bg-amber-400" />
                               <span>{highlight}.</span>
                             </li>
                           ))}
                         </ul>
                       ) : (
                         hasText(item.details) && (
-                          <p className="leading-7 text-slate-100">
+                          <p className="leading-8 text-slate-100">
                             {item.details}
                           </p>
                         )
@@ -606,10 +606,10 @@ export default function PortfolioView({ data }) {
 
       {projectsWithContent.length > 0 && (
         <section
-          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-10 lg:px-24 xl:px-72"
+          className="motion-section grid scroll-mt-32 grid-cols-1 items-center justify-center px-6 py-16 md:py-20 lg:px-24 xl:px-72"
           id="projects"
         >
-          <h2 className="m-auto text-4xl font-semibold text-amber-400">
+          <h2 className="m-auto text-4xl font-light text-amber-400">
             PROJECTS
           </h2>
           {projectFilters.length > 1 && (
@@ -618,7 +618,7 @@ export default function PortfolioView({ data }) {
                 Project filter
               </label>
               <select
-                className="motion-action mt-8 w-full rounded border-2 border-amber-400 bg-slate-900 p-3 text-base font-semibold text-amber-400 outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/60 sm:hidden"
+                className="motion-action mt-10 w-full rounded border-2 border-amber-400 bg-slate-900 p-3 text-base font-light text-amber-400 outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/60 sm:hidden"
                 id="project-filter-select"
                 onChange={(event) => setProjectFilter(event.target.value)}
                 value={projectFilter}
@@ -629,11 +629,11 @@ export default function PortfolioView({ data }) {
                   </option>
                 ))}
               </select>
-              <div className="mt-8 hidden flex-wrap items-center justify-center gap-3 sm:flex">
+              <div className="mt-10 hidden flex-wrap items-center justify-center gap-4 sm:flex">
                 {projectFilters.map((filter) => (
                   <button
                     aria-pressed={projectFilter === filter}
-                    className={`motion-action rounded border-2 px-4 py-2 text-base font-semibold ${
+                    className={`motion-action rounded border-2 px-5 py-2.5 text-base font-light ${
                       projectFilter === filter
                         ? "border-amber-400 bg-amber-400 text-slate-900"
                         : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400"
@@ -649,13 +649,13 @@ export default function PortfolioView({ data }) {
             </>
           )}
           {projectFilters.length > 1 && (
-            <p className="mt-5 text-center text-slate-200">
+            <p className="mt-7 text-center text-slate-200">
               Showing {visibleProjects.length} project
               {visibleProjects.length === 1 ? "" : "s"}.
             </p>
           )}
 
-          <div className="my-8 grid grid-cols-1 items-stretch">
+          <div className="my-12 grid grid-cols-1 items-stretch">
             {visibleProjects.map((project, index) => {
               const highlights = (project.highlights || []).filter(hasText);
               const tools = (project.tools || []).filter(hasText);
@@ -667,7 +667,7 @@ export default function PortfolioView({ data }) {
               const isExpanded =
                 hasHighlights && expandedProject === project.title;
               const separatorClass =
-                index > 0 ? "mt-8 border-t border-amber-400/60 pt-8" : "";
+                index > 0 ? "mt-10 border-t border-amber-400/60 pt-10" : "";
 
               return (
                 <div
@@ -675,23 +675,23 @@ export default function PortfolioView({ data }) {
                   key={`${projectFilter}-${project.title}`}
                 >
                   <article
-                    className={`motion-card border-l-2 px-5 py-6 shadow-[0_16px_40px_rgba(15,23,42,0.25)] ${projectAccent.article}`}
+                    className={`motion-card border-l-2 px-6 py-8 shadow-[0_16px_40px_rgba(15,23,42,0.25)] md:px-7 md:py-9 ${projectAccent.article}`}
                   >
-                    <div className="flex flex-col justify-between gap-5 md:flex-row md:items-start">
-                      <div className="grid gap-2">
+                    <div className="flex flex-col justify-between gap-7 md:flex-row md:items-start">
+                      <div className="grid gap-3">
                         <h3
-                          className={`text-3xl font-semibold ${projectAccent.title}`}
+                          className={`text-3xl font-light ${projectAccent.title}`}
                         >
                           {project.title}
                         </h3>
                         {hasText(project.type) && (
-                          <p className="max-w-3xl text-base font-semibold leading-7 text-slate-300">
+                          <p className="max-w-3xl text-base leading-8 text-slate-300">
                             {project.type}
                           </p>
                         )}
                         {hasText(project.role) && (
                           <p
-                            className={`mt-1 text-sm font-semibold uppercase tracking-wide ${projectAccent.role}`}
+                            className={`mt-1 text-sm font-light uppercase tracking-wide ${projectAccent.role}`}
                           >
                             Role: {project.role}
                           </p>
@@ -712,7 +712,7 @@ export default function PortfolioView({ data }) {
                           {hasHighlights && (
                             <button
                               aria-expanded={isExpanded}
-                              className={`motion-action inline-flex items-center gap-2 rounded border-2 px-4 py-2 text-sm font-semibold ${
+                              className={`motion-action inline-flex items-center gap-2 rounded border-2 px-4 py-2.5 text-sm font-light ${
                                 isExpanded
                                   ? "border-amber-400 bg-amber-400 text-slate-900"
                                   : "border-slate-500 bg-slate-900 text-amber-400 hover:border-amber-400 hover:bg-slate-800"
@@ -740,16 +740,16 @@ export default function PortfolioView({ data }) {
                     </div>
 
                     {hasText(project.desc) && (
-                      <p className="mt-5 max-w-4xl text-lg leading-8 text-slate-100">
+                      <p className="mt-7 max-w-4xl text-lg leading-9 text-slate-100">
                         {project.desc}
                       </p>
                     )}
 
                     {tools.length > 0 && (
-                      <div className="mt-5 flex flex-row flex-wrap gap-2">
+                      <div className="mt-7 flex flex-row flex-wrap gap-3">
                         {tools.map((tool) => (
                           <span
-                            className={`rounded border px-3 py-1 text-base ${projectAccent.tool}`}
+                            className={`rounded border px-3 py-1.5 text-base ${projectAccent.tool}`}
                             key={`${project.title}-${tool}`}
                           >
                             {tool}
@@ -765,10 +765,10 @@ export default function PortfolioView({ data }) {
                           isExpanded ? "motion-details-open" : ""
                         }`}
                       >
-                        <div className="grid gap-3">
+                        <div className="grid gap-4">
                           {highlights.map((highlight) => (
                             <p
-                              className="grid grid-cols-[auto_1fr] gap-3 leading-7 text-slate-100"
+                              className="grid grid-cols-[auto_1fr] gap-4 leading-8 text-slate-100"
                               key={highlight}
                             >
                               <FontAwesomeIcon
