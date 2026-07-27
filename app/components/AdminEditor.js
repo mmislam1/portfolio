@@ -1,9 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { skillIconOptions } from "@/lib/skillIconOptions";
-import { defaultSiteColors, siteColorFields } from "@/lib/siteTheme";
+import {
+  defaultSiteColors,
+  getSiteThemeStyle,
+  siteColorFields,
+} from "@/lib/siteTheme";
 
 const tabs = [
   "Appearance",
@@ -153,6 +157,14 @@ export default function AdminEditor({ initialData }) {
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const [data, setData] = useState(initialData);
   const [status, setStatus] = useState("");
+
+  useEffect(() => {
+    const themeStyle = getSiteThemeStyle(data.theme);
+
+    Object.entries(themeStyle).forEach(([property, value]) => {
+      document.body.style.setProperty(property, value);
+    });
+  }, [data.theme]);
 
   const updateRoot = (key, value) => {
     setData((current) => ({ ...current, [key]: value }));
