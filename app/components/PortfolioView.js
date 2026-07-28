@@ -79,7 +79,7 @@ const projectAccent = {
   check: "text-site-accent",
   role: "text-site-accent",
   title: "text-site-accent",
-  tool: "border-site-border bg-site-surface/60 text-site-accent",
+  tool: "border-site-accent-soft bg-site-surface-strong text-site-accent-soft",
 };
 
 const skillIconComponents = {
