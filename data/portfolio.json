@@ -291,8 +291,7 @@
       "title": "IpHint",
       "meta": "MERN Stack Developer | February 2026 - July 2026",
       "icon": "briefcase",
-      "details": "Owned end-to-end system design and development for a dual-language reverse image search platform, building a Next.js frontend with a standalone Express.js backend server; Implemented a server-side image ingestion pipeline, search routing, and a responsive bilingual user interface;	Integrated Paddle for payment processing and SerpApi for reverse image match search; Built a follow-up system to track and maintain user searches and submissions, and an admin panel for full system oversight and analytics."
-},
+      "details": "Owned end-to-end system design and development for a dual-language reverse image search platform, building a Next.js frontend with a standalone Express.js backend server; Implemented a server-side image ingestion pipeline, search routing, and a responsive bilingual user interface; Integrated Paddle for payment processing and SerpApi for reverse image match search; Built a follow-up system to track and maintain user searches and submissions, and an admin panel for full system oversight and analytics."},
     {
       "title": "Join Venture AI",
       "meta": "Junior Web Developer (React) | October 2025 - February 2026",
