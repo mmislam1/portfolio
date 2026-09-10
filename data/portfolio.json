@@ -275,17 +275,24 @@
         "Email API"
       ],
       "highlights": [
-        "Generated personalized diet plans and formatted report charts",
-        "Integrated automated email delivery for diet reports",
-        "Enabled custom foods and recipes",
-        "Used Gemini API to analyze nutrition labels from packaged food images",
-        "Implemented an admin panel for system oversight and user trend analysis"
+        	"Developed a web application for generating personalized diet plans with automated email delivery of formatted charts."
+,	"Integrated an email service API to distribute diet reports reliably to registered users."
+,	"Enabled users to add custom foods and recipes."
+,	"Integrated the Gemini API to analyze nutrition labels from packaged food images."
+,	"Implemented an admin panel for system oversight and user trend analysis."
+
       ],
       "link": "https://github.com/mmislam1/ltg",
       "liveLink": "https://losetogainnext.netlify.app"
     }
   ],
   "experience": [
+    {
+      "title": "IpHint",
+      "meta": "MERN Stack Developer | February 2026 - July 2026",
+      "icon": "briefcase",
+      "details": "Owned end-to-end system design and development for a dual-language reverse image search platform, building a Next.js frontend with a standalone Express.js backend server; Implemented a server-side image ingestion pipeline, search routing, and a responsive bilingual user interface;	Integrated Paddle for payment processing and SerpApi for reverse image match search;	Built a follow-up system to track and maintain user searches and submissions, and an admin panel for full system oversight and analytics."
+},
     {
       "title": "Join Venture AI",
       "meta": "Junior Web Developer (React) | October 2025 - February 2026",
@@ -298,6 +305,7 @@
       "icon": "briefcase",
       "details": "Built client-facing full-stack features with MongoDB, Express.js, React, and Node.js; designed RESTful APIs; strengthened code quality through reviews, validation, state management, and error handling."
     }
+    
   ],
   "contact": {
     "formAction": ""
